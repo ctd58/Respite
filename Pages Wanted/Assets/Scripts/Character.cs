@@ -10,12 +10,18 @@ public class Character : MonoBehaviour {
     */
     public CharacterController _controller;
     public bool canMove = true;
-    public float speed = 10;
+    public float speed = 3.0f;
     public bool isP1 = true;
     private Vector3 move;
+    private Vector3 ro;
+    public float rotateSpeed = 30.0f;
     public Character teammate;
     public int keys = 0;
     public Sound noise;
+    public float moveH;
+    public float moveV;
+    public float lookH;
+    private Vector3 foward;
 
 	// Use this for initialization
 	void Start () {
@@ -54,14 +60,18 @@ public class Character : MonoBehaviour {
         {
             if (isP1)
             {
-                move = new Vector3(Input.GetAxis("P1Horizontal"), 0, Input.GetAxis("P1Vertical"));
+
+                foward = Input.GetAxis("P1Vertical") * transform.TransformDirection(Vector3.forward) * speed;
+                transform.Rotate(new Vector3(0, Input.GetAxis("P1Horizontal") * rotateSpeed * Time.deltaTime, 0));
+
             }
             else
             {
-                move = new Vector3(Input.GetAxis("P2Horizontal"), 0, Input.GetAxis("P2Vertical"));
+                foward = Input.GetAxis("P2Vertical") * transform.TransformDirection(Vector3.forward) * speed; //maybe for running and tiptoeing
+                transform.Rotate(new Vector3(0, Input.GetAxis("P2Horizontal") * rotateSpeed * Time.deltaTime, 0));
             }
-            _controller.Move(move * Time.deltaTime * speed); //maybe for running and tiptoeing
-
+            _controller.Move(foward * Time.deltaTime);
+            
         }
 
         if (isP1 && Input.GetKey(KeyCode.Alpha1))
