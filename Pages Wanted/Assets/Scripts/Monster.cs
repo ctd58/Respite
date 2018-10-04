@@ -5,10 +5,12 @@ using UnityEngine;
 public class Monster : MonoBehaviour {
 
     public Transform target;
+    public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
     public float maxDistance;
     public List<GameObject> sounds;
+    public float chaseTime = 0.0f;
 
     void Start()
     {
@@ -24,6 +26,11 @@ public class Monster : MonoBehaviour {
         if (target != null)
         {
             FollowSound();
+            chaseTime += Time.deltaTime;
+        }
+        else
+        {
+            chaseTime = 0.0f;
         }
     }
 
@@ -36,6 +43,16 @@ public class Monster : MonoBehaviour {
 
     void findTarget()
     {
+        if (chaseTime / 2.5f > 1.0f)
+        {
+
+            chaseTime -= 2.5f;
+            movSpeed += 0.75f;
+        }
+        else if (chaseTime == 0.0f)
+        {
+            movSpeed = baseMoveSpeed;
+        }
         target = null;
         float highest = 0.0f;
         float temp = 0.0f;
