@@ -10,7 +10,8 @@ public class ControllerMovement : MonoBehaviour {
     public bool canMove = true;
     public ControllerMovement teammate;
     private string playerNum = "";
-    private string switchButton = "";
+    private string switchb = "";
+    public Sound sound;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,7 @@ public class ControllerMovement : MonoBehaviour {
             canMove = true;
             teammate = GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>();
             playerNum = "P1";
-            switchButton = "ax button";
+            switchb = "rbe";
         }
         else if (this.tag == "P2")
         {
@@ -28,8 +29,10 @@ public class ControllerMovement : MonoBehaviour {
             canMove = false;
             teammate = GameObject.FindGameObjectWithTag("P1").GetComponent<ControllerMovement>();
             playerNum = "P2";
-            switchButton = "bo button";
+            switchb = "lbq";
         }
+
+        sound = this.GetComponent<Sound>();
         
     }
 	
@@ -47,11 +50,15 @@ public class ControllerMovement : MonoBehaviour {
         if (canMove)
         {
             Move();
-            if (Input.GetButton(switchButton))
+            if (Input.GetButton(switchb))
             {
                 canMove = false;
                 teammate.canMove = true;
             }
+        }
+        else
+        {
+            sound.sound = 0;
         }
     }
 
@@ -62,6 +69,10 @@ public class ControllerMovement : MonoBehaviour {
 
         transform.Translate(new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime));
         transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
+        if (x == 0.0f && z == 0.0f)
+            sound.sound = 0;
+        else
+            sound.sound = 1;
 
     }
 }

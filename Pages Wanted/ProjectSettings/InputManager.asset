@@ -438,13 +438,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Cancel
+    m_Name: lbq
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: escape
+    positiveButton: joystick button 4
     altNegativeButton: 
-    altPositiveButton: joystick button 1
+    altPositiveButton: q
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -454,13 +454,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Cancel
+    m_Name: rbe
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: escape
+    positiveButton: joystick button 5
     altNegativeButton: 
-    altPositiveButton: joystick button 1
+    altPositiveButton: e
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
