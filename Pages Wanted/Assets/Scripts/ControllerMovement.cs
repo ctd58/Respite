@@ -12,6 +12,8 @@ public class ControllerMovement : MonoBehaviour {
     private string playerNum = "";
     private string switchb = "";
     public Sound sound;
+    private Vector3 mov;
+    public CharacterController _mycontroller;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +33,7 @@ public class ControllerMovement : MonoBehaviour {
             playerNum = "P2";
             switchb = "lbq";
         }
-
+        _mycontroller = this.GetComponent<CharacterController>();
         sound = this.GetComponent<Sound>();
         
     }
@@ -68,7 +70,8 @@ public class ControllerMovement : MonoBehaviour {
         float x = Input.GetAxis(playerNum + "Horizontal");
         float z = Input.GetAxis(playerNum + "Vertical");
 
-        transform.Translate(new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime));
+        mov = new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime);
+        _mycontroller.Move(transform.TransformDirection(mov));
         transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
         if (x == 0.0f && z == 0.0f)
             sound.sound = 0;
