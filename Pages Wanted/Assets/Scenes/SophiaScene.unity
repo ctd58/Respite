@@ -283,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &516603033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -617,11 +617,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  baseMoveSpeed: 4
   rotSpeed: 5
   movSpeed: 8
   distance: 0
   maxDistance: 100
   sounds: []
+  chaseTime: 0
 --- !u!135 &799893858
 SphereCollider:
   m_ObjectHideFlags: 0
