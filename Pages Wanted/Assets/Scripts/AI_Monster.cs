@@ -9,74 +9,61 @@ public class AI_Monster : MonoBehaviour {
     /*Save current position and all list of waypoints*/
 
     [SerializeField]
-    Transform curr_position;
+    Transform curr_waypoint;
+
+    [SerializeField]
+    Transform next_waypoint;
 
     [SerializeField]
     List<Transform> waypoints = new List<Transform>();
 
-
-    /*Private variables*/ 
     NavMeshAgent navMeshAgent;
-    private int wcounter;
-    private bool madeit; 
+    bool h;
+
+    int i = 0;
+
+    public int z = 300;
+    int counter = 0;
 
     // Use this for initialization
-    void Start () {
-        /*Set navMesh*/
-        navMeshAgent = this.GetComponent<NavMeshAgent>(); 
+    void Start()
+    {
+        navMeshAgent = this.GetComponent<NavMeshAgent>();
+        //loudestpoint1();
+    }
 
-        /*if Nav hasnt been set*/
-        if(navMeshAgent == null)
+    private void Update()
+    {
+        counter++;
+        Debug.Log(counter);
+
+        if (counter >= z)
         {
-            Debug.Log("We have a problem."); 
+            counter = 0;
+            h = true;
+            if (h == true)
+            {
+                i = (i + 1) % (waypoints.Count);
+                curr_waypoint = waypoints[i];
+                loudestpoint(curr_waypoint);
+            }
         }
         else
         {
-            /*if none or 1 waypoint, generate waypoints based on sound*/
-            if (waypoints == null)
-            {
-                Debug.Log("No destination.");
-            }
-            else if(waypoints.Count <= 1)
-            {
-                Debug.Log("Need to make waypoint dynamically for patrol, not doing that yet."); 
-            }
-            else
-            {
-                /*make sure that after walking to a previously set curr_position (if there is one), the first place it goes is to the first item
-                 * of the list */
-                wcounter = 0;
-                madeit = false;
-                monsterwalk(); 
-            }
+            Debug.Log("wait");
         }
-	}
 
-    private void monsterwalk()
+    }
+
+    private void loudestpoint(Transform newwaypoint)
     {
-        /*walking ai, making it go after the waypoint*/
-        if (curr_position != null && madeit == false)
+        if (curr_waypoint != null)
         {
-            Vector3 targetV = curr_position.transform.position;
-            bool s = navMeshAgent.SetDestination(targetV);
-            madeit = s;
-            Debug.Log(madeit); 
-
+            Vector3 targetV = newwaypoint.transform.position;
+            navMeshAgent.SetDestination(targetV);
+            h = false;
+            //curr_waypoint.transform.position = waypoints[2].transform.position; 
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-        /*what I believe to be making the ai stuck.*/
-		if (madeit == true)
-        { 
-            if (curr_position.transform.position != waypoints[wcounter].transform.position)
-            {
-                curr_position.transform.position = waypoints[wcounter].transform.position; 
-            }
-            wcounter = (wcounter + 1) % waypoints.Count;
-            monsterwalk();
-            madeit = false; 
-        }
-	}
 }
