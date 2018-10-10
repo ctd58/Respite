@@ -23,7 +23,7 @@ public class ControllerMovement : MonoBehaviour {
             canMove = true;
             teammate = GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>();
             playerNum = "P1";
-            switchb = "rbe";
+            switchb = "P1yt button";
         }
         else if (this.tag == "P2")
         {
@@ -31,7 +31,7 @@ public class ControllerMovement : MonoBehaviour {
             canMove = false;
             teammate = GameObject.FindGameObjectWithTag("P1").GetComponent<ControllerMovement>();
             playerNum = "P2";
-            switchb = "lbq";
+            switchb = "P2yt button";
         }
         _mycontroller = this.GetComponent<CharacterController>();
         sound = this.GetComponent<Sound>();
