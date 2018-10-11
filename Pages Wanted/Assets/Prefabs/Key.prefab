@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4556364420443914}
   - component: {fileID: 114108880247458710}
-  - component: {fileID: 135790225835605158}
+  - component: {fileID: 65516503375307056}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1374921152276796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.563, y: 1.58, z: 0}
+  m_LocalPosition: {x: 6.6099997, y: 1.4605178, z: 0.14583564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4612478475002988}
@@ -364,6 +364,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386902994591884}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65516503375307056
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374921152276796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.5, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114108880247458710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,20 +388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 0}
-  approachArea: {fileID: 135790225835605158}
+  approachArea: {fileID: 65516503375307056}
   pickupSparkles: {fileID: 198363014172692148}
---- !u!135 &135790225835605158
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1374921152276796}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  type: 0
 --- !u!198 &198363014172692148
 ParticleSystem:
   m_ObjectHideFlags: 1
