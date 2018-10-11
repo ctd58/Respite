@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -929,6 +929,7 @@ MonoBehaviour:
   canMove: 1
   teammate: {fileID: 0}
   sound: {fileID: 0}
+  _mycontroller: {fileID: 0}
 --- !u!1 &716127054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,28 +1450,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 894439138}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &901136872 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1366161058497642, guid: 113d21efc8c0c4459bbaf61d5b8b98c4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1756533029}
---- !u!114 &901136873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 901136872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  rotateSpeed: 1000
-  isP1: 1
-  canMove: 1
-  teammate: {fileID: 0}
-  sound: {fileID: 0}
 --- !u!1 &1042721364
 GameObject:
   m_ObjectHideFlags: 0
