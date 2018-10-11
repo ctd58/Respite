@@ -40,8 +40,9 @@ GameObject:
   - component: {fileID: 23975358414169276}
   - component: {fileID: 136003990392084914}
   - component: {fileID: 143705125817480822}
-  - component: {fileID: 114094533436410852}
   - component: {fileID: 114930911895139650}
+  - component: {fileID: 114487394061386786}
+  - component: {fileID: 114057063738163508}
   m_Layer: 0
   m_Name: P1
   m_TagString: P1
@@ -165,7 +166,7 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221855431415108}
   m_Enabled: 1
---- !u!114 &114094533436410852
+--- !u!114 &114057063738163508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,16 +174,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1852915890034282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb003d3f7cd66f48a7664ef09a6db1d, type: 3}
+  m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  canMove: 1
-  speed: 5
+  speed: 6
+  rotateSpeed: 90
   isP1: 1
+  canMove: 1
   teammate: {fileID: 0}
-  keys: 0
-  noise: {fileID: 0}
+  sound: {fileID: 0}
+  _mycontroller: {fileID: 0}
+--- !u!114 &114487394061386786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1852915890034282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef7c45cbfa7564628b2eeca84d2617fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
+  uiIndicator: {fileID: 0}
 --- !u!114 &114930911895139650
 MonoBehaviour:
   m_ObjectHideFlags: 1
