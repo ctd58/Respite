@@ -12,16 +12,14 @@ public class AI_Monster : MonoBehaviour {
     Transform curr_waypoint;
 
     [SerializeField]
-    Transform next_waypoint;
-
-    [SerializeField]
     List<Transform> waypoints = new List<Transform>();
 
+    //Navmesh for AI
     NavMeshAgent navMeshAgent;
+
+
     bool h;
-
-    int i = 0;
-
+    int index = 0;
     public int z = 300;
     int counter = 0;
 
@@ -43,8 +41,8 @@ public class AI_Monster : MonoBehaviour {
             h = true;
             if (h == true)
             {
-                i = (i + 1) % (waypoints.Count);
-                curr_waypoint = waypoints[i];
+                index = (index + 1) % (waypoints.Count);
+                curr_waypoint = waypoints[index];
                 loudestpoint(curr_waypoint);
             }
         }
@@ -52,6 +50,11 @@ public class AI_Monster : MonoBehaviour {
         {
             Debug.Log("wait");
         }
+
+    }
+
+    private void createNewwaypoint()
+    {
 
     }
 
