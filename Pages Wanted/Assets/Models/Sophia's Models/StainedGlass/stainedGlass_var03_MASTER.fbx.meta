@@ -1,31 +1,92 @@
 fileFormatVersion: 2
-guid: 055f129ac72257b419f75fba9e116e0a
+guid: 1fe3610642996bd4f82eb260e0151f99
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: eye_left
-    100002: eye_right
-    100004: eye_top
-    100006: polySurface1
-    100008: //RootNode
-    400000: eye_left
-    400002: eye_right
-    400004: eye_top
-    400006: polySurface1
-    400008: //RootNode
-    2100000: lambert1
-    2300000: eye_left
-    2300002: eye_right
-    2300004: eye_top
-    2300006: polySurface1
-    3300000: eye_left
-    3300002: eye_right
-    3300004: eye_top
-    3300006: polySurface1
-    4300000: polySurface1
-    4300002: eye_top
-    4300004: eye_left
-    4300006: eye_right
+    100000: frame
+    100002: frame10
+    100004: frame11
+    100006: frame13
+    100008: frame17
+    100010: frame18
+    100012: frame19
+    100014: frame20
+    100016: frame21
+    100018: frame22
+    100020: frame23
+    100022: frame24
+    100024: frame25
+    100026: frame26
+    100028: frame7
+    100030: //RootNode
+    100032: stainedglasswindow
+    400000: frame
+    400002: frame10
+    400004: frame11
+    400006: frame13
+    400008: frame17
+    400010: frame18
+    400012: frame19
+    400014: frame20
+    400016: frame21
+    400018: frame22
+    400020: frame23
+    400022: frame24
+    400024: frame25
+    400026: frame26
+    400028: frame7
+    400030: //RootNode
+    400032: stainedglasswindow
+    2100000: lambert2
+    2100002: lambert1
+    2300000: frame
+    2300002: frame10
+    2300004: frame11
+    2300006: frame13
+    2300008: frame17
+    2300010: frame18
+    2300012: frame19
+    2300014: frame20
+    2300016: frame21
+    2300018: frame22
+    2300020: frame23
+    2300022: frame24
+    2300024: frame25
+    2300026: frame26
+    2300028: frame7
+    2300030: stainedglasswindow
+    3300000: frame
+    3300002: frame10
+    3300004: frame11
+    3300006: frame13
+    3300008: frame17
+    3300010: frame18
+    3300012: frame19
+    3300014: frame20
+    3300016: frame21
+    3300018: frame22
+    3300020: frame23
+    3300022: frame24
+    3300024: frame25
+    3300026: frame26
+    3300028: frame7
+    3300030: stainedglasswindow
+    4300000: stainedglasswindow
+    4300002: frame
+    4300004: frame7
+    4300006: frame10
+    4300008: frame11
+    4300010: frame13
+    4300012: frame17
+    4300014: frame18
+    4300016: frame19
+    4300018: frame20
+    4300020: frame21
+    4300022: frame22
+    4300024: frame23
+    4300026: frame24
+    4300028: frame25
+    4300030: frame26
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -65,7 +126,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
