@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: 8955df0cce4619c4a9fb7a55bd4deb99
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Grandfather_Clock_Body
+    100002: Grandfather_Clock_Body_Grp
+    100004: Grandfather_Clock_Clock
+    100006: Grandfather_Clock_Clock_Grp
+    100008: Grandfather_Clock_Glass_Bottom
+    100010: Grandfather_Clock_Glass_Top
+    100012: Grandfather_Clock_Glasses_Grp
+    100014: Grandfather_Clock_Pendulum
+    100016: Grandfather_Clock_Point_Hour
+    100018: Grandfather_Clock_Point_Minute
+    100020: //RootNode
+    100022: Grandfather_Clock_Weight_1
+    100024: Grandfather_Clock_Weight_2
+    100026: Grandfather_Clock_Weight_3
+    400000: Grandfather_Clock_Body
+    400002: Grandfather_Clock_Body_Grp
+    400004: Grandfather_Clock_Clock
+    400006: Grandfather_Clock_Clock_Grp
+    400008: Grandfather_Clock_Glass_Bottom
+    400010: Grandfather_Clock_Glass_Top
+    400012: Grandfather_Clock_Glasses_Grp
+    400014: Grandfather_Clock_Pendulum
+    400016: Grandfather_Clock_Point_Hour
+    400018: Grandfather_Clock_Point_Minute
+    400020: //RootNode
+    400022: Grandfather_Clock_Weight_1
+    400024: Grandfather_Clock_Weight_2
+    400026: Grandfather_Clock_Weight_3
+    2100000: lambert1
+    2300000: Grandfather_Clock_Body
+    2300002: Grandfather_Clock_Clock
+    2300004: Grandfather_Clock_Glass_Bottom
+    2300006: Grandfather_Clock_Glass_Top
+    2300008: Grandfather_Clock_Pendulum
+    2300010: Grandfather_Clock_Point_Hour
+    2300012: Grandfather_Clock_Point_Minute
+    2300014: Grandfather_Clock_Weight_1
+    2300016: Grandfather_Clock_Weight_2
+    2300018: Grandfather_Clock_Weight_3
+    3300000: Grandfather_Clock_Body
+    3300002: Grandfather_Clock_Clock
+    3300004: Grandfather_Clock_Glass_Bottom
+    3300006: Grandfather_Clock_Glass_Top
+    3300008: Grandfather_Clock_Pendulum
+    3300010: Grandfather_Clock_Point_Hour
+    3300012: Grandfather_Clock_Point_Minute
+    3300014: Grandfather_Clock_Weight_1
+    3300016: Grandfather_Clock_Weight_2
+    3300018: Grandfather_Clock_Weight_3
+    4300000: Grandfather_Clock_Glass_Top
+    4300002: Grandfather_Clock_Glass_Bottom
+    4300004: Grandfather_Clock_Clock
+    4300006: Grandfather_Clock_Point_Minute
+    4300008: Grandfather_Clock_Point_Hour
+    4300010: Grandfather_Clock_Pendulum
+    4300012: Grandfather_Clock_Body
+    4300014: Grandfather_Clock_Weight_1
+    4300016: Grandfather_Clock_Weight_2
+    4300018: Grandfather_Clock_Weight_3
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
