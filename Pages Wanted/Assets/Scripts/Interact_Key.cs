@@ -14,7 +14,7 @@ public class Interact_Key : Interactables {
 	}
 
 	// Add this key to the list of keys in inventory
-	new void onInteract(Character_Inventory inv) {
+	public override void onInteract(Character_Inventory inv) {
 		Key_Obj newKey = new Key_Obj();
 		newKey.keyId = id;
 		newKey.type = type;

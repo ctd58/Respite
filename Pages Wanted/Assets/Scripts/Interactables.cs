@@ -8,7 +8,7 @@ public abstract class Interactables : MonoBehaviour {
 
 	public Sprite interactIcon;
 
-	public void onInteract(Character_Inventory inv) {
+	public virtual void onInteract(Character_Inventory inv) {
 
 	}
 }
