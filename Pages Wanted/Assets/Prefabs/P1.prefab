@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  rotateSpeed: 90
+  rotateSpeed: 1000
   isP1: 1
   canMove: 1
   teammate: {fileID: 0}
@@ -215,11 +215,15 @@ MonoBehaviour:
   pSound: {fileID: 0}
   canStun: 1
   canSlow: 1
-  slowSpeed: 0.5
+  slowSpeedInc: 0.1
+  maxSlowSpeed: 0.5
   stunLen: 2
-  pTag: 
   castLen: 0
   maxCastLen: 5
+  inputDelay: 10
+  stopFun: 0
+  button: 
+  soundInc: 0.001
 --- !u!114 &114930911895139650
 MonoBehaviour:
   m_ObjectHideFlags: 1
