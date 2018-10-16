@@ -33,7 +33,7 @@ public class AI_Monster : MonoBehaviour {
     private void Update()
     {
         counter++;
-        Debug.Log(counter);
+        //Debug.Log(counter);
 
         if (counter >= z)
         {
@@ -48,7 +48,7 @@ public class AI_Monster : MonoBehaviour {
         }
         else
         {
-            Debug.Log("wait");
+            //Debug.Log("wait");
         }
 
     }
