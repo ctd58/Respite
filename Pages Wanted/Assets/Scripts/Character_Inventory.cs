@@ -10,11 +10,20 @@ public class Character_Inventory : MonoBehaviour {
 	private List<Key_Obj> playerKeys;
 	public Camera playerCam;
 	public Image uiIndicator;
+    public bool isP1;
+   
 
 
 	void Start () {
 		playerKeys = new List<Key_Obj>();
-		bool isP1 = this.gameObject.GetComponent<ControllerMovement>().isP1;
+		if(this.tag == "P1")
+        {
+            isP1 = true;
+        }
+        else
+        {
+            isP1 = false;
+        }
 		interactButton = isP1 ? "P1xs button" : "P2xs button";
 		//TODO: add logic to get camera automatically rather than needing it to be a public var
 		//TODO: Same for uiIndicator
@@ -26,16 +35,19 @@ public class Character_Inventory : MonoBehaviour {
 
 		CheckForInteractables();
 
+
 		if (Input.GetButton(interactButton))
 		{
+            
 			if (interactable != null) {
-				interactable.onInteract(this);
+                Debug.Log("Here");
+                interactable.onInteract(this);
 			}
 		}
 	}
 
 	void CheckForInteractables() {
-		Debug.Log("Checking");
+		//Debug.Log("Checking");
 		Ray ray = playerCam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 		RaycastHit hit;
 		if (Physics.Raycast(ray, out hit, 2)) {

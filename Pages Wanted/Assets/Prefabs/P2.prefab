@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33749949720219050}
   - component: {fileID: 23268696357131482}
   - component: {fileID: 65809527908794330}
+  - component: {fileID: 114283977518207024}
   - component: {fileID: 143119535703424410}
   - component: {fileID: 114931968857353640}
   - component: {fileID: 114614732366237574}
@@ -178,6 +179,27 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990245794013140}
   m_Enabled: 1
+--- !u!114 &114283977518207024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366161058497642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afae7464ce26e464daff62666866b124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 0}
+  player: {fileID: 0}
+  pSound: {fileID: 0}
+  canStun: 1
+  canSlow: 1
+  slowSpeed: 0.5
+  stunLen: 2
+  pTag: 
+  castLen: 0
+  maxCastLen: 5
 --- !u!114 &114496539557447360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 20003314876387672}
+  uiIndicator: {fileID: 0}
+  isP1: 0
 --- !u!114 &114614732366237574
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4783084411383146}
   - component: {fileID: 33919263253185902}
   - component: {fileID: 23975358414169276}
+  - component: {fileID: 114658997780976684}
   - component: {fileID: 136003990392084914}
   - component: {fileID: 143705125817480822}
   - component: {fileID: 114930911895139650}
@@ -197,6 +198,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 0}
   uiIndicator: {fileID: 0}
+  isP1: 0
+--- !u!114 &114658997780976684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1852915890034282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afae7464ce26e464daff62666866b124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 0}
+  player: {fileID: 0}
+  pSound: {fileID: 0}
+  canStun: 1
+  canSlow: 1
+  slowSpeed: 0.5
+  stunLen: 2
+  pTag: 
+  castLen: 0
+  maxCastLen: 5
 --- !u!114 &114930911895139650
 MonoBehaviour:
   m_ObjectHideFlags: 1
