@@ -38,7 +38,7 @@ public class Door_Unlock : Interactables {
 		}
 	}
 
-	new void onInteract(Character_Inventory inv) {
+	public override void onInteract(Character_Inventory inv) {
 		if (doorLocked) {
 			List<Key_Obj> playerKeys = inv.getKeys();
 			if (playerKeys.Count > 0) {
