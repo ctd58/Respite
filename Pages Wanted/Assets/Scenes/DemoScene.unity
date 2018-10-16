@@ -696,6 +696,11 @@ Prefab:
       propertyPath: uiIndicator
       value: 
       objectReference: {fileID: 2098556193}
+    - target: {fileID: 23268696357131482, guid: 113d21efc8c0c4459bbaf61d5b8b98c4,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d8b156ee8a3b8146a20bc676f8d175f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113d21efc8c0c4459bbaf61d5b8b98c4, type: 2}
   m_IsPrefabAsset: 0
@@ -845,6 +850,11 @@ Prefab:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 1414288757}
+    - target: {fileID: 23975358414169276, guid: 9ddfd895c081841e7ba6654383bce35c,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d77eb5c27e87b3143a6f049dcc7102bb, type: 2}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9ddfd895c081841e7ba6654383bce35c, type: 2}
@@ -1928,7 +1938,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1bd571151b410ca4987cf0b2f5c08dde, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
