@@ -11,6 +11,9 @@ public class Monster : MonoBehaviour {
     public float maxDistance;
     public List<GameObject> sounds;
     public float chaseTime = 0.0f;
+    public float slowSpeed = 1.0f;
+    public bool canMove = true;
+    public float inputDelay = 0.0f;
 
     void Start()
     {
@@ -23,14 +26,19 @@ public class Monster : MonoBehaviour {
         findTarget();
         //target = GameObject.FindGameObjectWithTag("P1").transform;
         //if (Vector3.Distance(target.position, gameObject.transform.position) <= maxDistance)
-        if (target != null)
+        if (target != null && canMove)
         {
             FollowSound();
             chaseTime += Time.deltaTime;
         }
-        else
+        else if(canMove)
         {
             chaseTime = 0.0f;
+        }
+        else if(!canMove)
+        {
+            Debug.Log("STUNNED");
+            StartCoroutine(stun());
         }
     }
 
@@ -38,7 +46,7 @@ public class Monster : MonoBehaviour {
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
 
-        transform.position += transform.forward * movSpeed * Time.deltaTime;
+        transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
     }
 
     void findTarget()
@@ -66,5 +74,13 @@ public class Monster : MonoBehaviour {
             }
         }
 
+    }
+
+    IEnumerator stun()
+    {
+        Debug.Log(Time.time);
+        yield return new WaitForSecondsRealtime(inputDelay);
+        canMove = true;
+        Debug.Log(Time.time);
     }
 }

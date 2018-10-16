@@ -860,6 +860,16 @@ Prefab:
       propertyPath: rotateSpeed
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 114658997780976684, guid: 9ddfd895c081841e7ba6654383bce35c,
+        type: 2}
+      propertyPath: pTag
+      value: P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114658997780976684, guid: 9ddfd895c081841e7ba6654383bce35c,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9ddfd895c081841e7ba6654383bce35c, type: 2}
@@ -1892,7 +1902,7 @@ GameObject:
   - component: {fileID: 1377170046}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1916,6 +1926,9 @@ MonoBehaviour:
   maxDistance: 100
   sounds: []
   chaseTime: 0
+  slowSpeed: 1
+  canMove: 1
+  inputDelay: 0
 --- !u!65 &1377170041
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1989,7 +2002,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1377170039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c8aef766c3c72d49a6bf7006ae0ec57, type: 3}
   m_Name: 
@@ -2001,6 +2014,7 @@ MonoBehaviour:
   - {fileID: 2038037374}
   - {fileID: 554760069}
   - {fileID: 1494341241}
+  tracking: {fileID: 0}
   z: 300
 --- !u!195 &1377170046
 NavMeshAgent:

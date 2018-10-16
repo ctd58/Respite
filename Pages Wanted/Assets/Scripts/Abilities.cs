@@ -4,42 +4,85 @@ using UnityEngine;
 
 public class Abilities : MonoBehaviour {
 
-    public GameObject monster;
+    public Monster monster;
     public ControllerMovement player;
     public Sound pSound;
     public bool canStun = true;
     public bool canSlow = true;
-    public float slowSpeed = 0.5f;
+    public float slowSpeedInc = 0.1f;
+    public float maxSlowSpeed = 0.5f;
     public float stunLen = 2.0f;
-    public string pTag = "";
     public float castLen = 0.0f; //sec
-    public float maxCastLen = 5.0f; //sec
+    public float maxCastLen = 5.0f;//sec
+    public float inputDelay = 10.0f; //sec
+    public bool stopFun = false;
+    public string button = "";
+    public float soundInc = 0.1f;
 
     // Use this for initialization
     void Start()
     {
-        monster = GameObject.FindGameObjectWithTag("Monster");
+        monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
         player = this.GetComponent<ControllerMovement>();
         pSound = this.GetComponent<Sound>();
-        pTag = this.gameObject.tag;
+        if(this.tag == "P1")
+        {
+            button = "P1bo button";
+            canSlow = true;
+            canStun = false;
+        }
+        else
+        {
+            button = "P2bo button";
+            canSlow = false;
+            canStun = true;
+        }
+        
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton(pTag + "bo button") && !player.canMove)
+        if (Input.GetButton(button) && !player.canMove)
         {
-            Debug.Log("Got the button for " + pTag);
-            castLen += Time.deltaTime;
+            //Debug.Log("Got the button for " + pTag);
+            if(!stopFun)
+            {
+                castLen += Time.deltaTime;
+                pSound.sound += soundInc;
+                if (canSlow && monster.slowSpeed > maxSlowSpeed)
+                {
+                    monster.slowSpeed -= slowSpeedInc;
+                }
+            }
             if (castLen >= maxCastLen)
             {
+                pSound.sound = 0.0f;
                 castLen = 0;
-                Debug.Log("Done");
+                monster.slowSpeed = 1.0f;
+                if (canStun)
+                {
+                    monster.inputDelay = inputDelay;
+                    monster.canMove = false;
+                }
+                StartCoroutine(stopInput());
+                
             }
         }
         else
         {
             castLen = 0;
         }
+    }
+
+    IEnumerator stopInput()
+    {
+        //Debug.Log(Time.time);
+        stopFun = true;
+        yield return new WaitForSecondsRealtime(inputDelay);
+        stopFun = false;
+        //Debug.Log(Time.time);
     }
 }

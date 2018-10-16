@@ -16,6 +16,7 @@ public class AI_Monster : MonoBehaviour {
 
     //Navmesh for AI
     NavMeshAgent navMeshAgent;
+    public Monster tracking;
 
 
     bool h;
@@ -27,30 +28,33 @@ public class AI_Monster : MonoBehaviour {
     void Start()
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
+        tracking = this.GetComponent<Monster>();
         //loudestpoint1();
     }
 
     private void Update()
     {
-        counter++;
-        //Debug.Log(counter);
-
-        if (counter >= z)
+        if (tracking.canMove)
         {
-            counter = 0;
-            h = true;
-            if (h == true)
+            counter++;
+            //Debug.Log(counter);
+
+            if (counter >= z)
             {
-                index = (index + 1) % (waypoints.Count);
-                curr_waypoint = waypoints[index];
-                loudestpoint(curr_waypoint);
+                counter = 0;
+                h = true;
+                if (h == true)
+                {
+                    index = (index + 1) % (waypoints.Count);
+                    curr_waypoint = waypoints[index];
+                    loudestpoint(curr_waypoint);
+                }
+            }
+            else
+            {
+                //Debug.Log("wait");
             }
         }
-        else
-        {
-            //Debug.Log("wait");
-        }
-
     }
 
     private void createNewwaypoint()
