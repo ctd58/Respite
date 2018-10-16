@@ -17,7 +17,7 @@ public class Abilities : MonoBehaviour {
     public float inputDelay = 10.0f; //sec
     public bool stopFun = false;
     public string button = "";
-    public float soundInc = 0.1f;
+    public float soundInc = 0.001f;
 
     // Use this for initialization
     void Start()
@@ -47,33 +47,43 @@ public class Abilities : MonoBehaviour {
     {
         if (Input.GetButton(button) && !player.canMove)
         {
-            //Debug.Log("Got the button for " + pTag);
-            if(!stopFun)
-            {
-                castLen += Time.deltaTime;
-                pSound.sound += soundInc;
-                if (canSlow && monster.slowSpeed > maxSlowSpeed)
-                {
-                    monster.slowSpeed -= slowSpeedInc;
-                }
-            }
-            if (castLen >= maxCastLen)
-            {
-                pSound.sound = 0.0f;
-                castLen = 0;
-                monster.slowSpeed = 1.0f;
-                if (canStun)
-                {
-                    monster.inputDelay = inputDelay;
-                    monster.canMove = false;
-                }
-                StartCoroutine(stopInput());
-                
-            }
+            ability1();
         }
         else
         {
             castLen = 0;
+        }
+    }
+
+    void ability1()
+    {
+        maxCastLen = 5.0f;
+        //Debug.Log("Got the button for " + pTag);
+        if (!stopFun)
+        {
+            castLen += Time.deltaTime;
+
+            pSound.sound = pSound.sound + soundInc;
+            //Need to figure out how loud something can get
+
+            if (canSlow && monster.slowSpeed > maxSlowSpeed)
+            {
+                monster.slowSpeed -= slowSpeedInc;
+            }
+        }
+        if (castLen >= maxCastLen)
+        {
+            pSound.sound = 0.0f;
+            castLen = 0;
+            monster.slowSpeed = 1.0f;
+            if (canStun)
+            {
+                monster.inputDelay = inputDelay;
+                monster.canMove = false;
+            }
+            StartCoroutine(stopInput());
+            pSound.sound = 0.0f;
+
         }
     }
 

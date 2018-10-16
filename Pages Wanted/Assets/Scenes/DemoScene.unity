@@ -4545,13 +4545,16 @@ MonoBehaviour:
   maxDistance: 100
   sounds: []
   chaseTime: 0
+  slowSpeed: 1
+  canMove: 1
+  inputDelay: 0
 --- !u!114 &1713558983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713558981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c8aef766c3c72d49a6bf7006ae0ec57, type: 3}
   m_Name: 
@@ -4563,6 +4566,7 @@ MonoBehaviour:
   - {fileID: 2038037374}
   - {fileID: 554760069}
   - {fileID: 1494341241}
+  tracking: {fileID: 0}
   z: 300
 --- !u!195 &1713558984
 NavMeshAgent:

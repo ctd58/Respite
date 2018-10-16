@@ -61,7 +61,7 @@ public class ControllerMovement : MonoBehaviour {
         }
         else
         {
-            sound.sound = 0;
+            //sound.sound = 0;
         }
     }
 
