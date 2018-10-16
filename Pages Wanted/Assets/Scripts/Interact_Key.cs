@@ -8,30 +8,18 @@ public class Interact_Key : Interactables {
 	public KeyTypes type;
 	private int id;
 
+
 	void Start () {
 		id = this.gameObject.GetInstanceID();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	// Add this key to the list of keys in inventory
+	new void onInteract(Character_Inventory inv) {
+		Key_Obj newKey = new Key_Obj();
+		newKey.keyId = id;
+		newKey.type = type;
+		inv.addKey(newKey);
+		Destroy(this.gameObject);
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		// if character collider, show interaction prompt
-		//TODO: add check for character collider
-		//TODO: add text prompt?
-		pickupSparkles.gameObject.SetActive(true);
-	}
-
-	void OnTriggerExit(Collider other)
-	{
-		// if character collider, remove interaction prompt
-		//TODO: add check for character collider
-		//TODO: add text prompt?
-		pickupSparkles.gameObject.SetActive(false);
-	}
-
-	public int getId() { return id; }
 }
