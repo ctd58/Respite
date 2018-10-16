@@ -3635,40 +3635,49 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.69579566
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1.2420121
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalPosition.z
       value: 16.817316
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4468414692146772, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+    - target: {fileID: 4678635122022800, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198805252104974340, guid: be1d1b06388c1cf43be09f88b92023d5,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518254820641166, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
+      propertyPath: m_Name
+      value: smokeMonster_MASTER
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c12d3afb0593d1745ada9f960af63a80, type: 2}
+  m_SourcePrefab: {fileID: 100100000, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2012593950
 GameObject:
