@@ -59,20 +59,22 @@ public class Door_Unlock : Interactables {
 					key => key.type.Equals(l.lockType)
 				);
 				// Check and make sure key wasn't used already at this door
-				bool matchExists = true;
-				int i = 0;
-				do {
-					matchExists = locks.Exists( 
-						m => m.locked.Equals(false) && 
-							m.keyUsedId.Equals(keysOfRightType[i].keyId)
-					);
-					if (matchExists) { i++; }
-				} while ( i < keysOfRightType.Count && matchExists.Equals(true));
-				// If found a key of the right type that hasn't already been used
-				if (keysOfRightType.Count > 0 && !matchExists) {
-					Key_Obj matchKey = keysOfRightType[i];
-					l.locked = false;
-					l.keyUsedId = matchKey.keyId;
+				if (keysOfRightType.Count > 0) {
+					bool matchExists = true;
+					int i = 0;
+					do {
+						matchExists = locks.Exists( 
+							m => m.locked.Equals(false) && 
+								m.keyUsedId.Equals(keysOfRightType[i].keyId)
+						);
+						if (matchExists) { i++; }
+					} while ( i < keysOfRightType.Count && matchExists.Equals(true));
+					// If found a key of the right type that hasn't already been used
+					if (!matchExists) {
+						Key_Obj matchKey = keysOfRightType[i];
+						l.locked = false;
+						l.keyUsedId = matchKey.keyId;
+					}
 				}
 			}
 		}
