@@ -2,15 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact_MakeNoiseDelay : MonoBehaviour {
+public class Interact_MakeNoiseDelay : Interact_MakeNoise {
 
-	// Use this for initialization
-	void Start () {
-		
+	//TODO: delay noise
+	public AudioSource delayNoise;
+	[Range(0,5)]
+	public float delayNoiseVolume;
+
+	public int delayTime;
+
+	public override void onInteract(Character_Inventory inv) {
+		PlayAnimation();
+		// delayNoise.Play();
+		// soundScript.sound = delayNoiseVolume;
+		StartCoroutine("timer");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void PlayAnimation() {
+		//TODO: stuff here
+	}
+
+	IEnumerator timer() {
+		yield return new WaitForSeconds(delayTime);
+		MakeNoise();
 	}
 }
