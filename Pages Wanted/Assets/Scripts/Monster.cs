@@ -16,6 +16,15 @@ public class Monster : MonoBehaviour {
     public float inputDelay = 0.0f;
     public int playerLives = 4;
     public GameObject spawn;
+    [SerializeField]
+    public GameObject health1;
+    [SerializeField]
+    public GameObject health2;
+    [SerializeField]
+    public GameObject health3;
+    [SerializeField]
+    public GameObject health4;
+
 
     void Start()
     {
@@ -100,6 +109,24 @@ public class Monster : MonoBehaviour {
         {
             playerLives -= 1;
             respawn();
+            hideHealth(); 
+        }
+    }
+
+    private void hideHealth()
+    {
+        health1.SetActive(false);
+        if (health1.activeSelf == false && health2.activeSelf == true && health3.activeSelf == true && health4.activeSelf == true)
+        {
+            health2.SetActive(false);
+        }
+        else if(health1.activeSelf == false && health2.activeSelf == false && health3.activeSelf == true && health4.activeSelf == true)
+        {
+            health3.SetActive(false); 
+        }
+        else if(health1.activeSelf == false && health2.activeSelf == false && health3.activeSelf == false && health4.activeSelf == true)
+        {
+            health4.SetActive(false); 
         }
     }
 
