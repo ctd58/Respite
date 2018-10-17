@@ -31,7 +31,7 @@ public class Abilities : MonoBehaviour {
             canSlow = true;
             canStun = false;
         }
-        else
+        if(this.tag == "P2")
         {
             button = "P2bo button";
             canSlow = false;
@@ -45,13 +45,18 @@ public class Abilities : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButton(button) && !player.canMove)
         {
+            
             ability1();
         }
         else
         {
+            if (this.GetComponent<AudioSource>().isPlaying)
+                this.GetComponent<AudioSource>().Stop();
             castLen = 0;
+            pSound.sound = 0;
         }
     }
 
@@ -61,6 +66,8 @@ public class Abilities : MonoBehaviour {
         //Debug.Log("Got the button for " + pTag);
         if (!stopFun)
         {
+            if (!this.GetComponent<AudioSource>().isPlaying)
+                this.GetComponent<AudioSource>().Play();
             castLen += Time.deltaTime;
 
             pSound.sound = pSound.sound + soundInc;
@@ -73,6 +80,7 @@ public class Abilities : MonoBehaviour {
         }
         if (castLen >= maxCastLen)
         {
+            this.GetComponent<AudioSource>().Stop();
             pSound.sound = 0.0f;
             castLen = 0;
             monster.slowSpeed = 1.0f;
