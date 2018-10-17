@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852915890034282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.04, z: -1.5}
+  m_LocalPosition: {x: 10.88, y: -5.69, z: -22.1}
   m_LocalScale: {x: 0.66, y: 0.75, z: 0.33}
   m_Children:
   - {fileID: 4552227370255718}
@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  rotateSpeed: 1000
+  speed: 2.5
+  rotateSpeed: 750
   isP1: 1
   canMove: 1
   teammate: {fileID: 0}
@@ -309,7 +309,7 @@ MonoBehaviour:
   monster: {fileID: 0}
   player: {fileID: 0}
   pSound: {fileID: 0}
-  canStun: 1
+  canStun: 0
   canSlow: 1
   slowSpeedInc: 0.1
   maxSlowSpeed: 0.5
@@ -318,7 +318,7 @@ MonoBehaviour:
   maxCastLen: 5
   inputDelay: 10
   stopFun: 0
-  button: 
+  button: P1bo button
   soundInc: 0.001
 --- !u!114 &114930911895139650
 MonoBehaviour:
