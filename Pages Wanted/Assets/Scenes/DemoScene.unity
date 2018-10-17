@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1899,20 +1899,21 @@ GameObject:
   - component: {fileID: 1377170040}
   - component: {fileID: 1377170045}
   - component: {fileID: 1377170046}
+  - component: {fileID: 1377170047}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1377170040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1377170039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc98d37868f150c45b3866d1832ca722, type: 3}
   m_Name: 
@@ -1928,6 +1929,12 @@ MonoBehaviour:
   slowSpeed: 1
   canMove: 1
   inputDelay: 0
+  playerLives: 4
+  spawn: {fileID: 0}
+  health1: {fileID: 0}
+  health2: {fileID: 0}
+  health3: {fileID: 0}
+  health4: {fileID: 0}
 --- !u!65 &1377170041
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2036,6 +2043,27 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1377170047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1377170039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a265cd4b7d15bbe46b3ff95a7191a75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curr_waypoint: {fileID: 0}
+  waypoints:
+  - {fileID: 1775438335}
+  - {fileID: 1042721365}
+  - {fileID: 2038037374}
+  soundcues: []
+  soundpoints: []
+  sampleSoundPoint: {fileID: 1494341241}
+  tracking: {fileID: 0}
+  z: 600
 --- !u!1 &1401238790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,6 +2933,12 @@ MonoBehaviour:
   slowSpeed: 1
   canMove: 1
   inputDelay: 0
+  playerLives: 4
+  spawn: {fileID: 0}
+  health1: {fileID: 0}
+  health2: {fileID: 0}
+  health3: {fileID: 0}
+  health4: {fileID: 0}
 --- !u!114 &1713558983
 MonoBehaviour:
   m_ObjectHideFlags: 0
