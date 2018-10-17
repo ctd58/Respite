@@ -25,7 +25,7 @@ public class Door_Unlock : Interactables {
 
 	public List<KeyTypes> keysNeeded;
 	private List<Lock_Obj> locks;
-	private bool doorLocked;
+	private bool doorLocked = true;
 
 	void Start()
 	{
