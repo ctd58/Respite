@@ -87,9 +87,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4678635122022800}
+  - component: {fileID: 114360224265054410}
   m_Layer: 0
   m_Name: smokeMonster_MASTER 1
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,8 +161,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518254820641166}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.69579566, y: 1.2420121, z: 16.817316}
+  m_LocalRotation: {x: -0, y: 0.9933167, z: -0, w: 0.1154206}
+  m_LocalPosition: {x: 14.186446, y: -4.6, z: -13.435403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4796138552047528}
@@ -172,7 +173,7 @@ Transform:
   - {fileID: 4922967492711954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 166.744, z: 0}
 --- !u!4 &4796138552047528
 Transform:
   m_ObjectHideFlags: 1
@@ -393,6 +394,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1540522269149654}
   m_Mesh: {fileID: 4300002, guid: 055f129ac72257b419f75fba9e116e0a, type: 3}
+--- !u!114 &114360224265054410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518254820641166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc98d37868f150c45b3866d1832ca722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  baseMoveSpeed: 4
+  rotSpeed: 15
+  movSpeed: 0
+  distance: 0
+  maxDistance: 0
+  sounds: []
+  chaseTime: 0
+  slowSpeed: 1
+  canMove: 1
+  inputDelay: 0
 --- !u!198 &198577344838970090
 ParticleSystem:
   m_ObjectHideFlags: 1

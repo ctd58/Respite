@@ -75,8 +75,8 @@ public class ControllerMovement : MonoBehaviour {
         transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
         if (x == 0.0f && z == 0.0f)
             sound.sound = 0;
-        else
-            sound.sound = 1;
+        /*else
+            sound.sound = 1;*/
 
     }
 
