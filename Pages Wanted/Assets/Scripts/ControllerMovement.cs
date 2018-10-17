@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,9 +73,9 @@ public class ControllerMovement : MonoBehaviour {
         mov = new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime);
         _mycontroller.Move(transform.TransformDirection(mov));
         transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
-        if (x == 0.0f && z == 0.0f)
+       /*if (x == 0.0f && z == 0.0f)
             sound.sound = 0;
-        /*else
+        else
             sound.sound = 1;*/
 
     }

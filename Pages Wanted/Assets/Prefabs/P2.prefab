@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366161058497642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.58, y: -5.4, z: -22.54}
+  m_LocalPosition: {x: 18.58, y: -5.93, z: -22.54}
   m_LocalScale: {x: 0.66, y: 1.5, z: 0.33}
   m_Children:
   - {fileID: 4801600032072312}
@@ -290,7 +290,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pSound: {fileID: 0}
   canStun: 1
-  canSlow: 1
+  canSlow: 0
   slowSpeedInc: 0.1
   maxSlowSpeed: 0.5
   stunLen: 2
@@ -298,7 +298,7 @@ MonoBehaviour:
   maxCastLen: 5
   inputDelay: 10
   stopFun: 0
-  button: 
+  button: P2bo button
   soundInc: 0.001
 --- !u!114 &114496539557447360
 MonoBehaviour:
@@ -325,8 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  rotateSpeed: 1000
+  speed: 2.5
+  rotateSpeed: 750
   isP1: 1
   canMove: 1
   teammate: {fileID: 0}
