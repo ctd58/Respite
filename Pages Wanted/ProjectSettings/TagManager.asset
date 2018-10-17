@@ -7,6 +7,7 @@ TagManager:
   - P2
   - P1
   - Monster
+  - DemonSpawn
   layers:
   - Default
   - TransparentFX
