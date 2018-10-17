@@ -8,6 +8,7 @@ TagManager:
   - P1
   - Monster
   - DemonSpawn
+  - MakesSound
   layers:
   - Default
   - TransparentFX
