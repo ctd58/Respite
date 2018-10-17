@@ -75,6 +75,9 @@ public class Monster : MonoBehaviour {
             movSpeed = baseMoveSpeed;
         }
 
+        //Determines what sound is the loudest and sets it as a target
+        //PLEASE try to get the AI to remember the location (waypoint) of where the last sound came from and go to that
+        //I cant get it to remember it forgets once the player moves off of the floor board
         target = null;
         float highest = 0.0f;
         float temp = 0.0f;
