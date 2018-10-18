@@ -9,7 +9,9 @@ public class Monster : MonoBehaviour {
     public float rotSpeed, movSpeed;
     public float distance;
     public float maxDistance;
-    public List<GameObject> sounds;
+    public float loudestSound = 0.0f;
+    public GameObject[] soundObjects;
+    public List<GameObject> players;
     public float chaseTime = 0.0f;
     public float slowSpeed = 1.0f;
     public bool canMove = true;
@@ -31,8 +33,9 @@ public class Monster : MonoBehaviour {
     void Start()
     {
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
-        sounds.Add(GameObject.FindGameObjectWithTag("P1"));
-        sounds.Add(GameObject.FindGameObjectWithTag("P2"));
+        soundObjects = GameObject.FindGameObjectsWithTags("MakesSound");
+        players.Add(GameObject.FindGameObjectWithTag("P1"));
+        players.Add(GameObject.FindGameObjectWithTag("P2"));
         EnterStateWander ();
     }
 
@@ -93,10 +96,17 @@ public class Monster : MonoBehaviour {
 		_currentState = STATE.INSPECT;
 		//_currentTarget = target;
         // TODO: add code to set target positition
+
 	}
 
 	private void UpdateInspect() {
         // TODO: add code to move toward target
+
+        FollowSound();
+        if(Vector3.distance(target.position,this.transform.position)==0)
+        {
+
+        }
 	}
 
 	private void EnterStateAttack() {
@@ -126,7 +136,6 @@ public class Monster : MonoBehaviour {
     void FollowSound()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
-
         transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
     }
 
@@ -136,7 +145,6 @@ public class Monster : MonoBehaviour {
         //every 2.5 secs the monster is chasing it gets faster by .75
         if (chaseTime / 2.5f > 1.0f)
         {
-
             chaseTime -= 2.5f;
             movSpeed += 0.75f;
         }
@@ -149,8 +157,8 @@ public class Monster : MonoBehaviour {
         //Determines what sound is the loudest and sets it as a target
         //PLEASE try to get the AI to remember the location (waypoint) of where the last sound came from and go to that
         //I cant get it to remember it forgets once the player moves off of the floor board
-        target = null;
-        float highest = 0.0f;
+        
+        
         float temp = 0.0f;
         foreach (GameObject noise in sounds)
         {
@@ -161,7 +169,11 @@ public class Monster : MonoBehaviour {
                 target = noise.transform;
             }
         }
-
+        
+        if(target != null)
+        {
+            
+        }
     }
 
     void OnTriggerEnter(Collider other)
