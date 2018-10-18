@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 65525886618311892}
   - component: {fileID: 114302733931396418}
   - component: {fileID: 82328403741645560}
+  - component: {fileID: 114660997283331048}
   m_Layer: 0
   m_Name: CreekingBoard
-  m_TagString: Untagged
+  m_TagString: MakesSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,3 +205,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ad567cb23a8a848a6665709e71a8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fSound: {fileID: 0}
+--- !u!114 &114660997283331048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1630158328300030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92db5aa0d7f285e4d8d5fdf15ea756bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 0
