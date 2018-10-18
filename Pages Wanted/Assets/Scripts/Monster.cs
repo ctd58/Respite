@@ -68,11 +68,6 @@ public class Monster : MonoBehaviour {
 			break;
 		}
         // Widchard use this to call game over screen
-        if(playerLives == 0)
-        {
-            Debug.Log("Game Over");
-            gameoverScreen.SetActive(true);
-        }
 	}
 
     private void EnterStateWander() {
@@ -103,7 +98,8 @@ public class Monster : MonoBehaviour {
                 Vector3 targetV = currentWaypoint.transform.position;
                 navMeshAgent.SetDestination(targetV);
                 madeWaypoint = false;
-                i = (i + 1) % wayPoints.Count; 
+                i = (i + 1) % wayPoints.Count;
+                Debug.Log(i); 
             }
             currentWaypoint = wayPoints[i]; 
         }
@@ -232,6 +228,11 @@ public class Monster : MonoBehaviour {
         else if(health1.activeSelf == false && health2.activeSelf == false && health3.activeSelf == false && health4.activeSelf == true)
         {
             health4.SetActive(false); 
+        }
+        if (playerLives == 0)
+        {
+            Debug.Log("Game Over");
+            gameoverScreen.SetActive(true);
         }
     }
 
