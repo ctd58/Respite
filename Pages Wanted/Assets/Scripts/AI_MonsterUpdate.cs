@@ -29,6 +29,8 @@ public class AI_MonsterUpdate : MonoBehaviour {
     public Monster tracking;
 
 
+    //Three states, wander/patrol, attack, inspect
+
     //If hears sound, go to sound. Otherwise, patrol
 
     bool patrol;

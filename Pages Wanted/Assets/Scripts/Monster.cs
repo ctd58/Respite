@@ -26,6 +26,8 @@ public class Monster : MonoBehaviour {
     public GameObject health3;
     [SerializeField]
     public GameObject health4;
+    [SerializeField]
+    public GameObject gameoverScreen; 
 
     private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     private STATE _currentState;
@@ -33,9 +35,27 @@ public class Monster : MonoBehaviour {
     void Start()
     {
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
+<<<<<<< HEAD
+        sounds.Add(GameObject.FindGameObjectWithTag("P1"));
+        sounds.Add(GameObject.FindGameObjectWithTag("P2"));
+<<<<<<< HEAD
+        gameoverScreen.SetActive(false); 
+    }
+
+    void Update()
+    {
+        //Widchard use this to call game over screen
+        if(playerLives == 0)
+        {
+            Debug.Log("Game Over");
+            gameoverScreen.SetActive(true);
+        }
+=======
+=======
         soundObjects = GameObject.FindGameObjectsWithTags("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
+>>>>>>> master
         EnterStateWander ();
     }
 
@@ -149,6 +169,7 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateStun() {
 	} // do nothing here, the stun coroutine will set state back to wander
+>>>>>>> master
 
 
     //makes it go towards sound
