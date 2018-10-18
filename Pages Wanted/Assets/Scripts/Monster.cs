@@ -9,7 +9,8 @@ public class Monster : MonoBehaviour {
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
-    public float sensePlayerDistance;
+    [SerializeField]
+    public float sensePlayerDistance = 2;
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
@@ -45,7 +46,7 @@ public class Monster : MonoBehaviour {
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
-        gameoverScreen.SetActive(false); 
+        // gameoverScreen.SetActive(false); 
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
@@ -68,11 +69,6 @@ public class Monster : MonoBehaviour {
 			break;
 		}
         // Widchard use this to call game over screen
-        if(playerLives == 0)
-        {
-            Debug.Log("Game Over");
-            gameoverScreen.SetActive(true);
-        }
 	}
 
     private void EnterStateWander() {
@@ -85,6 +81,7 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateWander() {
         // TODO: add code for wandering here
+        DetectPlayer();
         findTarget();
         counter++;
         if (counter > 400)
@@ -103,7 +100,8 @@ public class Monster : MonoBehaviour {
                 Vector3 targetV = currentWaypoint.transform.position;
                 navMeshAgent.SetDestination(targetV);
                 madeWaypoint = false;
-                i = (i + 1) % wayPoints.Count; 
+                i = (i + 1) % wayPoints.Count;
+                Debug.Log(i); 
             }
             currentWaypoint = wayPoints[i]; 
         }
@@ -136,7 +134,7 @@ public class Monster : MonoBehaviour {
         FollowSound();
 
         //Check if it is on top of the targets position
-        if(Vector3.Distance(target.position,this.transform.position)==0)
+        if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance)
         {
             loudestSound = 0.0f;
             DetectPlayer();
@@ -220,6 +218,7 @@ public class Monster : MonoBehaviour {
 
     private void hideHealth()
     {
+        Debug.Log("no health for you");
         health1.SetActive(false);
         if (health1.activeSelf == false && health2.activeSelf == true && health3.activeSelf == true && health4.activeSelf == true)
         {
@@ -232,6 +231,11 @@ public class Monster : MonoBehaviour {
         else if(health1.activeSelf == false && health2.activeSelf == false && health3.activeSelf == false && health4.activeSelf == true)
         {
             health4.SetActive(false); 
+        }
+        if (playerLives == 0)
+        {
+            Debug.Log("Game Over");
+            gameoverScreen.SetActive(true);
         }
     }
 

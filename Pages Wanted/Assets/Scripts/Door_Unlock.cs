@@ -84,10 +84,17 @@ public class Door_Unlock : Interactables {
 
 	// All locks have been unlocked, now open the door
 	public void OpenDoor() {
-		//TODO: This is where an unlock animation would go, but as a filler
 		this.GetComponent<Sound>().sound = 1;
         this.GetComponent<AudioSource>().Play();
-		Destroy(this.gameObject, 3F);
+		//TODO: This is where an unlock animation would go, but as a filler
+		Destroy(GetComponent<BoxCollider>(), 3F);
+		Destroy(GetComponent<MeshRenderer>(), 3F);
+		StartCoroutine("stopSound");
+	}
+
+	IEnumerator stopSound() {
+		yield return new WaitForSeconds(3F);
+		this.GetComponent<Sound>().sound = 0;
 	}
 }
 
