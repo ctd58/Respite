@@ -8,7 +8,7 @@ public class Monster : MonoBehaviour {
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
-    public float maxDistance;
+    public float sensePlayerDistance;
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
@@ -78,7 +78,7 @@ public class Monster : MonoBehaviour {
 			UpdateAttack ();
 			break;
 		case STATE.STUNNED:
-			UpdateDie ();
+			UpdateStun();
 			break;
 		}
 	}
@@ -128,7 +128,7 @@ public class Monster : MonoBehaviour {
 		StartCoroutine("stun");
 	}
 
-	private void UpdateDie() {
+	private void UpdateStun() {
 	} // do nothing here, the stun coroutine will set state back to wander
 
 
@@ -216,5 +216,9 @@ public class Monster : MonoBehaviour {
         canMove = true;
         _currentState = STATE.WANDER;
         Debug.Log(Time.time);
+    }
+
+    private void DetectPlayer() {
+        
     }
 }
