@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
 
@@ -39,11 +41,23 @@ public class Monster : MonoBehaviour {
     bool madeWaypoint;
     NavMeshAgent navMeshAgent;
 
+    Slider testslider;
+     
+
     private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     private STATE _currentState;
 
     void Start()
     {
+        /*
+        GameObject other = GameObject.Find("TitleScreenNav");
+        TitleScreenNav titleScreenNav = other.GetComponent<TitleScreenNav>();
+        if (titleScreenNav != null)
+        {
+            baseMoveSpeed = titleScreenNav.monsterBaseSpeed.value;
+            sensePlayerDistance = titleScreenNav.monsterSense.value;
+        }
+        */
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
@@ -235,7 +249,8 @@ public class Monster : MonoBehaviour {
         if (playerLives == 0)
         {
             Debug.Log("Game Over");
-            gameoverScreen.SetActive(true);
+            //gameoverScreen.SetActive(true);
+            SceneManager.LoadScene("GameOverScreen"); 
         }
     }
 
@@ -254,13 +269,20 @@ public class Monster : MonoBehaviour {
         Debug.Log(Time.time);
     }
 
-    private void DetectPlayer() {
-        if (Vector3.Distance( players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance ) { 
-            target = players[0].transform;
-            EnterStateAttack();
-        } else if  (Vector3.Distance( players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance ) {
-            target = players[1].transform;
-            EnterStateAttack();
+    private void DetectPlayer()
+    {
+        if (players != null)
+        {
+            if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
+            {
+                target = players[0].transform;
+                EnterStateAttack();
+            }
+            else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
+            {
+                target = players[1].transform;
+                EnterStateAttack();
+            }
         }
     }
 }
