@@ -27,12 +27,15 @@ public class Monster : MonoBehaviour {
     [SerializeField]
     public GameObject gameoverScreen; 
 
+    private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
+    private STATE _currentState;
 
     void Start()
     {
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
         sounds.Add(GameObject.FindGameObjectWithTag("P1"));
         sounds.Add(GameObject.FindGameObjectWithTag("P2"));
+<<<<<<< HEAD
         gameoverScreen.SetActive(false); 
     }
 
@@ -44,25 +47,96 @@ public class Monster : MonoBehaviour {
             Debug.Log("Game Over");
             gameoverScreen.SetActive(true);
         }
-
-        findTarget();
-        //target = GameObject.FindGameObjectWithTag("P1").transform;
-        //if (Vector3.Distance(target.position, gameObject.transform.position) <= maxDistance)
-        if (target != null && canMove)
-        {
-            FollowSound();
-            chaseTime += Time.deltaTime;
-        }
-        else if(canMove)
-        {
-            chaseTime = 0.0f;
-        }
-        else if(!canMove)
-        {
-            Debug.Log("STUNNED");
-            StartCoroutine(stun());
-        }
+=======
+        EnterStateWander ();
     }
+
+    // void Update()
+    // {
+    //     //Widchard use this to call game over screen
+    //     if(playerLives == 0)
+    //     {
+    //         Debug.Log("Game Over");
+    //     }
+
+    //     findTarget();
+    //     //target = GameObject.FindGameObjectWithTag("P1").transform;
+    //     //if (Vector3.Distance(target.position, gameObject.transform.position) <= maxDistance)
+    //     if (target != null && canMove)
+    //     {
+    //         FollowSound();
+    //         chaseTime += Time.deltaTime;
+    //     }
+    //     else if(canMove)
+    //     {
+    //         chaseTime = 0.0f;
+    //     }
+    //     else if(!canMove)
+    //     {
+    //         Debug.Log("STUNNED");
+    //         StartCoroutine(stun());
+    //     }
+    // }
+
+    	void Update () {
+		switch (_currentState) {
+		case STATE.WANDER:
+			UpdateWander ();
+			break;
+		case STATE.INSPECT:
+			UpdateInspect ();
+			break;
+		case STATE.ATTACK:
+			UpdateAttack ();
+			break;
+		case STATE.STUNNED:
+			UpdateDie ();
+			break;
+		}
+	}
+
+    private void EnterStateWander() {
+		_currentState = STATE.WANDER;
+		// TODO: add code to setup wandering
+	}
+
+	private void UpdateWander() {
+		// TODO: add code for wandering here
+	}
+
+	private void EnterStateInspect(GameObject target) {
+		_currentState = STATE.INSPECT;
+		//_currentTarget = target;
+        // TODO: add code to set target positition
+	}
+
+	private void UpdateInspect() {
+        // TODO: add code to move toward target
+	}
+
+	private void EnterStateAttack() {
+		_currentState = STATE.ATTACK;
+		// TODO: add code about setting up to chase player
+	}
+
+	private void UpdateAttack() {
+        // TODO: add code about chasing player
+	}
+
+    // Player ability script should call this function
+	public void Stun() {
+		EnterStateStun ();
+	}
+
+	private void EnterStateStun() {
+		_currentState = STATE.STUNNED;
+		StartCoroutine("stun");
+	}
+
+	private void UpdateDie() {
+	} // do nothing here, the stun coroutine will set state back to wander
+>>>>>>> master
+
 
     //makes it go towards sound
     void FollowSound()
@@ -144,6 +218,7 @@ public class Monster : MonoBehaviour {
         Debug.Log(Time.time);
         yield return new WaitForSecondsRealtime(inputDelay);
         canMove = true;
+        _currentState = STATE.WANDER;
         Debug.Log(Time.time);
     }
 }
