@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Monster : MonoBehaviour {
 
@@ -27,19 +28,27 @@ public class Monster : MonoBehaviour {
     [SerializeField]
     public GameObject health4;
     [SerializeField]
-    public GameObject gameoverScreen; 
+    public GameObject gameoverScreen;
+    [SerializeField]
+    List<Transform> wayPoints = new List<Transform>();
+    [SerializeField]
+    Transform currentWaypoint;
+    int i = 0;
+    int counter = 0;
+    bool madeWaypoint;
+    NavMeshAgent navMeshAgent;
 
     private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     private STATE _currentState;
 
     void Start()
     {
+        navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
-<<<<<<< HEAD
         sounds.Add(GameObject.FindGameObjectWithTag("P1"));
         sounds.Add(GameObject.FindGameObjectWithTag("P2"));
-<<<<<<< HEAD
-        gameoverScreen.SetActive(false); 
+        gameoverScreen.SetActive(false);
+        EnterStateWander();
     }
 
     void Update()
@@ -50,13 +59,10 @@ public class Monster : MonoBehaviour {
             Debug.Log("Game Over");
             gameoverScreen.SetActive(true);
         }
-=======
-=======
+
         soundObjects = GameObject.FindGameObjectsWithTags("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
->>>>>>> master
-        EnterStateWander ();
     }
 
     // void Update()
@@ -104,15 +110,40 @@ public class Monster : MonoBehaviour {
 	}
 
     private void EnterStateWander() {
+        movSpeed = baseMoveSpeed; 
 		_currentState = STATE.WANDER;
-		// TODO: add code to setup wandering
+        // TODO: add code to setup wandering
+        currentWaypoint = wayPoints[i];
+        madeWaypoint = true; 
 	}
 
 	private void UpdateWander() {
-		// TODO: add code for wandering here
+        // TODO: add code for wandering here
+        findTarget();
+        counter++;
+        if (counter > 400)
+        {
+            counter = 0;
+            madeWaypoint = true; 
+        }
+        if (target != null)
+        {
+            EnterStateInspect(target); 
+        }
+        else
+        {
+            if (currentWaypoint != null && madeWaypoint == true)
+            {
+                Vector3 targetV = currentWaypoint.transform.position;
+                navMeshAgent.SetDestination(targetV);
+                madeWaypoint = false;
+                i = (i + 1) % wayPoints.Count; 
+            }
+            currentWaypoint = wayPoints[i]; 
+        }
 	}
 
-	private void EnterStateInspect(GameObject target) {
+	private void EnterStateInspect(Transform target) {
 		_currentState = STATE.INSPECT;
 		//_currentTarget = target;
         // TODO: add code to set target positition
