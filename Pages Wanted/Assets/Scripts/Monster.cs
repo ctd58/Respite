@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Monster : MonoBehaviour {
 
-    public transform target = null;
+    public Transform target = null;
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
@@ -45,54 +45,14 @@ public class Monster : MonoBehaviour {
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
-        sounds.Add(GameObject.FindGameObjectWithTag("P1"));
-        sounds.Add(GameObject.FindGameObjectWithTag("P2"));
-        gameoverScreen.SetActive(false);
-        EnterStateWander();
-    }
-
-    void Update()
-    {
-        //Widchard use this to call game over screen
-        if(playerLives == 0)
-        {
-            Debug.Log("Game Over");
-            gameoverScreen.SetActive(true);
-        }
-
-        soundObjects = GameObject.FindGameObjectsWithTags("MakesSound");
+        gameoverScreen.SetActive(false); 
+        soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
+        EnterStateWander ();
     }
 
-    // void Update()
-    // {
-    //     //Widchard use this to call game over screen
-    //     if(playerLives == 0)
-    //     {
-    //         Debug.Log("Game Over");
-    //     }
-
-    //     findTarget();
-    //     //target = GameObject.FindGameObjectWithTag("P1").transform;
-    //     //if (Vector3.Distance(target.position, gameObject.transform.position) <= maxDistance)
-    //     if (target != null && canMove)
-    //     {
-    //         FollowSound();
-    //         chaseTime += Time.deltaTime;
-    //     }
-    //     else if(canMove)
-    //     {
-    //         chaseTime = 0.0f;
-    //     }
-    //     else if(!canMove)
-    //     {
-    //         Debug.Log("STUNNED");
-    //         StartCoroutine(stun());
-    //     }
-    // }
-
-    	void Update () {
+    void Update () {
 		switch (_currentState) {
 		case STATE.WANDER:
 			UpdateWander ();
@@ -107,6 +67,12 @@ public class Monster : MonoBehaviour {
 			UpdateStun();
 			break;
 		}
+        // Widchard use this to call game over screen
+        if(playerLives == 0)
+        {
+            Debug.Log("Game Over");
+            gameoverScreen.SetActive(true);
+        }
 	}
 
     private void EnterStateWander() {
@@ -172,7 +138,7 @@ public class Monster : MonoBehaviour {
         //Check if it is on top of the targets position
         if(Vector3.Distance(target.position,this.transform.position)==0)
         {
-            highest = 0.0f;
+            loudestSound = 0.0f;
             DetectPlayer();
             target = null;
             EnterStateWander();
@@ -200,8 +166,6 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateStun() {
 	} // do nothing here, the stun coroutine will set state back to wander
->>>>>>> master
-
 
     //makes it go towards sound
     void FollowSound()
@@ -225,18 +189,18 @@ public class Monster : MonoBehaviour {
         foreach (GameObject noise in soundObjects)
         {
             temp = noise.GetComponent<Sound>().sound;
-            if (temp > highest)
+            if (temp > loudestSound)
             {
-                highest = temp;
+                loudestSound = temp;
                 target = noise.transform;
             }
         }
         foreach(GameObject noise in players)
         {
             temp = noise.GetComponent<Sound>().sound;
-            if (temp > highest)
+            if (temp > loudestSound)
             {
-                highest = temp;
+                loudestSound = temp;
                 target = noise.transform;
             }
         }
@@ -282,10 +246,17 @@ public class Monster : MonoBehaviour {
         yield return new WaitForSecondsRealtime(inputDelay);
         canMove = true;
         _currentState = STATE.WANDER;
+        movSpeed = baseMoveSpeed;
         Debug.Log(Time.time);
     }
 
     private void DetectPlayer() {
-        
+        if (Vector3.Distance( players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance ) { 
+            target = players[0].transform;
+            EnterStateAttack();
+        } else if  (Vector3.Distance( players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance ) {
+            target = players[1].transform;
+            EnterStateAttack();
+        }
     }
 }
