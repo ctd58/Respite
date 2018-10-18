@@ -45,7 +45,7 @@ public class Monster : MonoBehaviour {
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
-        gameoverScreen.SetActive(false); 
+        // gameoverScreen.SetActive(false); 
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
@@ -80,6 +80,7 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateWander() {
         // TODO: add code for wandering here
+        DetectPlayer();
         findTarget();
         counter++;
         if (counter > 400)
@@ -132,7 +133,7 @@ public class Monster : MonoBehaviour {
         FollowSound();
 
         //Check if it is on top of the targets position
-        if(Vector3.Distance(target.position,this.transform.position)==0)
+        if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance)
         {
             loudestSound = 0.0f;
             DetectPlayer();
@@ -216,6 +217,7 @@ public class Monster : MonoBehaviour {
 
     private void hideHealth()
     {
+        Debug.Log("no health for you");
         health1.SetActive(false);
         if (health1.activeSelf == false && health2.activeSelf == true && health3.activeSelf == true && health4.activeSelf == true)
         {
