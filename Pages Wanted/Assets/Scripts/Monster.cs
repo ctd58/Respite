@@ -24,6 +24,8 @@ public class Monster : MonoBehaviour {
     public GameObject health3;
     [SerializeField]
     public GameObject health4;
+    [SerializeField]
+    public GameObject gameoverScreen; 
 
 
     void Start()
@@ -31,6 +33,7 @@ public class Monster : MonoBehaviour {
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
         sounds.Add(GameObject.FindGameObjectWithTag("P1"));
         sounds.Add(GameObject.FindGameObjectWithTag("P2"));
+        gameoverScreen.SetActive(false); 
     }
 
     void Update()
@@ -39,6 +42,7 @@ public class Monster : MonoBehaviour {
         if(playerLives == 0)
         {
             Debug.Log("Game Over");
+            gameoverScreen.SetActive(true);
         }
 
         findTarget();
