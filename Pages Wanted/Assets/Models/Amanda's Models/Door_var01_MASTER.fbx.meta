@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: 03b3c631d142c4721a1ca2142f4ae456
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bar1
+    100002: Bar2
+    100004: Bar3
+    100006: Bar4
+    100008: Bars
+    100010: Decor
+    100012: Decor 1
+    100014: Decor 2
+    100016: Decor1
+    100018: Decor1 1
+    100020: Decor2
+    100022: Decor2 1
+    100024: Decor3
+    100026: Decor3 1
+    100028: Decor4
+    100030: Decor4 1
+    100032: Decor5
+    100034: Decor5 1
+    100036: Decor6
+    100038: Decor6 1
+    100040: Decor7
+    100042: Door_1
+    100044: Door_Handle
+    100046: Door_handle_back
+    100048: Door_handle_nut
+    100050: Door_Handle_Pull
+    100052: Door_Handle_ring
+    100054: Door_hole
+    100056: //RootNode
+    100058: Handle_bolt
+    100060: Handle_Group
+    100062: Window
+    400000: Bar1
+    400002: Bar2
+    400004: Bar3
+    400006: Bar4
+    400008: Bars
+    400010: Decor
+    400012: Decor 1
+    400014: Decor 2
+    400016: Decor1
+    400018: Decor1 1
+    400020: Decor2
+    400022: Decor2 1
+    400024: Decor3
+    400026: Decor3 1
+    400028: Decor4
+    400030: Decor4 1
+    400032: Decor5
+    400034: Decor5 1
+    400036: Decor6
+    400038: Decor6 1
+    400040: Decor7
+    400042: Door_1
+    400044: Door_Handle
+    400046: Door_handle_back
+    400048: Door_handle_nut
+    400050: Door_Handle_Pull
+    400052: Door_Handle_ring
+    400054: Door_hole
+    400056: //RootNode
+    400058: Handle_bolt
+    400060: Handle_Group
+    400062: Window
+    2100000: lambert1
+    2300000: Bar1
+    2300002: Bar2
+    2300004: Bar3
+    2300006: Bar4
+    2300008: Decor 1
+    2300010: Decor 2
+    2300012: Decor1
+    2300014: Decor1 1
+    2300016: Decor2
+    2300018: Decor2 1
+    2300020: Decor3
+    2300022: Decor3 1
+    2300024: Decor4
+    2300026: Decor4 1
+    2300028: Decor5
+    2300030: Decor5 1
+    2300032: Decor6
+    2300034: Decor6 1
+    2300036: Door_1
+    2300038: Door_handle_back
+    2300040: Door_handle_nut
+    2300042: Door_Handle_ring
+    2300044: Door_hole
+    2300046: Handle_bolt
+    2300048: Window
+    3300000: Bar1
+    3300002: Bar2
+    3300004: Bar3
+    3300006: Bar4
+    3300008: Decor 1
+    3300010: Decor 2
+    3300012: Decor1
+    3300014: Decor1 1
+    3300016: Decor2
+    3300018: Decor2 1
+    3300020: Decor3
+    3300022: Decor3 1
+    3300024: Decor4
+    3300026: Decor4 1
+    3300028: Decor5
+    3300030: Decor5 1
+    3300032: Decor6
+    3300034: Decor6 1
+    3300036: Door_1
+    3300038: Door_handle_back
+    3300040: Door_handle_nut
+    3300042: Door_Handle_ring
+    3300044: Door_hole
+    3300046: Handle_bolt
+    3300048: Window
+    4300000: Bar1
+    4300002: Bar2
+    4300004: Bar3
+    4300006: Bar4
+    4300008: Decor6
+    4300010: Decor5
+    4300012: Decor4
+    4300014: Decor3
+    4300016: Decor2
+    4300018: Decor1
+    4300020: Decor
+    4300022: Decor6
+    4300024: Decor5
+    4300026: Decor4
+    4300028: Decor3
+    4300030: Decor2
+    4300032: Decor1
+    4300034: Decor
+    4300036: Door_handle_back
+    4300038: Door_Handle_ring
+    4300040: Door_handle_nut
+    4300042: Handle_bolt
+    4300044: Door_hole
+    4300046: Window
+    4300048: Door_1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
