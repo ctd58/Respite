@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Monster : MonoBehaviour {
 
-    public Transform target = null;
+    public transform target = null;
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
@@ -152,11 +152,30 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateInspect() {
         // TODO: add code to move toward target
+        //Finds if a new target is louder
+        findTarget();
 
-        FollowSound();
-        if(Vector3.distance(target.position,this.transform.position)==0)
+        //Increases speed if it has been chasing for a multiple of 2.5 seconds
+        chaseTime += Time.deltaTime;
+        if (chaseTime / 2.5f > 1.0f)
         {
+            chaseTime -= 2.5f;
+            movSpeed += 0.75f;
+            if(movSpeed> 6.0f)
+            {
+                movSpeed = 6.0f;
+            }
+        }
+        
+        FollowSound();
 
+        //Check if it is on top of the targets position
+        if(Vector3.Distance(target.position,this.transform.position)==0)
+        {
+            highest = 0.0f;
+            DetectPlayer();
+            target = null;
+            EnterStateWander();
         }
 	}
 
@@ -193,26 +212,17 @@ public class Monster : MonoBehaviour {
 
     //Determines what object is making the loudest noise and goes to it
     void findTarget()
-    {
-        //every 2.5 secs the monster is chasing it gets faster by .75
-        if (chaseTime / 2.5f > 1.0f)
-        {
-            chaseTime -= 2.5f;
-            movSpeed += 0.75f;
-        }
+    { //every 2.5 secs the monster is chasing it gets faster by .75
+        
         //If not chasing rest speed
-        else if (chaseTime == 0.0f)
-        {
-            movSpeed = baseMoveSpeed;
-        }
+        
 
         //Determines what sound is the loudest and sets it as a target
         //PLEASE try to get the AI to remember the location (waypoint) of where the last sound came from and go to that
         //I cant get it to remember it forgets once the player moves off of the floor board
         
-        
         float temp = 0.0f;
-        foreach (GameObject noise in sounds)
+        foreach (GameObject noise in soundObjects)
         {
             temp = noise.GetComponent<Sound>().sound;
             if (temp > highest)
@@ -221,10 +231,14 @@ public class Monster : MonoBehaviour {
                 target = noise.transform;
             }
         }
-        
-        if(target != null)
+        foreach(GameObject noise in players)
         {
-            
+            temp = noise.GetComponent<Sound>().sound;
+            if (temp > highest)
+            {
+                highest = temp;
+                target = noise.transform;
+            }
         }
     }
 
@@ -233,6 +247,7 @@ public class Monster : MonoBehaviour {
         Debug.Log("I gotcha boi");
         if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2")
         {
+            target = null;
             playerLives -= 1;
             respawn();
             hideHealth(); 
