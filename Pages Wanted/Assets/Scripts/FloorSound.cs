@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class FloorSound : MonoBehaviour {
 
+    public Sound fSound;
+
 	// Use this for initialization
 	void Start () {
-		
+        fSound = this.GetComponent<Sound>();
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -14,13 +16,13 @@ public class FloorSound : MonoBehaviour {
         if(other.gameObject.tag == "P1")
         {
             Debug.Log("P1 here, i entered");
-            other.gameObject.GetComponent<Sound>().sound = 1;
+            fSound.sound = 1;
             this.GetComponent<AudioSource>().Play();
         }
         if (other.gameObject.tag == "P2")
         {
             Debug.Log("P2 here, i entered");
-            other.gameObject.GetComponent<Sound>().sound = 1;
+            fSound.sound = 1;
             this.GetComponent<AudioSource>().Play();
         }
 
@@ -31,13 +33,13 @@ public class FloorSound : MonoBehaviour {
         if (other.gameObject.tag == "P1")
         {
             Debug.Log("P1 here, im leaving");
-            other.gameObject.GetComponent<Sound>().sound = 0;
+            fSound.sound = 0;
         }
 
         if (other.gameObject.tag == "P2")
         {
             Debug.Log("P2 here, im leaving");
-            other.gameObject.GetComponent<Sound>().sound = 0;
+            fSound.sound = 0;
         }
     }
 
