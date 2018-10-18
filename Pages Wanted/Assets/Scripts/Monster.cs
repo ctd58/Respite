@@ -58,6 +58,8 @@ public class Monster : MonoBehaviour {
             sensePlayerDistance = titleScreenNav.monsterSense.value;
         }
         */
+        baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
+        sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 

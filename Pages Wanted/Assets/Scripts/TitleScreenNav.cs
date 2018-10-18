@@ -24,8 +24,11 @@ public class TitleScreenNav : MonoBehaviour {
         Button btn2 = quitButton.GetComponent<Button>();
 
         btn1.onClick.AddListener(StartGame);
-        btn2.onClick.AddListener(ExitScene); 
+        btn2.onClick.AddListener(ExitScene);
 
+        playerSpeed.value = PlayerPrefs.GetFloat("playerspeed"); 
+        monsterBaseSpeed.value = PlayerPrefs.GetFloat("monsterbasespeed");
+        monsterSense.value = PlayerPrefs.GetFloat("monstersense");
 
         if (titleScreen.activeSelf != true)
         {
@@ -36,7 +39,9 @@ public class TitleScreenNav : MonoBehaviour {
 
     private void Update()
     {
-        
+        PlayerPrefs.SetFloat("playerspeed", playerSpeed.value);
+        PlayerPrefs.SetFloat("monsterspeed", monsterBaseSpeed.value);
+        PlayerPrefs.SetFloat("monstersense", monsterSense.value);
     }
 
 
