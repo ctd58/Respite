@@ -4889,6 +4889,11 @@ Prefab:
       propertyPath: wayPoints.Array.data[3]
       value: 
       objectReference: {fileID: 2111300486}
+    - target: {fileID: 114360224265054410, guid: be1d1b06388c1cf43be09f88b92023d5,
+        type: 2}
+      propertyPath: sensePlayerDistance
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be1d1b06388c1cf43be09f88b92023d5, type: 2}
   m_IsPrefabAsset: 0
@@ -8696,7 +8701,7 @@ Prefab:
     - target: {fileID: 224261077661754990, guid: 091c07c4c279349b2925727613bcadc6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224060348705121324, guid: 091c07c4c279349b2925727613bcadc6,
         type: 2}
@@ -8706,7 +8711,7 @@ Prefab:
     - target: {fileID: 224589886419036624, guid: 091c07c4c279349b2925727613bcadc6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
@@ -9125,7 +9130,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1843393899

@@ -9,7 +9,8 @@ public class Monster : MonoBehaviour {
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
-    public float sensePlayerDistance;
+    [SerializeField]
+    public float sensePlayerDistance = 2;
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
