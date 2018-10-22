@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
 
     public Transform target = null;
+    //range for testing the baseMoveSpeed is 4.0 to 8.0f
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
     [SerializeField]
     public float sensePlayerDistance = 2;
+    //sensePlayerDistance range for testing is 2.0f to 10.0f
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
     public float chaseTime = 0.0f;
+    //chaseTime range 0.0f to 3.5f 
     public float slowSpeed = 1.0f;
     public bool canMove = true;
     public float inputDelay = 0.0f;
@@ -39,11 +44,27 @@ public class Monster : MonoBehaviour {
     bool madeWaypoint;
     NavMeshAgent navMeshAgent;
 
+    Slider testslider;
+     
+
     private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     private STATE _currentState;
 
     void Start()
     {
+        /*
+        GameObject other = GameObject.Find("TitleScreenNav");
+        TitleScreenNav titleScreenNav = other.GetComponent<TitleScreenNav>();
+        if (titleScreenNav != null)
+        {
+            baseMoveSpeed = titleScreenNav.monsterBaseSpeed.value;
+            sensePlayerDistance = titleScreenNav.monsterSense.value;
+        }
+        */
+        Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        checkprefs(); 
+        baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
+        sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
@@ -54,7 +75,8 @@ public class Monster : MonoBehaviour {
     }
 
     void Update () {
-		switch (_currentState) {
+        Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        switch (_currentState) {
 		case STATE.WANDER:
 			UpdateWander ();
 			break;
@@ -235,13 +257,27 @@ public class Monster : MonoBehaviour {
         if (playerLives == 0)
         {
             Debug.Log("Game Over");
-            gameoverScreen.SetActive(true);
+            //gameoverScreen.SetActive(true);
+            SceneManager.LoadScene("GameOverScreen"); 
         }
     }
 
     void respawn()
     {
         this.transform.position = spawn.transform.position;
+    }
+
+    void checkprefs()
+    {
+        //Eventually make max and min v
+        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 8.0f || PlayerPrefs.GetFloat("monsterbasespeed") < 4.0f)
+        {
+            PlayerPrefs.SetFloat("monsterspeed", 5f);
+        }
+        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 3.0f || PlayerPrefs.GetFloat("monstersense") > 8.0f)
+        {
+            PlayerPrefs.SetFloat("monstersense", 6f);
+        }
     }
 
     IEnumerator stun()
@@ -254,13 +290,20 @@ public class Monster : MonoBehaviour {
         Debug.Log(Time.time);
     }
 
-    private void DetectPlayer() {
-        if (Vector3.Distance( players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance ) { 
-            target = players[0].transform;
-            EnterStateAttack();
-        } else if  (Vector3.Distance( players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance ) {
-            target = players[1].transform;
-            EnterStateAttack();
+    private void DetectPlayer()
+    {
+        if (players != null)
+        {
+            if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
+            {
+                target = players[0].transform;
+                EnterStateAttack();
+            }
+            else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
+            {
+                target = players[1].transform;
+                EnterStateAttack();
+            }
         }
     }
 }
