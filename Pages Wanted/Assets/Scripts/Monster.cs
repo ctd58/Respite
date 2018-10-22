@@ -8,15 +8,18 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour {
 
     public Transform target = null;
+    //range for testing the baseMoveSpeed is 4.0 to 8.0f
     public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
     [SerializeField]
     public float sensePlayerDistance = 2;
+    //sensePlayerDistance range for testing is 2.0f to 10.0f
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
     public float chaseTime = 0.0f;
+    //chaseTime range 0.0f to 3.5f 
     public float slowSpeed = 1.0f;
     public bool canMove = true;
     public float inputDelay = 0.0f;
@@ -58,6 +61,8 @@ public class Monster : MonoBehaviour {
             sensePlayerDistance = titleScreenNav.monsterSense.value;
         }
         */
+        Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        checkprefs(); 
         baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
         sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
@@ -70,7 +75,8 @@ public class Monster : MonoBehaviour {
     }
 
     void Update () {
-		switch (_currentState) {
+        Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        switch (_currentState) {
 		case STATE.WANDER:
 			UpdateWander ();
 			break;
@@ -259,6 +265,19 @@ public class Monster : MonoBehaviour {
     void respawn()
     {
         this.transform.position = spawn.transform.position;
+    }
+
+    void checkprefs()
+    {
+        //Eventually make max and min v
+        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 8.0f || PlayerPrefs.GetFloat("monsterbasespeed") < 4.0f)
+        {
+            PlayerPrefs.SetFloat("monsterspeed", 5f);
+        }
+        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 3.0f || PlayerPrefs.GetFloat("monstersense") > 8.0f)
+        {
+            PlayerPrefs.SetFloat("monstersense", 6f);
+        }
     }
 
     IEnumerator stun()
