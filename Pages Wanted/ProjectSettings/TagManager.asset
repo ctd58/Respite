@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - DemonSpawn
   - MakesSound
+  - EndGame
   layers:
   - Default
   - TransparentFX

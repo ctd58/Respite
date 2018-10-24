@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour {
 
     public Transform target = null;
-    [Range(4.0F, 8.0F)] public float baseMoveSpeed = 4.0f;
+    [Range(3.0F, 8.0F)] public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
     [SerializeField]
