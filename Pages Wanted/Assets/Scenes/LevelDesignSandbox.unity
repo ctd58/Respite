@@ -5343,11 +5343,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: bf1cf98105361f045a2ba94021ed96a6,
     type: 3}
   m_PrefabInternal: {fileID: 653258587}
---- !u!20 &653540482 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 20003314876387672, guid: 113d21efc8c0c4459bbaf61d5b8b98c4,
-    type: 2}
-  m_PrefabInternal: {fileID: 680967403}
 --- !u!1 &657644369
 GameObject:
   m_ObjectHideFlags: 0
@@ -5686,6 +5681,10 @@ Prefab:
     - target: {fileID: 1366161058497642, guid: 113d21efc8c0c4459bbaf61d5b8b98c4, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366161058497642, guid: 113d21efc8c0c4459bbaf61d5b8b98c4, type: 2}
+      propertyPath: m_TagString
+      value: P2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113d21efc8c0c4459bbaf61d5b8b98c4, type: 2}
@@ -7598,31 +7597,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4923278442044294, guid: 7a9fab5dd6ad81543ac02349f3840168, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4923278442044294, guid: 7a9fab5dd6ad81543ac02349f3840168, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4923278442044294, guid: 7a9fab5dd6ad81543ac02349f3840168, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614030751570670, guid: 7a9fab5dd6ad81543ac02349f3840168,
-        type: 2}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 1297035236}
-    - target: {fileID: 114614030751570670, guid: 7a9fab5dd6ad81543ac02349f3840168,
-        type: 2}
-      propertyPath: uiIndicator
-      value: 
-      objectReference: {fileID: 543880335}
     - target: {fileID: 1828371033677780, guid: 7a9fab5dd6ad81543ac02349f3840168, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a9fab5dd6ad81543ac02349f3840168, type: 2}
@@ -9471,11 +9448,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1288138362}
   m_CullTransparentMesh: 0
---- !u!20 &1297035236 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 20105371833729466, guid: 9ddfd895c081841e7ba6654383bce35c,
-    type: 2}
-  m_PrefabInternal: {fileID: 766378373}
 --- !u!1 &1297705791
 GameObject:
   m_ObjectHideFlags: 0
@@ -10511,31 +10483,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4053680701507870, guid: 0a00bc6bdd2dad74186685ad46f133c7, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4053680701507870, guid: 0a00bc6bdd2dad74186685ad46f133c7, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4053680701507870, guid: 0a00bc6bdd2dad74186685ad46f133c7, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114517893930282608, guid: 0a00bc6bdd2dad74186685ad46f133c7,
-        type: 2}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 653540482}
-    - target: {fileID: 114517893930282608, guid: 0a00bc6bdd2dad74186685ad46f133c7,
-        type: 2}
-      propertyPath: uiIndicator
-      value: 
-      objectReference: {fileID: 1988190000}
     - target: {fileID: 1825644563340300, guid: 0a00bc6bdd2dad74186685ad46f133c7, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a00bc6bdd2dad74186685ad46f133c7, type: 2}
@@ -11739,22 +11689,22 @@ Prefab:
         type: 2}
       propertyPath: health1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1908911196}
     - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
       propertyPath: health2
       value: 
-      objectReference: {fileID: 1908911196}
+      objectReference: {fileID: 657644369}
     - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
       propertyPath: health3
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 636326656}
     - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
       propertyPath: health4
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1288138362}
     - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
       propertyPath: wayPoints.Array.data[0]
