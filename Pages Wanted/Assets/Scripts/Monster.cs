@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
-    [SerializeField] [Range(2.0F, 10.0F)] private float sensePlayerDistance = 2;
+    [SerializeField] [Range(200F, 1000F)] private float sensePlayerDistance = 20;
     [SerializeField] [Range(0.0F, 3.5F)] private float chaseTime = 25.0f;
-    [SerializeField] [Range(3.0F, 8.0F)] private float baseMoveSpeed = 4.0f;
+    [SerializeField] [Range(300F, 800F)] private float baseMoveSpeed = 400f;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
     public List<Transform> wayPoints = new List<Transform>();
@@ -62,13 +62,13 @@ public class Monster : MonoBehaviour {
     void checkprefs()
     {
         //Eventually make max and min v
-        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 8.0f || PlayerPrefs.GetFloat("monsterbasespeed") < 4.0f)
+        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 800f || PlayerPrefs.GetFloat("monsterbasespeed") < 400f)
         {
-            PlayerPrefs.SetFloat("monsterspeed", 5f);
+            PlayerPrefs.SetFloat("monsterspeed", 500f);
         }
-        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 3.0f || PlayerPrefs.GetFloat("monstersense") > 8.0f)
+        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 300f || PlayerPrefs.GetFloat("monstersense") > 800f)
         {
-            PlayerPrefs.SetFloat("monstersense", 6f);
+            PlayerPrefs.SetFloat("monstersense", 600f);
         }
     }
 
