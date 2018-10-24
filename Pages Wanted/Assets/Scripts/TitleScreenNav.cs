@@ -16,7 +16,9 @@ public class TitleScreenNav : MonoBehaviour {
     [SerializeField]
     public Slider playerSpeed;
     [SerializeField]
-    public Slider monsterBaseSpeed; 
+    public Slider monsterBaseSpeed;
+    [SerializeField]
+    public Slider staminaMeter; 
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class TitleScreenNav : MonoBehaviour {
         playerSpeed.value = PlayerPrefs.GetFloat("playerspeed"); 
         monsterBaseSpeed.value = PlayerPrefs.GetFloat("monsterbasespeed");
         monsterSense.value = PlayerPrefs.GetFloat("monstersense");
+        staminaMeter.value = PlayerPrefs.GetFloat("staminaMeter"); 
 
         if (titleScreen.activeSelf != true)
         {
@@ -42,6 +45,7 @@ public class TitleScreenNav : MonoBehaviour {
         PlayerPrefs.SetFloat("playerspeed", playerSpeed.value);
         PlayerPrefs.SetFloat("monsterspeed", monsterBaseSpeed.value);
         PlayerPrefs.SetFloat("monstersense", monsterSense.value);
+        PlayerPrefs.SetFloat("staminaMeter", staminaMeter.value); 
     }
 
 

@@ -32,6 +32,8 @@ public class StaminaBar : MonoBehaviour {
         float x = PlayerPrefs.GetFloat("PlayerMoveX");
         float y = PlayerPrefs.GetFloat("PlayerMoveY");
         float z = PlayerPrefs.GetFloat("PlayerMoveZ");
+        maxStamina = (int)PlayerPrefs.GetFloat("staminaMeter");
+        currStamina = maxStamina; 
         basePosition = new Vector3(x, y, z);
         currPosition = basePosition; 
 	}
