@@ -34,7 +34,12 @@ ModelImporter:
     4300006: Baptism_Bath_Stairs2
     4300008: Baptism_Bath_Stairs3
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 7efd887197be55141a48156a8c5e4f86, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

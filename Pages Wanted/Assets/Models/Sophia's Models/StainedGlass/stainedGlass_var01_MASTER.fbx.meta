@@ -81,7 +81,12 @@ ModelImporter:
     4300024: frame11
     4300026: frame12
     4300028: frame13
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 5d50ab891b11c86468b6a7a459d61df7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
