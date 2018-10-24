@@ -1,16 +1,26 @@
 fileFormatVersion: 2
-guid: 1bc371e23ca21b848b7081e983640584
+guid: f2c914ff64fe938469cc0837f8b8549c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Holy_Water_Basin
+    100000: Bell
     100002: //RootNode
-    400000: Holy_Water_Basin
+    100004: Handle
+    100006: Ringer
+    400000: Bell
     400002: //RootNode
+    400004: Handle
+    400006: Ringer
     2100000: lambert1
-    2300000: Holy_Water_Basin
-    3300000: Holy_Water_Basin
-    4300000: Holy_Water_Basin
+    2300000: Bell
+    2300002: Handle
+    2300004: Ringer
+    3300000: Bell
+    3300002: Handle
+    3300004: Ringer
+    4300000: Bell
+    4300002: Handle
+    4300004: Ringer
   externalObjects: {}
   materials:
     importMaterials: 1
