@@ -40,40 +40,32 @@ public class StaminaBar : MonoBehaviour {
     private void UpdateStaminaBar()
     {
         string c = "true";
-        Debug.Log("true1");
         //placeholder, need to figure out the variable that causes players to switch
         if (player.tag == "P1")
         {
-            Debug.Log("P1");
             if (PlayerPrefs.GetString("Player1AllowedtoMove") == c)
             {
-                Debug.Log("P1Lose");
                 LoseStamina();
             }
             else
             {
-                Debug.Log("P1Gain");
                 RegenStamina();
             }
         }
 
         if (player.tag == "P2")
         {
-            Debug.Log("P2");
             if (PlayerPrefs.GetString("Player2AllowedtoMove") == c)
             {
-                Debug.Log("P2Lose");
                 LoseStamina();
             }
             else
             {
-                Debug.Log("P2Gain");
                 RegenStamina();
             }
         }
 
         float ratioNumber = (float)currStamina / (float)maxStamina;
-        Debug.Log(ratioNumber); 
         staminaBar.rectTransform.localScale = new Vector3(ratioNumber, 1, 1);
         //ratioStamina.text = (ratioNumber * 100).ToString() + '%';
         if (currStamina == 0 && PlayerPrefs.GetString("Player1AllowedtoMove") == "true")
@@ -138,7 +130,6 @@ public class StaminaBar : MonoBehaviour {
         currPosition = new Vector3(x, y, z); 
         if (counter == frameCheck)
         {
-            Debug.Log("hi"); 
             counter = 0;
             UpdateStaminaBar();
             basePosition = currPosition; 

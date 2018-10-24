@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour {
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
-    [Range(0.0F, 3.5F)] public float chaseTime = 0.0f;
+    [Range(0.0F, 3.5F)] public float chaseTime = 25.0f;
     //chaseTime range 0.0f to 3.5f 
     public float slowSpeed = 1.0f;
     public bool canMove = true;
