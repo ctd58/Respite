@@ -51,7 +51,12 @@ ModelImporter:
     4300012: pasted__leg_Lfback1
     4300014: pasted__supportBeam_back
     4300016: pasted__supportBeam_side1
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 3d47164e4b0bdf244a6d14baf77a8937, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

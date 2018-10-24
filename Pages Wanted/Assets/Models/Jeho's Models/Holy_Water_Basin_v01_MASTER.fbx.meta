@@ -11,7 +11,12 @@ ModelImporter:
     2300000: Holy_Water_Basin
     3300000: Holy_Water_Basin
     4300000: Holy_Water_Basin
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: f15c711b674e7f14dace8f4eab50fee3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
