@@ -6,45 +6,32 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
-
-    public Transform target = null;
-    [Range(3.0F, 8.0F)] public float baseMoveSpeed = 4.0f;
-    public float rotSpeed, movSpeed;
-    public float distance;
-    [SerializeField]
-    [Range(2.0F, 10.0F)] public float sensePlayerDistance = 2;
-    public float loudestSound = 0.0f;
-    public GameObject[] soundObjects;
-    public List<GameObject> players;
-    [Range(0.0F, 3.5F)] public float chaseTime = 25.0f;
-    //chaseTime range 0.0f to 3.5f 
+    // Public or Serialized Variables for Inspector -----------------
+    [SerializeField] [Range(2.0F, 10.0F)] private float sensePlayerDistance = 2;
+    [SerializeField] [Range(0.0F, 3.5F)] private float chaseTime = 25.0f;
+    [SerializeField] [Range(3.0F, 8.0F)] private float baseMoveSpeed = 4.0f;
+    [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
+    [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
+    public List<Transform> wayPoints = new List<Transform>();
     public float slowSpeed = 1.0f;
-    public bool canMove = true;
-    public float inputDelay = 0.0f;
     public int playerLives = 4;
-    public GameObject spawn;
-    [SerializeField]
     public GameObject health1;
-    [SerializeField]
     public GameObject health2;
-    [SerializeField]
     public GameObject health3;
-    [SerializeField]
     public GameObject health4;
-    [SerializeField]
     public GameObject gameoverScreen;
-    [SerializeField]
-    List<Transform> wayPoints = new List<Transform>();
-    [SerializeField]
-    Transform currentWaypoint;
-    int i = 0;
-    int counter = 0;
-    bool madeWaypoint;
-    NavMeshAgent navMeshAgent;
-
-    Slider testslider;
-     
-
+    
+    // Private Variables ----------------------------------------------
+    private Transform currentWaypoint;
+    private int i = 0;
+    private int counter = 0;
+    private bool madeWaypoint;
+    private NavMeshAgent navMeshAgent;     
+    private float currentMovSpeed;
+    private Transform target = null;
+    private GameObject[] soundObjects;
+    private List<GameObject> players = new List<GameObject>();
+    private GameObject[] spawn;
     private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     private STATE _currentState;
 
@@ -64,7 +51,7 @@ public class Monster : MonoBehaviour {
         baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
         sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
-        spawn = GameObject.FindGameObjectWithTag("DemonSpawn");
+        spawn = GameObject.FindGameObjectsWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
@@ -108,7 +95,7 @@ public class Monster : MonoBehaviour {
 
     // code to setup wandering
     private void EnterStateWander() {
-        movSpeed = baseMoveSpeed; 
+        currentMovSpeed = baseMoveSpeed; 
 		_currentState = STATE.WANDER;
         currentWaypoint = wayPoints[i];
         madeWaypoint = true; 
@@ -133,39 +120,30 @@ public class Monster : MonoBehaviour {
             currentWaypoint = wayPoints[i]; 
         }
         if (DetectPlayer()) { EnterStateAttack(); }
-        findTarget();
+        findLoudestSound();
         if (target != null) {
             EnterStateInspect(target); 
         }
 	}
 
     //Determines what object is making the loudest noise and goes to it
-    void findTarget()
-    { //every 2.5 secs the monster is chasing it gets faster by .75
-        
-        //If not chasing rest speed
-        
-
-        //Determines what sound is the loudest and sets it as a target
-        //PLEASE try to get the AI to remember the location (waypoint) of where the last sound came from and go to that
-        //I cant get it to remember it forgets once the player moves off of the floor board
-        
+    void findLoudestSound() {
         float temp = 0.0f;
-        foreach (GameObject noise in soundObjects)
-        {
+        float loudest = 0.0F;
+        foreach (GameObject noise in soundObjects) {
             temp = noise.GetComponent<Sound>().sound;
-            if (temp > loudestSound)
+            if (temp > loudest)
             {
-                loudestSound = temp;
+                loudest = temp;
                 target = noise.transform;
             }
         }
         foreach(GameObject noise in players)
         {
             temp = noise.GetComponent<Sound>().sound;
-            if (temp > loudestSound)
+            if (temp > loudest)
             {
-                loudestSound = temp;
+                loudest = temp;
                 target = noise.transform;
             }
         }
@@ -213,27 +191,20 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void UpdateInspect() {
-        // TODO: add code to move toward target
         //Finds if a new target is louder
-        findTarget();
-
+        findLoudestSound();
         //Increases speed if it has been chasing for a multiple of 2.5 seconds
         chaseTime += Time.deltaTime;
-        if (chaseTime / 2.5f > 1.0f)
-        {
+        if (chaseTime / 2.5f > 1.0f) {
             chaseTime -= 2.5f;
-            movSpeed += 0.75f;
-            if(movSpeed> 6.0f)
-            {
-                movSpeed = 6.0f;
+            currentMovSpeed += 0.75f;
+            if(currentMovSpeed> 6.0f) {
+                currentMovSpeed = 6.0f;
             }
         }
-        
         FollowSound();
-
         //Check if it is on top of the targets position
         if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance) {
-            loudestSound = 0.0f;
             target = null;
             EnterStateWander();
         }
@@ -244,21 +215,19 @@ public class Monster : MonoBehaviour {
     void FollowSound()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
-        transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
+        transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
     }
 
     // ATTACK STATE ---------------------------------------------------------------------
 
 	private void EnterStateAttack() {
 		_currentState = STATE.ATTACK;
-		// TODO: add code about setting up to chase player
 	}
 
 	private void UpdateAttack() {
-        // TODO: add code about chasing player
         if (DetectPlayer() == true){
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
-            transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
+            transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
         }
     }
 
@@ -280,10 +249,9 @@ public class Monster : MonoBehaviour {
     IEnumerator stun()
     {
         Debug.Log(Time.time);
-        yield return new WaitForSecondsRealtime(inputDelay);
-        canMove = true;
+        yield return new WaitForSecondsRealtime(stunDelay);
         _currentState = STATE.WANDER;
-        movSpeed = baseMoveSpeed;
+        currentMovSpeed = baseMoveSpeed;
         Debug.Log(Time.time);
     }
 
@@ -325,8 +293,8 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    void respawn()
-    {
-        this.transform.position = spawn.transform.position;
+    void respawn() {
+        this.transform.position = spawn[0].transform.position;
+        // TODO: add code here that will strategically pick from a number of spawn locations
     }
 }

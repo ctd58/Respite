@@ -32,7 +32,7 @@ public class AI_Monster : MonoBehaviour {
         //loudestpoint1();
     }
 
-    private void Update()
+/*   private void Update()
     {
         if (tracking.canMove)
         {
@@ -55,7 +55,7 @@ public class AI_Monster : MonoBehaviour {
                 //Debug.Log("wait");
             }
         }
-    }
+    } */ 
 
     private void createNewwaypoint()
     {

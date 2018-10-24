@@ -50,7 +50,7 @@ public class AI_MonsterUpdate : MonoBehaviour {
     private void Update()
     {
         //If Monster can move
-        if (tracking.canMove)
+    /*    if (tracking.canMove)
         {
             counter++;
             //Debug.Log(counter);
@@ -126,8 +126,8 @@ public class AI_MonsterUpdate : MonoBehaviour {
         {
             soundcues.Add(sampleSoundcue);
             soundpoints.Add(sampleSoundPoint);
-        }
-    }
+        } */
+    } 
 
     private void createNewwaypoint()
     {
