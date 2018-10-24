@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour {
 
     public Transform target = null;
-    [Range(3.0F, 8.0F)] public float baseMoveSpeed = 4.0f;
+    [Range(300F, 800F)] public float baseMoveSpeed = 400f;
     public float rotSpeed, movSpeed;
     public float distance;
     [SerializeField]
-    [Range(2.0F, 10.0F)] public float sensePlayerDistance = 2;
+    [Range(200.0F, 1000.0F)] public float sensePlayerDistance = 200;
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
@@ -75,13 +75,13 @@ public class Monster : MonoBehaviour {
     void checkprefs()
     {
         //Eventually make max and min v
-        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 8.0f || PlayerPrefs.GetFloat("monsterbasespeed") < 4.0f)
+        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 800f || PlayerPrefs.GetFloat("monsterbasespeed") < 400f)
         {
-            PlayerPrefs.SetFloat("monsterspeed", 5f);
+            PlayerPrefs.SetFloat("monsterspeed", 500f);
         }
-        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 3.0f || PlayerPrefs.GetFloat("monstersense") > 8.0f)
+        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 300f || PlayerPrefs.GetFloat("monstersense") > 800f)
         {
-            PlayerPrefs.SetFloat("monstersense", 6f);
+            PlayerPrefs.SetFloat("monstersense", 600f);
         }
     }
 
