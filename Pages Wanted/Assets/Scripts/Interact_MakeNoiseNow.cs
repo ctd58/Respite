@@ -6,7 +6,7 @@ public class Interact_MakeNoiseNow : Interact_MakeNoise {
 	
 	public override void onInteract(Character_Inventory inv) {
 		PlayAnimation();
-		MakeNoise();
+		StartCoroutine("MakeNoise");
 	}
 
 	public void PlayAnimation() {

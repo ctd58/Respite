@@ -17,6 +17,12 @@ public class ControllerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        PlayerPrefs.SetFloat("PlayerSpeed", speed);
+        PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
+        PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
+        PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
+        PlayerPrefs.SetString("Player1AllowedtoMove", "true");
+        PlayerPrefs.SetString("Player2AllowedtoMove", "false");
         if (this.tag == "P1")
         {
             isP1 = true;
@@ -48,6 +54,22 @@ public class ControllerMovement : MonoBehaviour {
 
     }
 
+    void Switch()
+    {
+        canMove = false;
+        teammate.canMove = true;
+        if (teammate == GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>())
+        {
+            PlayerPrefs.SetString("Player1AllowedtoMove", "false");
+            PlayerPrefs.SetString("Player2AllowedtoMove", "true");
+        }
+        else
+        {
+            PlayerPrefs.SetString("Player1AllowedtoMove", "true");
+            PlayerPrefs.SetString("Player2AllowedtoMove", "false");
+        }
+    }
+
     void FixedUpdate()
     {
         if (canMove)
@@ -55,14 +77,14 @@ public class ControllerMovement : MonoBehaviour {
             Move();
             if (Input.GetButton(switchb))
             {
-                canMove = false;
-                teammate.canMove = true;
+                Switch();
             }
         }
         else
         {
             //sound.sound = 0;
         }
+        PlayerComeBackasFalse();
     }
 
     void Move()
@@ -71,6 +93,9 @@ public class ControllerMovement : MonoBehaviour {
         float z = Input.GetAxis(playerNum + "Vertical");
 
         mov = new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime);
+        PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
+        PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
+        PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
         _mycontroller.Move(transform.TransformDirection(mov));
         transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
        /*if (x == 0.0f && z == 0.0f)
@@ -78,6 +103,33 @@ public class ControllerMovement : MonoBehaviour {
         else
             sound.sound = 1;*/
 
+    }
+
+    //If playerpref comes back as false. 
+    void PlayerComeBackasFalse()
+    {
+        if (isP1 == true && canMove.ToString() != PlayerPrefs.GetString("Player1AllowedtoMove"))
+        {
+            if (PlayerPrefs.GetString("Player1AllowedtoMove") == "false")
+            {
+                Switch();
+            }
+            else
+            {
+                //canMove = true; 
+            }
+        }
+        if (isP1 == false && canMove.ToString() != PlayerPrefs.GetString("Player2AllowedtoMove"))
+        {
+            if (PlayerPrefs.GetString("Player2AllowedtoMove") == "false")
+            {
+                Switch(); 
+            }
+            else
+            {
+                //canMove = true;
+            }
+        }
     }
 
 }

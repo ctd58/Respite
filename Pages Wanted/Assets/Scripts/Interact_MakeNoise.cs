@@ -5,14 +5,20 @@ using UnityEngine;
 public class Interact_MakeNoise : Interactables {
 
 	private AudioSource audioClip;
-	private Sound soundScript;
+	protected Sound soundScript;
 	[Range(0, 5)]
 	public float soundVolume;
+	public float soundLength;
 
 	void Start()
 	{
 		audioClip = this.GetComponent<AudioSource>();
 		soundScript = this.GetComponent<Sound>();
+		if (soundLength.Equals(0)) {
+			soundLength = audioClip.clip.length;
+		}
+		Debug.Log("SOUND LENGTH " + soundLength);
+		MakeRandomNoise();
 	}
 
 	
@@ -20,10 +26,13 @@ public class Interact_MakeNoise : Interactables {
 		
 	}
 
-	protected void MakeNoise() {
+	protected IEnumerator MakeNoise() {
 		soundScript.sound = soundVolume;
 		audioClip.Play();
+		yield return new WaitForSeconds(soundLength);
+		audioClip.Stop();
+		soundScript.sound = 0;
 	}
 
-	
+	public virtual void MakeRandomNoise() {}
 }

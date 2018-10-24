@@ -120,6 +120,9 @@ public class Monster : MonoBehaviour {
             if (currentWaypoint != null && madeWaypoint == true)
             {
                 Vector3 targetV = currentWaypoint.transform.position;
+                //Need to make this based on speed, so the idea is maybe a while loop
+                //where we tell the demon to move to a certain distance with base speed, and
+                //if it no longer needs to move there because it is there, set the next waypoint.
                 navMeshAgent.SetDestination(targetV);
                 madeWaypoint = false;
                 i = (i + 1) % wayPoints.Count;
