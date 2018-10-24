@@ -132,14 +132,14 @@ public class Monster : MonoBehaviour {
             }
             currentWaypoint = wayPoints[i]; 
         }
-        DetectPlayer();
+        if (DetectPlayer()) { EnterStateAttack(); }
         findTarget();
         if (target != null) {
             EnterStateInspect(target); 
         }
 	}
 
-        //Determines what object is making the loudest noise and goes to it
+    //Determines what object is making the loudest noise and goes to it
     void findTarget()
     { //every 2.5 secs the monster is chasing it gets faster by .75
         
@@ -171,21 +171,22 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    private void DetectPlayer()
+    private bool DetectPlayer()
     {
         if (players != null)
         {
             if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
             {
                 target = players[0].transform;
-                EnterStateAttack();
+                return true;
             }
             else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
             {
                 target = players[1].transform;
-                EnterStateAttack();
+                return true;
             }
         }
+        return false;
     }
 
     // INSPECT STATE ---------------------------------------------------------------------
@@ -217,13 +218,12 @@ public class Monster : MonoBehaviour {
         FollowSound();
 
         //Check if it is on top of the targets position
-        if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance)
-        {
+        if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance) {
             loudestSound = 0.0f;
-            DetectPlayer();
             target = null;
             EnterStateWander();
         }
+        if (DetectPlayer()) { EnterStateAttack(); }
 	}
 
     //makes it go towards sound
