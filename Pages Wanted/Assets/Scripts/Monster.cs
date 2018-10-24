@@ -8,17 +8,15 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour {
 
     public Transform target = null;
-    //range for testing the baseMoveSpeed is 4.0 to 8.0f
-    public float baseMoveSpeed = 4.0f;
+    [Range(4.0F, 8.0F)] public float baseMoveSpeed = 4.0f;
     public float rotSpeed, movSpeed;
     public float distance;
     [SerializeField]
-    public float sensePlayerDistance = 2;
-    //sensePlayerDistance range for testing is 2.0f to 10.0f
+    [Range(2.0F, 10.0F)] public float sensePlayerDistance = 2;
     public float loudestSound = 0.0f;
     public GameObject[] soundObjects;
     public List<GameObject> players;
-    public float chaseTime = 0.0f;
+    [Range(0.0F, 3.5F)] public float chaseTime = 0.0f;
     //chaseTime range 0.0f to 3.5f 
     public float slowSpeed = 1.0f;
     public bool canMove = true;
@@ -74,6 +72,19 @@ public class Monster : MonoBehaviour {
         EnterStateWander ();
     }
 
+    void checkprefs()
+    {
+        //Eventually make max and min v
+        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 8.0f || PlayerPrefs.GetFloat("monsterbasespeed") < 4.0f)
+        {
+            PlayerPrefs.SetFloat("monsterspeed", 5f);
+        }
+        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 3.0f || PlayerPrefs.GetFloat("monstersense") > 8.0f)
+        {
+            PlayerPrefs.SetFloat("monstersense", 6f);
+        }
+    }
+
     void Update () {
         Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
         switch (_currentState) {
@@ -93,32 +104,23 @@ public class Monster : MonoBehaviour {
         // Widchard use this to call game over screen
 	}
 
+    // WANDER STATE ---------------------------------------------------------------------
+
+    // code to setup wandering
     private void EnterStateWander() {
         movSpeed = baseMoveSpeed; 
 		_currentState = STATE.WANDER;
-        // TODO: add code to setup wandering
         currentWaypoint = wayPoints[i];
         madeWaypoint = true; 
 	}
 
 	private void UpdateWander() {
-        // TODO: add code for wandering here
-        DetectPlayer();
-        findTarget();
         counter++;
-        if (counter > 400)
-        {
+        if (counter > 400) {
             counter = 0;
             madeWaypoint = true; 
-        }
-        if (target != null)
-        {
-            EnterStateInspect(target); 
-        }
-        else
-        {
-            if (currentWaypoint != null && madeWaypoint == true)
-            {
+        } else {
+            if (currentWaypoint != null && madeWaypoint == true) {
                 Vector3 targetV = currentWaypoint.transform.position;
                 //Need to make this based on speed, so the idea is maybe a while loop
                 //where we tell the demon to move to a certain distance with base speed, and
@@ -130,7 +132,63 @@ public class Monster : MonoBehaviour {
             }
             currentWaypoint = wayPoints[i]; 
         }
+        DetectPlayer();
+        findTarget();
+        if (target != null) {
+            EnterStateInspect(target); 
+        }
 	}
+
+        //Determines what object is making the loudest noise and goes to it
+    void findTarget()
+    { //every 2.5 secs the monster is chasing it gets faster by .75
+        
+        //If not chasing rest speed
+        
+
+        //Determines what sound is the loudest and sets it as a target
+        //PLEASE try to get the AI to remember the location (waypoint) of where the last sound came from and go to that
+        //I cant get it to remember it forgets once the player moves off of the floor board
+        
+        float temp = 0.0f;
+        foreach (GameObject noise in soundObjects)
+        {
+            temp = noise.GetComponent<Sound>().sound;
+            if (temp > loudestSound)
+            {
+                loudestSound = temp;
+                target = noise.transform;
+            }
+        }
+        foreach(GameObject noise in players)
+        {
+            temp = noise.GetComponent<Sound>().sound;
+            if (temp > loudestSound)
+            {
+                loudestSound = temp;
+                target = noise.transform;
+            }
+        }
+    }
+
+    private void DetectPlayer()
+    {
+        if (players != null)
+        {
+            if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
+            {
+                target = players[0].transform;
+                EnterStateAttack();
+            }
+            else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
+            {
+                target = players[1].transform;
+                EnterStateAttack();
+            }
+        }
+    }
+
+    // INSPECT STATE ---------------------------------------------------------------------
 
 	private void EnterStateInspect(Transform target) {
 		_currentState = STATE.INSPECT;
@@ -168,6 +226,15 @@ public class Monster : MonoBehaviour {
         }
 	}
 
+    //makes it go towards sound
+    void FollowSound()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
+        transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
+    }
+
+    // ATTACK STATE ---------------------------------------------------------------------
+
 	private void EnterStateAttack() {
 		_currentState = STATE.ATTACK;
 		// TODO: add code about setting up to chase player
@@ -176,6 +243,8 @@ public class Monster : MonoBehaviour {
 	private void UpdateAttack() {
         // TODO: add code about chasing player
 	}
+
+    // STUN STATE ---------------------------------------------------------------------
 
     // Player ability script should call this function
 	public void Stun() {
@@ -190,44 +259,17 @@ public class Monster : MonoBehaviour {
 	private void UpdateStun() {
 	} // do nothing here, the stun coroutine will set state back to wander
 
-    //makes it go towards sound
-    void FollowSound()
+    IEnumerator stun()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
-        transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
+        Debug.Log(Time.time);
+        yield return new WaitForSecondsRealtime(inputDelay);
+        canMove = true;
+        _currentState = STATE.WANDER;
+        movSpeed = baseMoveSpeed;
+        Debug.Log(Time.time);
     }
 
-    //Determines what object is making the loudest noise and goes to it
-    void findTarget()
-    { //every 2.5 secs the monster is chasing it gets faster by .75
-        
-        //If not chasing rest speed
-        
-
-        //Determines what sound is the loudest and sets it as a target
-        //PLEASE try to get the AI to remember the location (waypoint) of where the last sound came from and go to that
-        //I cant get it to remember it forgets once the player moves off of the floor board
-        
-        float temp = 0.0f;
-        foreach (GameObject noise in soundObjects)
-        {
-            temp = noise.GetComponent<Sound>().sound;
-            if (temp > loudestSound)
-            {
-                loudestSound = temp;
-                target = noise.transform;
-            }
-        }
-        foreach(GameObject noise in players)
-        {
-            temp = noise.GetComponent<Sound>().sound;
-            if (temp > loudestSound)
-            {
-                loudestSound = temp;
-                target = noise.transform;
-            }
-        }
-    }
+    // If they catch the player ---------------------------------------------------------------------
 
     void OnTriggerEnter(Collider other)
     {
@@ -268,45 +310,5 @@ public class Monster : MonoBehaviour {
     void respawn()
     {
         this.transform.position = spawn.transform.position;
-    }
-
-    void checkprefs()
-    {
-        //Eventually make max and min v
-        if (PlayerPrefs.GetFloat("monsterbasespeed") == 0.0f || PlayerPrefs.GetFloat("monsterbasespeed") > 8.0f || PlayerPrefs.GetFloat("monsterbasespeed") < 4.0f)
-        {
-            PlayerPrefs.SetFloat("monsterspeed", 5f);
-        }
-        if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 3.0f || PlayerPrefs.GetFloat("monstersense") > 8.0f)
-        {
-            PlayerPrefs.SetFloat("monstersense", 6f);
-        }
-    }
-
-    IEnumerator stun()
-    {
-        Debug.Log(Time.time);
-        yield return new WaitForSecondsRealtime(inputDelay);
-        canMove = true;
-        _currentState = STATE.WANDER;
-        movSpeed = baseMoveSpeed;
-        Debug.Log(Time.time);
-    }
-
-    private void DetectPlayer()
-    {
-        if (players != null)
-        {
-            if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
-            {
-                target = players[0].transform;
-                EnterStateAttack();
-            }
-            else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
-            {
-                target = players[1].transform;
-                EnterStateAttack();
-            }
-        }
     }
 }
