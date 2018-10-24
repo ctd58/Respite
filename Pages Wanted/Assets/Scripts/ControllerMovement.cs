@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class ControllerMovement : MonoBehaviour {
 
@@ -52,6 +53,14 @@ public class ControllerMovement : MonoBehaviour {
 
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "EndGame")
+        {
+            SceneManager.LoadScene("GameOverScreen");
+        }
     }
 
     void Switch()
