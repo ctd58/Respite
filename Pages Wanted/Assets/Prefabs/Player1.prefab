@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 20083266673661512}
   - component: {fileID: 81294670246784284}
   m_Layer: 0
-  m_Name: P1Cam
+  m_Name: P1Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -984,7 +984,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828371033677780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.81, z: -1.5}
+  m_LocalPosition: {x: 10.88, y: -5.69, z: -22.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4986231858327604}
@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7c45cbfa7564628b2eeca84d2617fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 20083266673661512}
+  playerCam: {fileID: 0}
   uiIndicator: {fileID: 0}
   isP1: 0
 --- !u!114 &114791997722108342
