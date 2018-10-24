@@ -19,6 +19,7 @@ ModelImporter:
     400012: barrelRing05
     2100000: barrelBrown
     2100002: lambert1
+    2100004: lambert2
     2300000: barrelBase
     2300002: barrelRing01
     2300004: barrelRing02
@@ -37,7 +38,22 @@ ModelImporter:
     4300006: barrelRing03
     4300008: barrelRing04
     4300010: barrelRing05
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: barrelBrown
+    second: {fileID: 2100000, guid: 7a546e3aa5c23394180487b58248e90a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 7a546e3aa5c23394180487b58248e90a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 7a546e3aa5c23394180487b58248e90a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

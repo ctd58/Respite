@@ -84,10 +84,8 @@ public class Abilities : MonoBehaviour {
             pSound.sound = 0.0f;
             castLen = 0;
             monster.slowSpeed = 1.0f;
-            if (canStun)
-            {
-                monster.inputDelay = inputDelay;
-                monster.canMove = false;
+            if (canStun) {
+                monster.Stun();
             }
             StartCoroutine(stopInput());
             pSound.sound = 0.0f;
@@ -95,7 +93,7 @@ public class Abilities : MonoBehaviour {
         }
     }
 
-    IEnumerator stopInput()
+    IEnumerator stopInput() // What is the purpose of this function?
     {
         //Debug.Log(Time.time);
         stopFun = true;

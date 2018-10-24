@@ -24,7 +24,7 @@ public class Character_Inventory : MonoBehaviour {
         {
             isP1 = false;
         }
-		interactButton = isP1 ? "P1xs button" : "P2xs button";
+		interactButton = isP1 ? "P1ax button" : "P2xs button";
 		//TODO: add logic to get camera automatically rather than needing it to be a public var
 		//TODO: Same for uiIndicator
 		Sprite[] sprites = Resources.LoadAll<Sprite>("UI_Sprites/PointerIcons_MASTER");
