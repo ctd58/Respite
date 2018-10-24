@@ -190,8 +190,22 @@ public class Monster : MonoBehaviour {
     }
 
     // INSPECT STATE ---------------------------------------------------------------------
+    public void CreateNewWaypoint(){
+        //Update function to do smart pathing. 
+        if (target != null){
+            wayPoints.Add(target);
+        }
+    }
 
-	private void EnterStateInspect(Transform target) {
+    public void DeleteNewWaypoint(Transform badwaypoint){
+        if (wayPoints.Contains(badwaypoint)){
+            //tell that waypoint to die
+            wayPoints.Remove(badwaypoint);
+        }
+    }
+
+
+    private void EnterStateInspect(Transform target) {
 		_currentState = STATE.INSPECT;
 		//_currentTarget = target;
         // TODO: add code to set target positition
@@ -242,7 +256,11 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateAttack() {
         // TODO: add code about chasing player
-	}
+        if (DetectPlayer() == true){
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
+            transform.position += transform.forward * (movSpeed * slowSpeed) * Time.deltaTime;
+        }
+    }
 
     // STUN STATE ---------------------------------------------------------------------
 
