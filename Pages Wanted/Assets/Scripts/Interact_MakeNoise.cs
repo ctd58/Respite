@@ -17,7 +17,6 @@ public class Interact_MakeNoise : Interactables {
 		if (soundLength.Equals(0)) {
 			soundLength = audioClip.clip.length;
 		}
-		Debug.Log("SOUND LENGTH " + soundLength);
 		MakeRandomNoise();
 	}
 
