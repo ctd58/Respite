@@ -11,6 +11,7 @@ public class Character_Inventory : MonoBehaviour {
 	public Camera playerCam;
 	public Image uiIndicator;
     public bool isP1;
+	public float playerInteractDistance = 200F;
    
 
 
@@ -50,7 +51,7 @@ public class Character_Inventory : MonoBehaviour {
 		//Debug.Log("Checking");
 		Ray ray = playerCam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 2)) {
+		if (Physics.Raycast(ray, out hit, playerInteractDistance)) {
 			if (hit.transform.gameObject.GetComponent<Interactables>()) {
 				Interactables interact = hit.transform.gameObject.GetComponent<Interactables>();
 				uiIndicator.sprite = interact.interactIcon;
