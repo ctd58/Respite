@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[HelpURL("http://example.com/docs/MyComponent.html")]
 public class Door_Unlock : Interactables {
 
 	/* Note: apparently "lock" is a variable name reserved by unity.
@@ -12,6 +12,9 @@ public class Door_Unlock : Interactables {
 	 *  - KeyTypes lockType - is the lock BRONZE, SILVER, GOLD, etc
 	 *  - int keyUsedId     - the id of the key used to unlock
 	 */
+	[Header("Door Parameters")]
+	[TextArea] public string doorNotes = "This script should go on every door object to allow the door to unlock.";
+	public List<KeyTypes> keysNeeded;
 	private class Lock_Obj {
 		public bool locked;
 		public KeyTypes lockType;
@@ -22,10 +25,9 @@ public class Door_Unlock : Interactables {
 			keyUsedId = 0;
 		}
 	}
-
-	public List<KeyTypes> keysNeeded;
 	private List<Lock_Obj> locks;
 	private bool doorLocked = true;
+	
 
 	void Start()
 	{
