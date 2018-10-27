@@ -2035,9 +2035,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7c45cbfa7564628b2eeca84d2617fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 20212065378286502}
   uiIndicator: {fileID: 0}
   isP1: 0
+  playerInteractDistance: 200
 --- !u!114 &114631846083381786
 MonoBehaviour:
   m_ObjectHideFlags: 1
