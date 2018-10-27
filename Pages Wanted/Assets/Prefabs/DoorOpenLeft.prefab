@@ -263,13 +263,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4917912282280308}
-  - component: {fileID: 114876822539507370}
-  - component: {fileID: 82842737047275340}
-  - component: {fileID: 114834074357434350}
   - component: {fileID: 95202248738190736}
+  - component: {fileID: 82842737047275340}
   - component: {fileID: 65135200063978824}
+  - component: {fileID: 114876822539507370}
+  - component: {fileID: 114834074357434350}
   m_Layer: 0
-  m_Name: CellDoor_P2
+  m_Name: DoorOpenLeft
   m_TagString: MakesSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1778,15 +1778,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1232931750385672}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 179.7, y: 0, z: -141.9}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4054754103182812}
   - {fileID: 4982108285116388}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4942501635553700
 Transform:
   m_ObjectHideFlags: 1
