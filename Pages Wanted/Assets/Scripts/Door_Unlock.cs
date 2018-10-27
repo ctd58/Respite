@@ -26,7 +26,6 @@ public class Door_Unlock : Interactables {
 	}
 	private List<Lock_Obj> locks;
 	private bool doorLocked = true;
-	
 
 	void Start()
 	{
@@ -87,9 +86,8 @@ public class Door_Unlock : Interactables {
 	public void OpenDoor() {
 		this.GetComponent<Sound>().sound = 1;
         this.GetComponent<AudioSource>().Play();
-		//TODO: This is where an unlock animation would go, but as a filler
-		Destroy(GetComponent<BoxCollider>(), 3F);
-		Destroy(GetComponent<MeshRenderer>(), 3F);
+		this.GetComponent<Animator>().SetTrigger("openDoor");
+		Destroy(this.GetComponent<Collider>());
 		StartCoroutine("stopSound");
 	}
 
