@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -209,9 +209,9 @@ public class Monster : MonoBehaviour {
 	}
 
     //makes it go towards sound
-    void FollowSound()
-    {
+    void FollowSound() {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
+        //TODO: Make this use navmesh
         transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
     }
 
@@ -259,7 +259,6 @@ public class Monster : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I gotcha boi");
         if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2")
         {
             target = null;
@@ -271,7 +270,7 @@ public class Monster : MonoBehaviour {
 
     private void hideHealth()
     {
-        Debug.Log("no health for you");
+        //TODO: create UI manager script
         health1.SetActive(false);
         if (health1.activeSelf == false && health2.activeSelf == true && health3.activeSelf == true && health4.activeSelf == true)
         {
