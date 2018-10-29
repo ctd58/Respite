@@ -12,7 +12,7 @@ public class Monster : MonoBehaviour {
     [SerializeField] [Range(300F, 800F)] private float baseMoveSpeed = 400f;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
-    [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.1f;
+    [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     public List<Transform> wayPoints = new List<Transform>();
     public float slowSpeed = 1.0f;
     public int playerLives = 4;
@@ -131,16 +131,16 @@ public class Monster : MonoBehaviour {
     //Determines what object is making the loudest noise and goes to it
     IEnumerator findLoudestSound() {
         while(true) {
+            yield return new WaitForSeconds(1f);
+            Debug.Log("checking sound");
             float temp = 0.0f;
             float loudest = 0.0f;
             foreach (GameObject noise in soundObjects) {
-                temp = noise.GetComponent<Sound>().sound;
-                temp = (temp > 0) ? GetSoundWithFallOff(noise) : 0f;
-                if (temp > 0) {
-                    Debug.Log("Object: " + noise.name + 
-                            ", Original Sound: " + noise.GetComponent<Sound>().sound + 
-                            ", Sound with Falloff: " + temp);
-                }
+                float sound = noise.GetComponent<Sound>().sound;
+                temp = (sound > 0) ? GetSoundWithFallOff(noise) : 0f;
+                Debug.Log("Object: " + noise.name + 
+                        ", Original Sound: " + noise.GetComponent<Sound>().sound + 
+                        ", Sound with Falloff: " + temp);
                 if (temp > loudest) {
                     loudest = temp;
                     target = noise.transform;
@@ -153,14 +153,13 @@ public class Monster : MonoBehaviour {
                     target = noise.transform;
                 }
             }
-            yield return new WaitForSeconds(1f);
         }
     }
 
     private float GetSoundWithFallOff(GameObject noiseObj) {
         float sound = noiseObj.GetComponent<Sound>().sound;
         float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
-        return (sound - (distance * fallOffStrength));
+        return (sound - (distance/100 * fallOffStrength));
     }
 
     private bool DetectPlayer()
