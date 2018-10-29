@@ -152,18 +152,16 @@ public class Monster : MonoBehaviour {
 
     private bool DetectPlayer()
     {
-        if (players != null)
-        {
-            if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
-            {
+        if (players != null) {
+            float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
+            float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+            if (playerOneDistance < sensePlayerDistance) {
                 target = players[0].transform;
                 return true;
-            }
-            else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
-            {
+            } else if (playerTwoDistance < sensePlayerDistance && playerTwoDistance > playerOneDistance) {
                 target = players[1].transform;
                 return true;
-            } //TODO: make monster chase closer player
+            }
         }
         return false;
     }
