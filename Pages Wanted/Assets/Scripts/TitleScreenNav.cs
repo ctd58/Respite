@@ -10,6 +10,7 @@ public class TitleScreenNav : MonoBehaviour {
     public Button playButton;
     public Button quitButton;
     public GameObject titleScreen;
+    public GameObject titleScreenBG; 
 
     [SerializeField]
     public Slider monsterSense;
@@ -36,6 +37,10 @@ public class TitleScreenNav : MonoBehaviour {
         if (titleScreen.activeSelf != true)
         {
             titleScreen.SetActive(true); 
+        }
+        if (titleScreenBG.activeSelf != true)
+        {
+            titleScreenBG.SetActive(true);
         }
 
     }
