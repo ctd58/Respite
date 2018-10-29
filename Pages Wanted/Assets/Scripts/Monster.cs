@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
-    [SerializeField] [Range(200F, 1000F)] private float sensePlayerDistance = 20;
+    [SerializeField] [Range(50F, 1000F)] private float sensePlayerDistance = 100f;
     [SerializeField] [Range(0.0F, 3.5F)] private float chaseTime = 25.0f;
     [SerializeField] [Range(300F, 800F)] private float baseMoveSpeed = 400f;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
@@ -163,7 +163,7 @@ public class Monster : MonoBehaviour {
             {
                 target = players[1].transform;
                 return true;
-            }
+            } //TODO: make monster chase closer player
         }
         return false;
     }
