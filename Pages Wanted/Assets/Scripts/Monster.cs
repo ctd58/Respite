@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -130,7 +130,7 @@ public class Monster : MonoBehaviour {
     //Determines what object is making the loudest noise and goes to it
     void findLoudestSound() {
         float temp = 0.0f;
-        float loudest = 0.0F;
+        float loudest = 0.0f;
         foreach (GameObject noise in soundObjects) {
             temp = noise.GetComponent<Sound>().sound;
             if (temp > loudest)
@@ -152,18 +152,16 @@ public class Monster : MonoBehaviour {
 
     private bool DetectPlayer()
     {
-        if (players != null)
-        {
-            if (Vector3.Distance(players[0].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
-            {
+        if (players != null) {
+            float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
+            float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+            if (playerOneDistance < sensePlayerDistance) {
                 target = players[0].transform;
                 return true;
-            }
-            else if (Vector3.Distance(players[1].gameObject.transform.position, this.transform.position) < sensePlayerDistance)
-            {
+            } else if (playerTwoDistance < sensePlayerDistance && playerTwoDistance > playerOneDistance) {
                 target = players[1].transform;
                 return true;
-            } //TODO: make monster chase closer player
+            }
         }
         return false;
     }
@@ -186,13 +184,11 @@ public class Monster : MonoBehaviour {
 
     private void EnterStateInspect(Transform target) {
 		_currentState = STATE.INSPECT;
-        // TODO: add code to set target positition
-
 	}
 
 	private void UpdateInspect() {
         //Finds if a new target is louder
-        //findLoudestSound();
+        findLoudestSound();
         //Increases speed if it has been chasing for a multiple of 2.5 seconds
         chaseTime += Time.deltaTime;
         if (chaseTime / 2.5f > 1.0f) {
@@ -213,9 +209,9 @@ public class Monster : MonoBehaviour {
 	}
 
     //makes it go towards sound
-    void FollowSound()
-    {
+    void FollowSound() {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
+        //TODO: Make this use navmesh
         transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
     }
 
@@ -226,24 +222,11 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void UpdateAttack() {
-        /*
-        if (DetectPlayer() == true){
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
-            transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
-        }
-        else
-        {
-            EnterStateWander(); 
-        }
-        */
-        if (DetectPlayer() == true)
-        {
+        if (DetectPlayer() == true) {
             Vector3 targetV = target.position; 
             navMeshAgent.SetDestination(targetV);
             EnterStateAttack(); 
-        }
-        else
-        {
+        } else {
             EnterStateWander(); 
         }
     }
@@ -276,7 +259,6 @@ public class Monster : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I gotcha boi");
         if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2")
         {
             target = null;
@@ -288,7 +270,7 @@ public class Monster : MonoBehaviour {
 
     private void hideHealth()
     {
-        Debug.Log("no health for you");
+        //TODO: create UI manager script
         health1.SetActive(false);
         if (health1.activeSelf == false && health2.activeSelf == true && health3.activeSelf == true && health4.activeSelf == true)
         {
