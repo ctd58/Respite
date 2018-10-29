@@ -24,6 +24,11 @@ public class ControllerMovement : MonoBehaviour {
         PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
         PlayerPrefs.SetString("Player1AllowedtoMove", "true");
         PlayerPrefs.SetString("Player2AllowedtoMove", "false");
+
+        //Checks if tag on palyer is p1 if it is then it sets the ability to move to true
+        //Finds the other players component
+        //Sets a string for the tag so we can call the specific inputs for each player
+        //Sets the switch button for that player
         if (this.tag == "P1")
         {
             isP1 = true;
@@ -40,7 +45,11 @@ public class ControllerMovement : MonoBehaviour {
             playerNum = "P2";
             switchb = "P2yt button";
         }
+
+        //Gets controller component on the player
         _mycontroller = this.GetComponent<CharacterController>();
+        
+        //Gets the sound component on the player
         sound = this.GetComponent<Sound>();
         
     }
@@ -48,6 +57,7 @@ public class ControllerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //Checks if player wants to quit the game
         if (Input.GetKey(KeyCode.Escape))
             Application.Quit();
 
@@ -57,16 +67,21 @@ public class ControllerMovement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        //Sends game to gameover screen
         if (other.tag == "EndGame")
         {
             SceneManager.LoadScene("GameOverScreen");
         }
     }
 
+    //Handles switching of player
     void Switch()
     {
+        //Sets current player to can not move and other player to can move
         canMove = false;
         teammate.canMove = true;
+
+        //Dont know what this does, I believe Widchard added it
         if (teammate == GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>())
         {
             PlayerPrefs.SetString("Player1AllowedtoMove", "false");
@@ -81,9 +96,12 @@ public class ControllerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //If current player can move then get movement input and check if they press the switch button
         if (canMove)
         {
             Move();
+
+            //If switch putton is pressed for this player and they can move then switch which player can move
             if (Input.GetButton(switchb))
             {
                 Switch();
@@ -93,21 +111,32 @@ public class ControllerMovement : MonoBehaviour {
         {
             //sound.sound = 0;
         }
+
+        //Dont know what this does i believe widchard added it
         PlayerComeBackasFalse();
     }
 
+    // Gets player movement and look
     void Move()
     {
+        //Gets vertical and horizontal input from players input button (PlayerTag + ButtonName)
         float x = Input.GetAxis(playerNum + "Horizontal");
         float z = Input.GetAxis(playerNum + "Vertical");
 
+        //Makes a vector based on speed and z and x inputs
         mov = new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime);
+
         PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
         PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
         PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
+
+        //Moves the player in the direction they are facing (Direction camera is looking)
         _mycontroller.Move(transform.TransformDirection(mov));
+
+        //Rotates the object in the x direction when the look button is used
         transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
-       /*if (x == 0.0f && z == 0.0f)
+       
+        /*if (x == 0.0f && z == 0.0f)
             sound.sound = 0;
         else
             sound.sound = 1;*/
