@@ -55,6 +55,7 @@ public class Monster : MonoBehaviour {
         spawn = GameObject.FindGameObjectsWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
+        //TODO: make it search out objects with component<Sound>;
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
         StartCoroutine("findLoudestSound");
