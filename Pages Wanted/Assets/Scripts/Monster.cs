@@ -57,6 +57,7 @@ public class Monster : MonoBehaviour {
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
+        StartCoroutine("findLoudestSound");
         EnterStateWander ();
     }
 
@@ -122,35 +123,37 @@ public class Monster : MonoBehaviour {
             currentWaypoint = wayPoints[i]; 
         }
         if (DetectPlayer()) { EnterStateAttack(); }
-        findLoudestSound();
         if (target != null) {
             EnterStateInspect(target); 
         }
 	}
 
     //Determines what object is making the loudest noise and goes to it
-    void findLoudestSound() {
-        float temp = 0.0f;
-        float loudest = 0.0f;
-        foreach (GameObject noise in soundObjects) {
-            temp = GetSoundWithFallOff(noise);
-            Debug.Log("Object: " + noise.name + 
-                    ", Original Sound: " + noise.GetComponent<Sound>().sound + 
-                    ", Sound with Falloff: " + temp);
-            if (temp > loudest)
-            {
-                loudest = temp;
-                target = noise.transform;
+    IEnumerator findLoudestSound() {
+        while(true) {
+            float temp = 0.0f;
+            float loudest = 0.0f;
+            foreach (GameObject noise in soundObjects) {
+                temp = noise.GetComponent<Sound>().sound;
+                temp = (temp > 0) ? GetSoundWithFallOff(noise) : 0f;
+                if (temp > 0) {
+                    Debug.Log("Object: " + noise.name + 
+                            ", Original Sound: " + noise.GetComponent<Sound>().sound + 
+                            ", Sound with Falloff: " + temp);
+                }
+                if (temp > loudest) {
+                    loudest = temp;
+                    target = noise.transform;
+                }
             }
-        }
-        foreach(GameObject noise in players)
-        {
-            temp = GetSoundWithFallOff(noise);
-            if (temp > loudest)
-            {
-                loudest = temp;
-                target = noise.transform;
+            foreach(GameObject noise in players) {
+                temp = GetSoundWithFallOff(noise);
+                if (temp > loudest) {
+                    loudest = temp;
+                    target = noise.transform;
+                }
             }
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -197,8 +200,6 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void UpdateInspect() {
-        //Finds if a new target is louder
-        findLoudestSound();
         //Increases speed if it has been chasing for a multiple of 2.5 seconds
         chaseTime += Time.deltaTime;
         if (chaseTime / 2.5f > 1.0f) {
