@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour {
     [SerializeField] [Range(300F, 800F)] private float baseMoveSpeed = 400f;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
+    [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.1f;
     public List<Transform> wayPoints = new List<Transform>();
     public float slowSpeed = 1.0f;
     public int playerLives = 4;
@@ -132,7 +133,10 @@ public class Monster : MonoBehaviour {
         float temp = 0.0f;
         float loudest = 0.0f;
         foreach (GameObject noise in soundObjects) {
-            temp = noise.GetComponent<Sound>().sound;
+            temp = GetSoundWithFallOff(noise);
+            Debug.Log("Object: " + noise.name + 
+                    ", Original Sound: " + noise.GetComponent<Sound>().sound + 
+                    ", Sound with Falloff: " + temp);
             if (temp > loudest)
             {
                 loudest = temp;
@@ -141,13 +145,19 @@ public class Monster : MonoBehaviour {
         }
         foreach(GameObject noise in players)
         {
-            temp = noise.GetComponent<Sound>().sound;
+            temp = GetSoundWithFallOff(noise);
             if (temp > loudest)
             {
                 loudest = temp;
                 target = noise.transform;
             }
         }
+    }
+
+    private float GetSoundWithFallOff(GameObject noiseObj) {
+        float sound = noiseObj.GetComponent<Sound>().sound;
+        float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
+        return (sound - (distance * fallOffStrength));
     }
 
     private bool DetectPlayer()
