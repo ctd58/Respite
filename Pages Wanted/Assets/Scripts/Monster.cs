@@ -130,7 +130,7 @@ public class Monster : MonoBehaviour {
     //Determines what object is making the loudest noise and goes to it
     void findLoudestSound() {
         float temp = 0.0f;
-        float loudest = 0.0F;
+        float loudest = 0.0f;
         foreach (GameObject noise in soundObjects) {
             temp = noise.GetComponent<Sound>().sound;
             if (temp > loudest)
@@ -184,13 +184,11 @@ public class Monster : MonoBehaviour {
 
     private void EnterStateInspect(Transform target) {
 		_currentState = STATE.INSPECT;
-        // TODO: add code to set target positition
-
 	}
 
 	private void UpdateInspect() {
         //Finds if a new target is louder
-        //findLoudestSound();
+        findLoudestSound();
         //Increases speed if it has been chasing for a multiple of 2.5 seconds
         chaseTime += Time.deltaTime;
         if (chaseTime / 2.5f > 1.0f) {
@@ -224,24 +222,11 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void UpdateAttack() {
-        /*
-        if (DetectPlayer() == true){
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
-            transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
-        }
-        else
-        {
-            EnterStateWander(); 
-        }
-        */
-        if (DetectPlayer() == true)
-        {
+        if (DetectPlayer() == true) {
             Vector3 targetV = target.position; 
             navMeshAgent.SetDestination(targetV);
             EnterStateAttack(); 
-        }
-        else
-        {
+        } else {
             EnterStateWander(); 
         }
     }
