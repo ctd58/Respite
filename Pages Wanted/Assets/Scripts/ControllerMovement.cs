@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ControllerMovement : MonoBehaviour {
 
+    [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
     public float speed = 6.0f;
     public float rotateSpeed = 90.0f;
     public bool isP1 = true;
@@ -15,6 +16,7 @@ public class ControllerMovement : MonoBehaviour {
     public Sound sound;
     private Vector3 mov;
     public CharacterController _mycontroller;
+    public AudioSource thumpNoise;
 
 	// Use this for initialization
 	void Start () {
@@ -52,6 +54,8 @@ public class ControllerMovement : MonoBehaviour {
         //Gets the sound component on the player
         sound = this.GetComponent<Sound>();
         
+        //Gets the thump audio source on the player
+        //TODO: make private and get via thumpNoise = this.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -170,4 +174,16 @@ public class ControllerMovement : MonoBehaviour {
         }
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        Debug.Log("COLLISION");
+        StartCoroutine("BumpSound");
+    }
+
+    IEnumerator BumpSound() {
+        thumpNoise.Play();
+        sound.sound = thumpVolume;
+        yield return new WaitForSeconds(thumpNoise.clip.length);
+        thumpNoise.Stop();
+        sound.sound = 0f;
+    }
 }
