@@ -106,7 +106,7 @@ public class ControllerMovement : MonoBehaviour {
             Move();
 
             //If switch putton is pressed for this player and they can move then switch which player can move
-            if (Input.GetButton(switchb))
+            if (Input.GetButtonDown(switchb))
             {
                 Switch();
             }
