@@ -72,7 +72,7 @@ public class StaminaBar : MonoBehaviour {
 
         float ratioNumber = (float)currStamina / (float)maxStamina;
         staminaBar.rectTransform.localScale = new Vector3(ratioNumber, 1, 1);
-        //ratioStamina.text = (ratioNumber * 100).ToString() + '%';
+        ratioStamina.text = (ratioNumber * 100).ToString() + '%';
         if (currStamina == 0 && PlayerPrefs.GetString("Player1AllowedtoMove") == "true")
         {
             PlayerPrefs.SetString("Player1AllowedtoMove", "false");
