@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour {
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     public List<Transform> wayPoints = new List<Transform>();
-    public float slowSpeed = 1.0f;
+    public float slowSpeed = 100f;
     public int playerLives = 4;
     public GameObject health1;
     public GameObject health2;
@@ -48,9 +48,11 @@ public class Monster : MonoBehaviour {
         }
         */
         Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
-        checkprefs(); 
-        baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
-        sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
+        checkprefs();
+        //baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
+        baseMoveSpeed = 400;
+        sensePlayerDistance = 50;
+        //sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectsWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
@@ -109,10 +111,12 @@ public class Monster : MonoBehaviour {
         Debug.Log(counter); 
         if (counter > 400) {
             counter = 0;
+            Debug.Log("Made waypoint");
             madeWaypoint = true; 
         } else {
             if (currentWaypoint != null && madeWaypoint == true) {
                 Vector3 targetV = currentWaypoint.transform.position;
+                target = currentWaypoint.transform;
                 //Need to make this based on speed, so the idea is maybe a while loop
                 //where we tell the demon to move to a certain distance with base speed, and
                 //if it no longer needs to move there because it is there, set the next waypoint.
@@ -204,9 +208,9 @@ public class Monster : MonoBehaviour {
         chaseTime += Time.deltaTime;
         if (chaseTime / 2.5f > 1.0f) {
             chaseTime -= 2.5f;
-            currentMovSpeed += 0.75f;
-            if(currentMovSpeed> 6.0f) {
-                currentMovSpeed = 6.0f;
+            currentMovSpeed += 7.5f;
+            if(currentMovSpeed> 800f) {
+                currentMovSpeed = 800f;
             }
         }
         FollowSound();
@@ -304,7 +308,8 @@ public class Monster : MonoBehaviour {
     }
 
     void respawn() {
-        this.transform.position = spawn[0].transform.position;
+        //this.transform.position = spawn[0].transform.position;
+        navMeshAgent.Warp(spawn[0].transform.position);
         // TODO: add code here that will strategically pick from a number of spawn locations
     }
 }
