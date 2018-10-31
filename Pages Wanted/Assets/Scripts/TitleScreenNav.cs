@@ -11,6 +11,7 @@ public class TitleScreenNav : MonoBehaviour {
     public Button quitButton;
     public GameObject titleScreen;
     public GameObject titleScreenBG; 
+    public string gameScene;
 
     [SerializeField]
     public Slider monsterSense;
@@ -56,7 +57,7 @@ public class TitleScreenNav : MonoBehaviour {
 
     private void StartGame()
     {
-        SceneManager.LoadScene("LevelDesignSandbox"); 
+        SceneManager.LoadScene(gameScene); 
     }
 
     private void ExitScene()
