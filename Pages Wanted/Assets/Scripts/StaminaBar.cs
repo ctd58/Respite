@@ -11,7 +11,7 @@ public class StaminaBar : MonoBehaviour {
     public Text ratioStamina;
 
     //Get the player, also will need to get if player is allowed to move or not (need to check character controller for that). 
-    public GameObject player;
+    public bool player1;
     public Vector3 basePosition;
     public Vector3 currPosition;
 
@@ -26,9 +26,12 @@ public class StaminaBar : MonoBehaviour {
     public int currStamina = 400;
     public int regenRate = 5; 
 
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
+        if (player1) player = GameObject.FindGameObjectWithTag("P1");
+        else player = GameObject.FindGameObjectWithTag("P2");
         float x = PlayerPrefs.GetFloat("PlayerMoveX");
         float y = PlayerPrefs.GetFloat("PlayerMoveY");
         float z = PlayerPrefs.GetFloat("PlayerMoveZ");
