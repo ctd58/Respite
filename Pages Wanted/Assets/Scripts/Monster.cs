@@ -51,7 +51,7 @@ public class Monster : MonoBehaviour {
         checkprefs();
         //baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
         baseMoveSpeed = 400;
-        sensePlayerDistance = 50;
+        sensePlayerDistance = 200;
         //sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectsWithTag("DemonSpawn");

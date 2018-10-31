@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672652004438116}
   m_LocalRotation: {x: -0, y: 0.9933167, z: -0, w: 0.1154206}
-  m_LocalPosition: {x: 1381, y: -542, z: -1167}
+  m_LocalPosition: {x: 1381, y: -577.5, z: -1167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4930387928707498}
@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1753784342992414}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03341624, y: 0.82907027, z: 0.70822126}
+  m_LocalPosition: {x: -5.7, y: 98.1, z: 78.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4119898085641402}
@@ -214,7 +214,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236047470042096}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03499292, y: 0.83019173, z: 0.70822126}
+  m_LocalPosition: {x: 4.5, y: 98.3, z: 78.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4119898085641402}
@@ -253,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1622778189004982}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00020838525, y: 0.8797126, z: 0.7042344}
+  m_LocalPosition: {x: -0.5, y: 104.5, z: 78.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4119898085641402}
@@ -438,32 +438,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc98d37868f150c45b3866d1832ca722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  baseMoveSpeed: 400
-  rotSpeed: 15
-  movSpeed: 0
-  distance: 0
   sensePlayerDistance: 200
-  loudestSound: 0
-  soundObjects: []
-  players: []
   chaseTime: 3
-  slowSpeed: 1
-  canMove: 1
-  inputDelay: 0
-  playerLives: 4
-  spawn: {fileID: 0}
-  health1: {fileID: 0}
-  health2: {fileID: 0}
-  health3: {fileID: 0}
-  health4: {fileID: 0}
-  gameoverScreen: {fileID: 0}
+  baseMoveSpeed: 400
+  stunDelay: 5
+  rotSpeed: 15
+  fallOffStrength: 0.01
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  currentWaypoint: {fileID: 0}
+  - {fileID: 0}
+  slowSpeed: 1
+  playerLives: 4
+  health1: {fileID: 0}
+  health2: {fileID: 0}
+  health3: {fileID: 0}
+  health4: {fileID: 0}
+  gameoverScreen: {fileID: 0}
 --- !u!136 &136755864833502350
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -473,8 +466,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.87355274
-  m_Height: 1.7471054
+  m_Radius: 90
+  m_Height: 190
   m_Direction: 1
   m_Center: {x: 0.000000003893011, y: 0, z: 0.37355268}
 --- !u!195 &195886986471036950
@@ -485,8 +478,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 1672652004438116}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 50
+  m_Speed: 350
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -494,8 +487,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
+  m_Height: 200
+  m_BaseOffset: 100
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &198105632171741946
@@ -746,7 +739,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 11.5
+      scalar: 1100.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5279,7 +5272,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.62
+      scalar: 62
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9812,7 +9805,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 11.5
+      scalar: 1100.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
