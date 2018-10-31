@@ -174,6 +174,7 @@ public class ControllerMovement : MonoBehaviour {
         }
     }
 
+    /*
     void OnControllerColliderHit(ControllerColliderHit hit) {
         Debug.Log("COLLISION");
         StartCoroutine("BumpSound");
@@ -186,4 +187,5 @@ public class ControllerMovement : MonoBehaviour {
         thumpNoise.Stop();
         sound.sound = 0f;
     }
+    */
 }
