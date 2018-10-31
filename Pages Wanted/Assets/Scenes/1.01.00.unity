@@ -31715,11 +31715,6 @@ Prefab:
       objectReference: {fileID: 2122382531}
     - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
-      propertyPath: sensePlayerDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
-        type: 2}
       propertyPath: health1
       value: 
       objectReference: {fileID: 657644369}
@@ -31737,21 +31732,6 @@ Prefab:
         type: 2}
       propertyPath: m_AutoBraking
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195886986471036950, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
-        type: 2}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 195886986471036950, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 195886986471036950, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
-        type: 2}
-      propertyPath: m_Speed
-      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 114288619254195536, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
@@ -31817,11 +31797,6 @@ Prefab:
     - target: {fileID: 4936511229016184, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e, type: 2}
       propertyPath: m_LocalPosition.z
       value: 78.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 195886986471036950, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
-        type: 2}
-      propertyPath: m_BaseOffset
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 136755864833502350, guid: 9ee20c1dbcb36e3418ed272fae1c8a2e,
         type: 2}
