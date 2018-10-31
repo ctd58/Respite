@@ -74,7 +74,7 @@ public class ControllerMovement : MonoBehaviour {
         //Sends game to gameover screen
         if (other.tag == "EndGame")
         {
-            SceneManager.LoadScene("GameOverScreen");
+            SceneManager.LoadScene("WinScreen");
         }
     }
 
