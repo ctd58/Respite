@@ -8901,6 +8901,10 @@ Prefab:
       propertyPath: m_Name
       value: handbell_var01_MASTER (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f2c914ff64fe938469cc0837f8b8549c, type: 3}
+      propertyPath: m_TagString
+      value: MakesSound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c914ff64fe938469cc0837f8b8549c, type: 3}
   m_IsPrefabAsset: 0
@@ -11243,6 +11247,10 @@ Prefab:
     - target: {fileID: 400020, guid: 8955df0cce4619c4a9fb7a55bd4deb99, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 8955df0cce4619c4a9fb7a55bd4deb99, type: 3}
+      propertyPath: m_TagString
+      value: MakesSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8955df0cce4619c4a9fb7a55bd4deb99, type: 3}
@@ -30170,6 +30178,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.2000001
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f2c914ff64fe938469cc0837f8b8549c, type: 3}
+      propertyPath: m_TagString
+      value: MakesSound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c914ff64fe938469cc0837f8b8549c, type: 3}
   m_IsPrefabAsset: 0
@@ -35936,6 +35948,10 @@ Prefab:
     - target: {fileID: 400020, guid: 8955df0cce4619c4a9fb7a55bd4deb99, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 8955df0cce4619c4a9fb7a55bd4deb99, type: 3}
+      propertyPath: m_TagString
+      value: MakesSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8955df0cce4619c4a9fb7a55bd4deb99, type: 3}
