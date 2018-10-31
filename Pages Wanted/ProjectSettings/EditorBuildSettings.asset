@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 0220d908fd2640e4388dcae2b9f6c730
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelDesignSandbox.unity
     guid: 275b08e590e9d9044ba08dc63319d30c
+  - enabled: 1
+    path: Assets/Scenes/1.01.00.unity
+    guid: f26da9145aea5412b9fdf9fd29c28e11
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: bbde0c4b2bfb6df4594f4b96600d117a
