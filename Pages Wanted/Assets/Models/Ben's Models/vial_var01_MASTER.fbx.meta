@@ -6,16 +6,27 @@ ModelImporter:
     100000: cork_MASTER
     100002: vial_MASTER 1
     100004: //RootNode
+    100006: liquid
+    100008: vial_MASTER1
     400000: cork_MASTER
     400002: vial_MASTER 1
     400004: //RootNode
+    400006: liquid
+    400008: vial_MASTER1
     2100000: lambert1
+    2100002: lambert2
     2300000: cork_MASTER
     2300002: vial_MASTER 1
+    2300004: liquid
+    2300006: vial_MASTER1
     3300000: cork_MASTER
     3300002: vial_MASTER 1
+    3300004: liquid
+    3300006: vial_MASTER1
     4300000: vial_MASTER
     4300002: cork_MASTER
+    4300004: liquid
+    4300006: vial_MASTER1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -47,7 +58,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -55,7 +66,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -88,6 +99,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
