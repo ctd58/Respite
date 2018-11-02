@@ -302,11 +302,11 @@ GameObject:
   - component: {fileID: 4202448659218424}
   - component: {fileID: 33650164894966192}
   - component: {fileID: 23830265934364592}
-  - component: {fileID: 65988396423999042}
   - component: {fileID: 114258025088542038}
   - component: {fileID: 82194921884232562}
   - component: {fileID: 114672701069199052}
   - component: {fileID: 95065381157173206}
+  - component: {fileID: 65539368520369178}
   m_Layer: 0
   m_Name: Door
   m_TagString: MakesSound
@@ -961,6 +961,7 @@ GameObject:
   - component: {fileID: 4668129543167622}
   - component: {fileID: 33611724805277150}
   - component: {fileID: 23605123876963056}
+  - component: {fileID: 65359696575126830}
   m_Layer: 0
   m_Name: Door_1
   m_TagString: Untagged
@@ -1184,15 +1185,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1207636473443914}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 179.7, y: 0, z: -141.9}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4466475023895974}
   - {fileID: 4844530689205378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4207613878728738
 Transform:
   m_ObjectHideFlags: 1
@@ -3676,7 +3677,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968563824511018}
   m_Mesh: {fileID: 4300032, guid: fd74fd950ddc94c3c8e1845194c0756f, type: 3}
---- !u!65 &65988396423999042
+--- !u!65 &65359696575126830
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935822173616560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.0000014, y: 213.36, z: 106.68003}
+  m_Center: {x: -0.000121831894, y: 0, z: -0.00012207031}
+--- !u!65 &65539368520369178
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3686,8 +3699,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 200, z: 106.68003}
+  m_Center: {x: -0.000121831894, y: 100, z: -0.00012207031}
 --- !u!82 &82194921884232562
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3812,8 +3825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c9d532cdd474428b01cdef6bde7ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 0}
-  doorNotes: This script should go on every door object to allow the door to unlock.
+  interactIcon: {fileID: 21300004, guid: 4e412aa6f1eda4930a2101ba9f1960f1, type: 3}
   keysNeeded: 
 --- !u!114 &114672701069199052
 MonoBehaviour:

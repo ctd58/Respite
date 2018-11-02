@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Door_Unlock : Interactables {
+public class Interact_Door : Interact_MakeNoise {
+	[Header("Door Parameters")]
+	//[Help("This script should go on every door object to allow the door to unlock.", UnityEditor.MessageType.None)]
+	//TODO: fix this plugin
 
-	/* Note: apparently "lock" is a variable name reserved by unity.
-	 * Using it in code will cause some really weird errors. */
+	// Public or Serialized Variables for Inspector -----------------
+	#region Public Variables
+	public List<KeyTypes> keysNeeded;
+	#endregion
 
+	// Private Variables ---------------------------------------------
+	#region Private Variables
+	private bool doorLocked = true;
 	/* Lock_Obj is a class used only in this script to organize info about locks
 	 *  - bool locked       - is lock still locked
 	 *  - KeyTypes lockType - is the lock BRONZE, SILVER, GOLD, etc
 	 *  - int keyUsedId     - the id of the key used to unlock
 	 */
-	[Header("Door Parameters")]
-	[Help("This script should go on every door object to allow the door to unlock.")]
-	public List<KeyTypes> keysNeeded;
 	private class Lock_Obj {
 		public bool locked;
 		public KeyTypes lockType;
@@ -25,10 +30,17 @@ public class Door_Unlock : Interactables {
 		}
 	}
 	private List<Lock_Obj> locks;
-	private bool doorLocked = true;
+	#endregion
 
-	void Start()
+	/* Note: apparently "lock" is a variable name reserved by unity.
+	 * Using it in code will cause some really weird errors. */
+
+	// Setup Methods -------------------------------------------------
+	#region Setup Methods
+	new void Start()
 	{
+		base.Start();
+		SetSprite(Interact_Icon_Type.UNLOCK);
 		// Populate private list of locks from public keysNeeded
 		locks = new List<Lock_Obj>();
 		foreach ( KeyTypes key in keysNeeded) {
@@ -37,7 +49,10 @@ public class Door_Unlock : Interactables {
 			locks.Add(newLock);
 		}
 	}
+	#endregion
 
+	// Public Methods -------------------------------------------------
+	#region Public Methods
 	public override void onInteract(Character_Inventory inv) {
 		if (doorLocked) {
 			List<Key_Obj> playerKeys = inv.getKeys();
@@ -48,9 +63,12 @@ public class Door_Unlock : Interactables {
 			OpenDoor();
 		}
 	}
+	#endregion
 
+	// Private Methods -------------------------------------------------
+	#region Private Methods
 	// Triggered by player interacting with door, checks players keys to unlock locks
-	public void UnlockLocks(List<Key_Obj> playerKeys) {
+	private void UnlockLocks(List<Key_Obj> playerKeys) {
 		foreach( Lock_Obj l in locks) {
 			if (l.locked) {
 				// Get all matching keys
@@ -83,17 +101,15 @@ public class Door_Unlock : Interactables {
 	}
 
 	// All locks have been unlocked, now open the door
-	public void OpenDoor() {
-		this.GetComponent<Sound>().sound = 1;
-        this.GetComponent<AudioSource>().Play();
-		this.GetComponent<Animator>().SetTrigger("openDoor");
+	private void OpenDoor() {
+		PlayAnimation();
 		Destroy(this.GetComponent<Collider>());
-		StartCoroutine("stopSound");
+		StartCoroutine("MakeNoise");
 	}
 
-	IEnumerator stopSound() {
-		yield return new WaitForSeconds(3F);
-		this.GetComponent<Sound>().sound = 0;
+	protected override void PlayAnimation() {
+		this.GetComponent<Animator>().SetTrigger("openDoor");
 	}
+	#endregion
 }
 
