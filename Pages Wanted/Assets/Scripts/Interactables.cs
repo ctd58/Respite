@@ -1,14 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public abstract class Interactables : MonoBehaviour {
-	[Header("Interactable Parameters")]
-	//[Help("This should appear at the top of any interactable object.\nThe interact icon should be set to one of the retical images to show the play what will happen when they interact", UnityEditor.MessageType.None)]
-	public Sprite interactIcon;
+	// Public or Serialized Variables for Inspector -----------------
+	#region Public Variables
+	// TODO: refactor to aggregate MakesSound script
+	//[SerializeField] protected bool makesSound = false;
+	#endregion
+	
+	// Private Variables ---------------------------------------------
+	#region Private Variables
+	protected Sprite spriteIcon;
+	#endregion
 
-	public virtual void onInteract(Character_Inventory inv) {
+	// Public Methods ------------------------------------------------
+	#region Public Methods
+	public virtual void onInteract(Character_Inventory inv) {}
 
+	public Sprite GetSprite() {
+		return spriteIcon;
 	}
+
+	public void SetSprite(Interact_Icon_Type type) {
+		spriteIcon = Interact_Icon.GetSprite(type);
+	}
+	#endregion
 }
