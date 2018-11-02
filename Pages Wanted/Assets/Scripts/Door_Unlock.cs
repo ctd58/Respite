@@ -12,7 +12,7 @@ public class Door_Unlock : Interactables {
 	 *  - int keyUsedId     - the id of the key used to unlock
 	 */
 	[Header("Door Parameters")]
-	[Help("This script should go on every door object to allow the door to unlock.")]
+	//[Help("This script should go on every door object to allow the door to unlock.")]
 	public List<KeyTypes> keysNeeded;
 	private class Lock_Obj {
 		public bool locked;

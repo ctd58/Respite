@@ -5682,6 +5682,16 @@ Prefab:
       propertyPath: ratioStamina
       value: 
       objectReference: {fileID: 895481158}
+    - target: {fileID: 114519151194955078, guid: 091c07c4c279349b2925727613bcadc6,
+        type: 2}
+      propertyPath: staminaOtherPlayer
+      value: 
+      objectReference: {fileID: 895481158}
+    - target: {fileID: 114356934763554278, guid: 091c07c4c279349b2925727613bcadc6,
+        type: 2}
+      propertyPath: staminaOtherPlayer
+      value: 
+      objectReference: {fileID: 254393995}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
   m_IsPrefabAsset: 0

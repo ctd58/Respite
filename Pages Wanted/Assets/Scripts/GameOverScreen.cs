@@ -19,7 +19,7 @@ public class GameOverScreen : MonoBehaviour {
 	
     private void replayGame()
     {
-        SceneManager.LoadScene("LevelDesignSandbox"); 
+        SceneManager.LoadScene("1.01.00"); 
     }
 
     private void mainMenu()
