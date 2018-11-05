@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Switch_Target : MonoBehaviour {
-
+	// Public or Serialized Variables for Inspector -----------------
+	#region Public Variables
+	bool activateOnTrigger;
+	bool animateOnTrigger;
+	#endregion
+	
+	// Private Variables ---------------------------------------------
+	#region Private Variables
 	private Animator animator;
+	#endregion
 
 	void Start() {
 		animator = GetComponent<Animator>();
 	}
 
 	public void onSwitchActivate () {
-		animator.SetTrigger("open");
+		if (animateOnTrigger) animator.SetTrigger("open");
+		if (activateOnTrigger) this.gameObject.SetActive(true);
 	}
 
 	public void onSwitchDeactivate() {
-		animator.SetTrigger("close");
+		if (animateOnTrigger) animator.SetTrigger("close");
+		if (activateOnTrigger) this.gameObject.SetActive(false);	
 	}
 }
