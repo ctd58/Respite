@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Interact_Door : Interact_MakeNoise {
+public class Interact_Door : Interactables {
 	[Header("Door Parameters")]
 	//[Help("This script should go on every door object to allow the door to unlock.", UnityEditor.MessageType.None)]
 	//TODO: fix this plugin
@@ -39,7 +39,7 @@ public class Interact_Door : Interact_MakeNoise {
 	#region Setup Methods
 	new void Start()
 	{
-		base.Start();
+		//base.Start();
 		SetSprite(Interact_Icon_Type.UNLOCK);
 		// Populate private list of locks from public keysNeeded
 		locks = new List<Lock_Obj>();
@@ -102,14 +102,14 @@ public class Interact_Door : Interact_MakeNoise {
 
 	// All locks have been unlocked, now open the door
 	private void OpenDoor() {
-		PlayAnimation();
+		//PlayAnimation();
 		Destroy(this.GetComponent<Collider>());
 		StartCoroutine("MakeNoise");
 	}
 
-	protected override void PlayAnimation() {
+	/* protected override void PlayAnimation() {
 		this.GetComponent<Animator>().SetTrigger("openDoor");
-	}
+	}*/
 	#endregion
 }
 

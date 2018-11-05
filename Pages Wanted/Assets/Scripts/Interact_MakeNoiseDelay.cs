@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact_MakeNoiseDelay : Interact_MakeNoise {
+public class Interact_MakeNoiseDelay : Interactables {
 	// Public or Serialized Variables for Inspector -----------------
 	#region Public Variables
 	public AudioSource delayNoise;
@@ -15,9 +15,9 @@ public class Interact_MakeNoiseDelay : Interact_MakeNoise {
 	// Public Methods -------------------------------------------------
 	#region Public Methods
 	public override void onInteract(Character_Inventory inv) {
-		PlayAnimation();
+		//PlayAnimation();
 		delayNoise.Play();
-		soundScript.sound = delayNoiseVolume;
+		//soundScript.sound = delayNoiseVolume;
 		StartCoroutine("timer");
 	}
 	#endregion
@@ -30,9 +30,9 @@ public class Interact_MakeNoiseDelay : Interact_MakeNoise {
 		StartCoroutine("MakeNoise");
 	}
 
-	protected override void MakeRandomNoise() {
+	/* protected override void MakeRandomNoise() {
 		StartCoroutine("ChimeRegularly");
-	}
+	}*/
 
 	private IEnumerator ChimeRegularly() {
 		yield return new WaitForSeconds(randomNoiseDelayTime);

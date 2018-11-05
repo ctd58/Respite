@@ -5,16 +5,20 @@ public abstract class Interactables : MonoBehaviour {
 
     // Public or Serialized Variables for Inspector -----------------
     #region Public Variables
-    // TODO: refactor to aggregate MakesSound script
-    //[SerializeField] protected bool makesSound = false;
+    [Header("Sound Attributes")]
+    [SerializeField] protected bool makesSound = false;
     #endregion
 
     // Private Variables ---------------------------------------------
     #region Private Variables
     protected Sprite spriteIcon;
     #endregion
-    private Interact_MakeNoise noise; //Interactables has a makeNoise 
+    public Interact_MakeNoise noise; //Interactables has a makeNoise 
     private Sprite sprite;
+
+    void Start() {
+        
+    }
 
     // Public Methods ------------------------------------------------
     #region Public Methods
@@ -27,7 +31,6 @@ public abstract class Interactables : MonoBehaviour {
 	public void SetSprite(Interact_Icon_Type type) {
 		spriteIcon = Interact_Icon.GetSprite(type);
 	}
-	#endregion
     //sprite Get/Setters
     public Sprite getsprite(){
         return sprite; 
@@ -39,5 +42,6 @@ public abstract class Interactables : MonoBehaviour {
     public void onInteract(){
 
     }
+	#endregion
 
 }

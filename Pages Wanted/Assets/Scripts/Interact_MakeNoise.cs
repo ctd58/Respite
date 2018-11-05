@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Interact_MakeNoise : Interactables {
+[System.Serializable]
+public class Interact_MakeNoise {
 
    
 
@@ -23,7 +23,7 @@ public class Interact_MakeNoise : Interactables {
 
     // Setup Methods -------------------------------------------------
     #region Setup Methods
-    protected void Start() {
+    /* protected void Start() {
 		SetSprite(Interact_Icon_Type.MAKENOISE);
 		audioClip = this.GetComponent<AudioSource>();
 		soundScript = this.GetComponent<Sound>();
@@ -39,7 +39,7 @@ public class Interact_MakeNoise : Interactables {
 	public override void onInteract(Character_Inventory inv) {
 		PlayAnimation();
 		StartCoroutine("MakeNoise");
-	}
+	} */
 	#endregion
 
 	// Private Methods -------------------------------------------------
