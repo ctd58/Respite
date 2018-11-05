@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: 
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/Scenes/DemoScene.unity
+    path: 
     guid: d46fd4fcf31964d6f885b6ce886b9fbb
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 0220d908fd2640e4388dcae2b9f6c730
   - enabled: 0
-    path: Assets/Scenes/LevelDesignSandbox.unity
+    path: Assets/Scenes/BackUpsDontDelete/SophiasBackups/LevelDesignSandbox.unity
     guid: 275b08e590e9d9044ba08dc63319d30c
   - enabled: 1
     path: Assets/Scenes/1.01.00.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: bbde0c4b2bfb6df4594f4b96600d117a
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: b4cda07affa60ef438402dfe831027b3
   m_configObjects: {}

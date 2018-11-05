@@ -5,26 +5,27 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour {
 
-
+    
     //Gets the Green part of the stamina bar and the text on it. 
     public Image staminaBar;
     public Text ratioStamina;
 
     //Get the player, also will need to get if player is allowed to move or not (need to check character controller for that). 
     public bool player1;
-    public Vector3 basePosition;
-    public Vector3 currPosition;
+    private Vector3 basePosition;
+    private Vector3 currPosition;
 
-    //
+    //Get the value of the other player's stamina
+    public Text staminaOtherPlayer; 
 
     //Controls how many frames that needs to pass before the function should check if the player has moved (for LoseStamina())
-    public int frameCheck = 10;
+    public int frameCheck = 5;
     private int counter = 0; 
 
     //Currently setting the max stamina to be 400 S-Points. Will have a slider for this in the future. 
     public int maxStamina = 400;
     public int currStamina = 400;
-    public int regenRate = 5; 
+    public int regenRate = 105; 
 
     private GameObject player;
 
@@ -116,7 +117,38 @@ public class StaminaBar : MonoBehaviour {
             
         }
     }
+    /// <summary>
+    /// Personally, I don't agree with the group or the critique that the stamina should of both players should at least be 100% 
+    /// of one person's bar at all times. However, because it was the majority rule, the new RegenStamina will do as they wish, 
+    /// and the old one should be commented out. Should there be a need to revert, I will leave the old function, untouched, but commented out.
+    /// </summary>
+    
+    private void RegenStamina()
+    {
+        string c = staminaOtherPlayer.text;
+        string[] words = c.Split('.', '%');
+        int player2ratio = int.Parse(words[0], System.Globalization.NumberStyles.AllowDecimalPoint);
+        int truevalue = (player2ratio * maxStamina);
+        Debug.Log(truevalue); 
 
+        //If nonmoving player's stamina is less than max stamina - moving player's stamina 
+        if ((maxStamina - truevalue) > currStamina)//Replace
+        {
+            currStamina = maxStamina - truevalue; //moving player's stamina. 
+        }
+        else
+        {
+            currStamina += regenRate;
+            if (currStamina > maxStamina)
+            {
+                currStamina = maxStamina;
+            }
+        }
+        if (currStamina > maxStamina){
+            currStamina = maxStamina; 
+        }
+    }
+    /*
     private void RegenStamina()
     {
         //for everytime regenstamina is called, player regens 15. 
@@ -126,6 +158,7 @@ public class StaminaBar : MonoBehaviour {
             currStamina = maxStamina; 
         }
     }
+    */
 
 	// Update is called once per frame
 	void Update () {

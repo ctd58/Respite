@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 95065381157173206}
   - component: {fileID: 65539368520369178}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Door_OLD
   m_TagString: MakesSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
