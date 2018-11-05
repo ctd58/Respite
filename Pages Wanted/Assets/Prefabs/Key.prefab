@@ -387,7 +387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5ec204fd5ad437e8755a4947d72c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 21300002, guid: 4e412aa6f1eda4930a2101ba9f1960f1, type: 3}
+  makesNoise: 0
+  noise:
+    soundVolume: 0
+    makeRandomNoises: 1
+    randomNoiseDelayTime: 60
   type: 0
 --- !u!198 &198363014172692148
 ParticleSystem:

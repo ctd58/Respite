@@ -342,10 +342,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9a9ce3ebad54278bb160c09757db3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 21300006, guid: 4e412aa6f1eda4930a2101ba9f1960f1, type: 3}
-  soundVolume: 2.5
-  soundLength: 17
+  makesNoise: 1
+  noise:
+    soundVolume: 4
+    makeRandomNoises: 1
+    randomNoiseDelayTime: 60
   delayNoise: {fileID: 82523057992102862}
   delayNoiseVolume: 0.5
   delayTime: 10
-  randomNoiseDelayTime: 60

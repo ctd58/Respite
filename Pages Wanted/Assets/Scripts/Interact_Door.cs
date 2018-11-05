@@ -39,7 +39,7 @@ public class Interact_Door : Interactables {
 	#region Setup Methods
 	new void Start()
 	{
-		//base.Start();
+		base.Start();
 		SetSprite(Interact_Icon_Type.UNLOCK);
 		// Populate private list of locks from public keysNeeded
 		locks = new List<Lock_Obj>();
@@ -102,14 +102,14 @@ public class Interact_Door : Interactables {
 
 	// All locks have been unlocked, now open the door
 	private void OpenDoor() {
-		//PlayAnimation();
+		PlayAnimation();
 		Destroy(this.GetComponent<Collider>());
-		StartCoroutine("MakeNoise");
+		StartCoroutine(noise.MakeNoise());
 	}
 
-	/* protected override void PlayAnimation() {
+	protected override void PlayAnimation() {
 		this.GetComponent<Animator>().SetTrigger("openDoor");
-	}*/
+	}
 	#endregion
 }
 

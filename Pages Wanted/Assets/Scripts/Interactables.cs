@@ -1,23 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public abstract class Interactables : MonoBehaviour {
+public class Interactables : MonoBehaviour {
 
 
     // Public or Serialized Variables for Inspector -----------------
     #region Public Variables
     [Header("Sound Attributes")]
-    [SerializeField] protected bool makesSound = false;
+    [SerializeField] protected bool makesNoise = false;
+    public Interact_MakeNoise noise; //Interactables has a makeNoise 
     #endregion
 
     // Private Variables ---------------------------------------------
     #region Private Variables
     protected Sprite spriteIcon;
     #endregion
-    public Interact_MakeNoise noise; //Interactables has a makeNoise 
-    private Sprite sprite;
 
-    void Start() {
-        
+    protected void Start() {
+        if (makesNoise) {
+            SetSprite(Interact_Icon_Type.MAKENOISE);
+            noise.setAudioClip(GetComponent<AudioSource>());
+            noise.setSoundLength();
+            if (noise.makeRandomNoises) StartCoroutine(MakeRandomNoise());
+
+        }
+        else SetSprite(Interact_Icon_Type.PICKUP);
     }
 
     // Public Methods ------------------------------------------------
@@ -31,17 +39,22 @@ public abstract class Interactables : MonoBehaviour {
 	public void SetSprite(Interact_Icon_Type type) {
 		spriteIcon = Interact_Icon.GetSprite(type);
 	}
-    //sprite Get/Setters
-    public Sprite getsprite(){
-        return sprite; 
-    }
-    public void setsprite(Sprite value){
-        sprite = value;
-    }
     //onInteract version, can be overloaded
     public void onInteract(){
-
+        PlayAnimation();
+        if (makesNoise) StartCoroutine(noise.MakeNoise());
     }
 	#endregion
 
+	// Private Methods -------------------------------------------------
+	#region Private Methods
+    protected virtual void PlayAnimation() {
+		//TODO: stuff here
+	}
+
+	protected IEnumerator MakeRandomNoise() {
+		yield return new WaitForSeconds(noise.randomNoiseDelayTime);
+		StartCoroutine(noise.MakeNoise());
+	}
+	#endregion
 }
