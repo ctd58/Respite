@@ -4,20 +4,30 @@ using UnityEngine;
 using UnityEngine.SceneManagement; 
 
 public class ControllerMovement : MonoBehaviour {
-
-    [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
+	// Public or Serialized Variables for Inspector -----------------
+	#region Public Variables
     public float speed = 6.0f;
     public float rotateSpeed = 90.0f;
-    public bool isP1 = true;
-    public bool canMove = true;
-    public ControllerMovement teammate;
+    public AudioSource thumpNoise;
+    [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
+    #endregion
+
+    // Private Variables ---------------------------------------------
+	#region Private Variables
+    private bool isP1 = true;
+    private ControllerMovement teammate;
+    private bool canMove = true;
     private string playerNum = "";
     private string switchb = "";
-    public Sound sound;
+    private CharacterController _mycontroller;
+    private Sound sound;
     private Vector3 mov;
-    public CharacterController _mycontroller;
-    public AudioSource thumpNoise;
+    #endregion
 
+
+#if UNITY_EDITOR_WIN
+
+#endif
 	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetFloat("PlayerSpeed", speed);
@@ -31,16 +41,13 @@ public class ControllerMovement : MonoBehaviour {
         //Finds the other players component
         //Sets a string for the tag so we can call the specific inputs for each player
         //Sets the switch button for that player
-        if (this.tag == "P1")
-        {
+        if (this.tag == "P1") {
             isP1 = true;
             canMove = true;
             teammate = GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>();
             playerNum = "P1";
             switchb = "P1yt button";
-        }
-        else if (this.tag == "P2")
-        {
+        } else if (this.tag == "P2") {
             isP1 = false;
             canMove = false;
             teammate = GameObject.FindGameObjectWithTag("P1").GetComponent<ControllerMovement>();
