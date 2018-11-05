@@ -896,8 +896,7 @@ MonoBehaviour:
   staminaBar: {fileID: 114239829779337810}
   ratioStamina: {fileID: 0}
   player1: 0
-  basePosition: {x: 0, y: 0, z: 0}
-  currPosition: {x: 0, y: 0, z: 0}
+  staminaOtherPlayer: {fileID: 0}
   frameCheck: 10
   maxStamina: 400
   currStamina: 400
@@ -1036,8 +1035,7 @@ MonoBehaviour:
   staminaBar: {fileID: 114578929727963982}
   ratioStamina: {fileID: 0}
   player1: 1
-  basePosition: {x: 0, y: 0, z: 0}
-  currPosition: {x: 0, y: 0, z: 0}
+  staminaOtherPlayer: {fileID: 0}
   frameCheck: 10
   maxStamina: 400
   currStamina: 400
