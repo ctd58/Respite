@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Interact_MakeNoise : Interactables {
-	// Public or Serialized Variables for Inspector -----------------
-	#region Public Variables
-	[SerializeField] [Range(0, 5)] protected float soundVolume;
+
+   
+
+    // Public or Serialized Variables for Inspector -----------------
+    #region Public Variables
+    [SerializeField] [Range(0, 5)] protected float soundVolume;
 	[SerializeField] protected float soundLength;
 	[SerializeField] protected bool randomNoises = true;
 	#endregion
@@ -14,11 +18,12 @@ public class Interact_MakeNoise : Interactables {
 	#region Private Variables
 	private AudioSource audioClip;
 	protected Sound soundScript;
-	#endregion
+    #endregion
+    
 
-	// Setup Methods -------------------------------------------------
-	#region Setup Methods
-	protected void Start() {
+    // Setup Methods -------------------------------------------------
+    #region Setup Methods
+    protected void Start() {
 		SetSprite(Interact_Icon_Type.MAKENOISE);
 		audioClip = this.GetComponent<AudioSource>();
 		soundScript = this.GetComponent<Sound>();

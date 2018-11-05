@@ -122,7 +122,7 @@ public class StaminaBar : MonoBehaviour {
     /// of one person's bar at all times. However, because it was the majority rule, the new RegenStamina will do as they wish, 
     /// and the old one should be commented out. Should there be a need to revert, I will leave the old function, untouched, but commented out.
     /// </summary>
-    
+    /*
     private void RegenStamina()
     {
         string c = staminaOtherPlayer.text;
@@ -148,17 +148,26 @@ public class StaminaBar : MonoBehaviour {
             currStamina = maxStamina; 
         }
     }
-    /*
+    */
+    
     private void RegenStamina()
     {
-        //for everytime regenstamina is called, player regens 15. 
+        /*
+         * Two if checks, 1 if both player's health are not equal to max stamina, increase health by that much. 
+         * Else, use regular regen rate. 
+        */
+        //for everytime regenstamina is called, player regens based on regen variable.
+        
+        //if (currStamina + otherVar >= maxstamina)
+        //else currStamina += maxstamina - otherVar
+
         currStamina += regenRate; 
         if (currStamina > maxStamina)
         {
             currStamina = maxStamina; 
         }
     }
-    */
+    
 
 	// Update is called once per frame
 	void Update () {
