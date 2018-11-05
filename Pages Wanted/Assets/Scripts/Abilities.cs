@@ -46,7 +46,7 @@ public class Abilities : MonoBehaviour {
     void Update()
     {
 
-        if (Input.GetButton(button) && !player.canMove)
+        if (Input.GetButton(button) && !player.GetCanMove())
         {
             
             ability1();

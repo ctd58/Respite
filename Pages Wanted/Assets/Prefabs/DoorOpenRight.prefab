@@ -3778,11 +3778,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879899653992302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c9d532cdd474428b01cdef6bde7ba1, type: 3}
+  m_Script: {fileID: 11500000, guid: 26e9d0cf1d5344a29a60eff4fc05692d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 21300004, guid: 4e412aa6f1eda4930a2101ba9f1960f1, type: 3}
-  keysNeeded: 02000000
+  soundVolume: 0
+  soundLength: 0
+  randomNoises: 1
+  keysNeeded: 
 --- !u!114 &114818355608916610
 MonoBehaviour:
   m_ObjectHideFlags: 1

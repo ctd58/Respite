@@ -181,6 +181,10 @@ public class ControllerMovement : MonoBehaviour {
         }
     }
 
+    public bool GetCanMove() {
+        return canMove;
+    }
+
     /*
     void OnControllerColliderHit(ControllerColliderHit hit) {
         Debug.Log("COLLISION");
