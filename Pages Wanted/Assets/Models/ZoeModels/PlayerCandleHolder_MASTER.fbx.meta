@@ -10,6 +10,7 @@ ModelImporter:
     400002: CandleHolder
     400004: //RootNode
     2100000: lambert1
+    2100002: lambert2
     2300000: Candle
     2300002: CandleHolder
     3300000: Candle

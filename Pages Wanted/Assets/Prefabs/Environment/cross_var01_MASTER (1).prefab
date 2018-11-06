@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4263864729123702}
   m_Layer: 0
-  m_Name: cross_var01
+  m_Name: cross_var01_MASTER (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

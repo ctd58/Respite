@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114137690615801346}
   - component: {fileID: 114047946415540330}
   m_Layer: 0
-  m_Name: Grandfather_Clock
+  m_Name: Grandfather_Clock 1
   m_TagString: MakesSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
