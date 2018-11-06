@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 95949929854688136}
   - component: {fileID: 65412890417293384}
   m_Layer: 0
-  m_Name: candleWHolder_var01_MASTER
+  m_Name: candleWHolder_var01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
