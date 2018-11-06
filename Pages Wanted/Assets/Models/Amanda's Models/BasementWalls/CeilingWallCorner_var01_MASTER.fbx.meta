@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: 94ee4ea12df78452c9cf8d0fe0b4076a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arch_5
+    100002: Arch_5 1
+    100004: Arch_6
+    100006: Arch_6 1
+    100008: Arch_7
+    100010: Arch_7 1
+    100012: Archs
+    100014: Archs1
+    100016: Ceiling
+    100018: Ceiling1
+    100020: Ceiling_10
+    100022: Ceiling_8
+    100024: Ceiling_8 1
+    100026: Ceiling_9
+    100028: //RootNode
+    100030: KeyStoneCenter
+    100032: KeystoneWall
+    100034: KeystoneWall1
+    100036: Side_1
+    100038: Side_2
+    400000: Arch_5
+    400002: Arch_5 1
+    400004: Arch_6
+    400006: Arch_6 1
+    400008: Arch_7
+    400010: Arch_7 1
+    400012: Archs
+    400014: Archs1
+    400016: Ceiling
+    400018: Ceiling1
+    400020: Ceiling_10
+    400022: Ceiling_8
+    400024: Ceiling_8 1
+    400026: Ceiling_9
+    400028: //RootNode
+    400030: KeyStoneCenter
+    400032: KeystoneWall
+    400034: KeystoneWall1
+    400036: Side_1
+    400038: Side_2
+    2100000: lambert1
+    2300000: Arch_5
+    2300002: Arch_5 1
+    2300004: Arch_6
+    2300006: Arch_6 1
+    2300008: Arch_7
+    2300010: Arch_7 1
+    2300012: Ceiling_10
+    2300014: Ceiling_8
+    2300016: Ceiling_8 1
+    2300018: Ceiling_9
+    2300020: KeyStoneCenter
+    2300022: KeystoneWall
+    2300024: KeystoneWall1
+    3300000: Arch_5
+    3300002: Arch_5 1
+    3300004: Arch_6
+    3300006: Arch_6 1
+    3300008: Arch_7
+    3300010: Arch_7 1
+    3300012: Ceiling_10
+    3300014: Ceiling_8
+    3300016: Ceiling_8 1
+    3300018: Ceiling_9
+    3300020: KeyStoneCenter
+    3300022: KeystoneWall
+    3300024: KeystoneWall1
+    4300000: KeyStoneCenter
+    4300002: Arch_7
+    4300004: Arch_6
+    4300006: Arch_5
+    4300008: KeystoneWall
+    4300010: Ceiling_10
+    4300012: Ceiling_8
+    4300014: Ceiling_8
+    4300016: Ceiling_9
+    4300018: KeystoneWall1
+    4300020: Arch_7
+    4300022: Arch_6
+    4300024: Arch_5
+    6400000: Arch_5
+    6400002: Arch_5 1
+    6400004: Arch_6
+    6400006: Arch_6 1
+    6400008: Arch_7
+    6400010: Arch_7 1
+    6400012: Ceiling_10
+    6400014: Ceiling_8
+    6400016: Ceiling_8 1
+    6400018: Ceiling_9
+    6400020: KeyStoneCenter
+    6400022: KeystoneWall
+    6400024: KeystoneWall1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 50
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

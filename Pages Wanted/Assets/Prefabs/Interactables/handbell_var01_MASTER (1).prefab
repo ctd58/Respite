@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114403679396755534}
   - component: {fileID: 114799734133046324}
   m_Layer: 0
-  m_Name: handbell_var01
+  m_Name: handbell_var01_MASTER (1)
   m_TagString: MakesSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
