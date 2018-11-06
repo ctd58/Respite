@@ -10,8 +10,8 @@ public class Interact_Key : Interactables {
 	private int id;
 
 	// Setup Methods -------------------------------------------------
-	void Start () {
-		SetSprite(Interact_Icon_Type.PICKUP);
+	new void Start () {
+		base.Start();
 		id = this.gameObject.GetInstanceID();
 	}
 

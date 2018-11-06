@@ -4,57 +4,46 @@ using UnityEngine;
 
 [System.Serializable]
 public class Interact_MakeNoise {
-
-   
-
     // Public or Serialized Variables for Inspector -----------------
     #region Public Variables
     [SerializeField] [Range(0, 5)] protected float soundVolume;
-	[SerializeField] protected float soundLength;
-	[SerializeField] protected bool randomNoises = true;
+	public bool makeRandomNoises = true;
+	public float randomNoiseDelayTime = 60F;
 	#endregion
 
 	// Private Variables ---------------------------------------------
 	#region Private Variables
-	private AudioSource audioClip;
-	protected Sound soundScript;
+	private AudioSource audioSource;
+	private Sound soundScript = new Sound();
+	protected float soundLength;
     #endregion
     
-
     // Setup Methods -------------------------------------------------
     #region Setup Methods
-    /* protected void Start() {
-		SetSprite(Interact_Icon_Type.MAKENOISE);
-		audioClip = this.GetComponent<AudioSource>();
-		soundScript = this.GetComponent<Sound>();
-		if (soundLength.Equals(0)) {
-			soundLength = audioClip.clip.length;
-		}
-		if (randomNoises) MakeRandomNoise();
+    public void setSoundLength() {
+		soundLength = audioSource.clip.length;
+	}
+
+	public void setAudioClip(AudioSource newSource) {
+		audioSource = newSource;
 	}
 	#endregion
 
 	// Public Methods -------------------------------------------------
 	#region Public Methods
-	public override void onInteract(Character_Inventory inv) {
-		PlayAnimation();
-		StartCoroutine("MakeNoise");
-	} */
-	#endregion
+	// public float getSound() {
+    //     return sound;
+    // }
 
-	// Private Methods -------------------------------------------------
-	#region Private Methods
-	protected virtual void MakeRandomNoise() {}
-
-	protected virtual void PlayAnimation() {
-		//TODO: stuff here
+	public void setSound(float newSound) {
+		soundScript.sound = newSound;
 	}
 
-	protected IEnumerator MakeNoise() {
+	public IEnumerator MakeNoise() {
 		soundScript.sound = soundVolume;
-		audioClip.Play();
+		audioSource.Play();
 		yield return new WaitForSeconds(soundLength);
-		audioClip.Stop();
+		audioSource.Stop();
 		soundScript.sound = 0;
 	}
 	#endregion

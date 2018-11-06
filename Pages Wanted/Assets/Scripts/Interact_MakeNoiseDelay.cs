@@ -9,15 +9,18 @@ public class Interact_MakeNoiseDelay : Interactables {
 	[Range(0,5)]
 	public float delayNoiseVolume;
 	public int delayTime;
-	public float randomNoiseDelayTime = 60F;
 	#endregion
+
+	new void Start() {
+		base.Start();
+	}
 
 	// Public Methods -------------------------------------------------
 	#region Public Methods
 	public override void onInteract(Character_Inventory inv) {
-		//PlayAnimation();
+		PlayAnimation();
 		delayNoise.Play();
-		//soundScript.sound = delayNoiseVolume;
+		noise.setSound(delayNoiseVolume);
 		StartCoroutine("timer");
 	}
 	#endregion
@@ -27,16 +30,7 @@ public class Interact_MakeNoiseDelay : Interactables {
 	private IEnumerator timer() {
 		yield return new WaitForSeconds(delayTime);
 		delayNoise.Stop();
-		StartCoroutine("MakeNoise");
-	}
-
-	/* protected override void MakeRandomNoise() {
-		StartCoroutine("ChimeRegularly");
-	}*/
-
-	private IEnumerator ChimeRegularly() {
-		yield return new WaitForSeconds(randomNoiseDelayTime);
-		StartCoroutine("MakeNoise");
+		noise.MakeNoise();
 	}
 	#endregion
 }

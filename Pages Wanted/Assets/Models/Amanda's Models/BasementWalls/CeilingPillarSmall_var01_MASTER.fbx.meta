@@ -1,0 +1,161 @@
+fileFormatVersion: 2
+guid: c00097f8546cb4a6eb0d39ea726e00ef
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arch_1
+    100002: Arch_1 1
+    100004: Arch_2
+    100006: Arch_3
+    100008: Arch_4
+    100010: Ceiling_3
+    100012: Ceiling_5
+    100014: Ceiling_6
+    100016: Ceiling_7
+    100018: CeilingPiece
+    100020: //RootNode
+    100022: KeyStone
+    100024: KeyStone1
+    100026: Pillar
+    400000: Arch_1
+    400002: Arch_1 1
+    400004: Arch_2
+    400006: Arch_3
+    400008: Arch_4
+    400010: Ceiling_3
+    400012: Ceiling_5
+    400014: Ceiling_6
+    400016: Ceiling_7
+    400018: CeilingPiece
+    400020: //RootNode
+    400022: KeyStone
+    400024: KeyStone1
+    400026: Pillar
+    2100000: lambert1
+    2300000: Arch_1 1
+    2300002: Arch_2
+    2300004: Arch_3
+    2300006: Arch_4
+    2300008: Ceiling_3
+    2300010: Ceiling_5
+    2300012: Ceiling_6
+    2300014: Ceiling_7
+    2300016: KeyStone
+    2300018: KeyStone1
+    2300020: Pillar
+    3300000: Arch_1 1
+    3300002: Arch_2
+    3300004: Arch_3
+    3300006: Arch_4
+    3300008: Ceiling_3
+    3300010: Ceiling_5
+    3300012: Ceiling_6
+    3300014: Ceiling_7
+    3300016: KeyStone
+    3300018: KeyStone1
+    3300020: Pillar
+    4300000: Ceiling_3
+    4300002: Ceiling_5
+    4300004: Ceiling_6
+    4300006: Ceiling_7
+    4300008: Arch_4
+    4300010: Arch_3
+    4300012: Arch_2
+    4300014: KeyStone1
+    4300016: Arch_1
+    4300018: KeyStone
+    4300020: Pillar
+    6400000: Arch_1 1
+    6400002: Arch_2
+    6400004: Arch_3
+    6400006: Arch_4
+    6400008: Ceiling_3
+    6400010: Ceiling_5
+    6400012: Ceiling_6
+    6400014: Ceiling_7
+    6400016: KeyStone
+    6400018: KeyStone1
+    6400020: Pillar
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 50
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

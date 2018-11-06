@@ -14,8 +14,8 @@ public class Interact_Switch : Interactables {
 	bool isActivated = false;
 	#endregion
 
-	void Start() {
-		SetSprite(Interact_Icon_Type.PICKUP);
+	new void Start() {
+		base.Start();
 	}
 
 	public override void onInteract(Character_Inventory inv) {
