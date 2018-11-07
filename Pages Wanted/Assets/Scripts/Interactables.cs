@@ -30,7 +30,11 @@ public class Interactables : MonoBehaviour {
 
     // Public Methods ------------------------------------------------
     #region Public Methods
-    public virtual void onInteract(Character_Inventory inv) {}
+    //onInteract version, can be overloaded
+    public virtual void onInteract(Character_Inventory inv) {
+        PlayAnimation();
+        if (makesNoise) StartCoroutine(noise.MakeNoise());
+    }
 
 	public Sprite GetSprite() {
 		return spriteIcon;
@@ -39,11 +43,6 @@ public class Interactables : MonoBehaviour {
 	public void SetSprite(Interact_Icon_Type type) {
 		spriteIcon = Interact_Icon.GetSprite(type);
 	}
-    //onInteract version, can be overloaded
-    public void onInteract(){
-        PlayAnimation();
-        if (makesNoise) StartCoroutine(noise.MakeNoise());
-    }
 	#endregion
 
 	// Private Methods -------------------------------------------------

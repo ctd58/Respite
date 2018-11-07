@@ -3796,6 +3796,6 @@ MonoBehaviour:
   makesNoise: 1
   noise:
     soundVolume: 2
-    makeRandomNoises: 1
+    makeRandomNoises: 0
     randomNoiseDelayTime: 60
   keysNeeded: 

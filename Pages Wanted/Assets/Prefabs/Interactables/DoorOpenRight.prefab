@@ -3781,10 +3781,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e9d0cf1d5344a29a60eff4fc05692d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  makesNoise: 0
+  makesNoise: 1
   noise:
-    soundVolume: 0
-    makeRandomNoises: 1
+    soundVolume: 2
+    makeRandomNoises: 0
     randomNoiseDelayTime: 60
   keysNeeded: 
 --- !u!114 &114818355608916610
