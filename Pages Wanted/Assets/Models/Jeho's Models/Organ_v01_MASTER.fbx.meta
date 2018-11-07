@@ -34,7 +34,12 @@ ModelImporter:
     4300006: Organ_Keys
     4300008: Organ_Body
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 356dba226f455ad4080fbc3ef8ed0f58, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

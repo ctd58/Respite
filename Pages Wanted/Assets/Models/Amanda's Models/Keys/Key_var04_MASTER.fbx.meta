@@ -21,7 +21,12 @@ ModelImporter:
     4300000: Key_Body5
     4300002: Ring1
     4300004: Gem4
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: c14e15946a94fc34aa4443e803029153, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -16,7 +16,12 @@ ModelImporter:
     3300002: Chair_Cushion
     4300000: Chair_Body
     4300002: Chair_Cushion
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 2d9ad22c7d4eef241bea8ebd4f511b12, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

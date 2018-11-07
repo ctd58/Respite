@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e7eeb51015a946d387fb2198d1ed479
+guid: 213133ecb558ba94594b722de5312259
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -37,7 +37,12 @@ ModelImporter:
     4300008: LockHead1
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 69aeecd06ca122a4d9e5fc04f6b0e54b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

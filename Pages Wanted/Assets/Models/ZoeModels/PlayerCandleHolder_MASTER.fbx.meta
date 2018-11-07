@@ -10,13 +10,24 @@ ModelImporter:
     400002: CandleHolder
     400004: //RootNode
     2100000: lambert1
+    2100002: lambert2
     2300000: Candle
     2300002: CandleHolder
     3300000: Candle
     3300002: CandleHolder
     4300000: CandleHolder
     4300002: Candle
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 14e27e2e6c948954bba34ac5f5e25861, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 14e27e2e6c948954bba34ac5f5e25861, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
