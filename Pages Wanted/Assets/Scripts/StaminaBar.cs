@@ -11,6 +11,9 @@ public class StaminaBar : MonoBehaviour {
     //Gets the Green part of the stamina bar and the text on it. 
     public Image staminaBar;
     public Text ratioStamina;
+    //get other stamina bar
+    [SerializeField]
+    public GameObject otherStamBar; 
 
     //Get the player, also will need to get if player is allowed to move or not (need to check character controller for that). 
     public bool player1;
@@ -18,7 +21,7 @@ public class StaminaBar : MonoBehaviour {
     private Vector3 currPosition;
 
     //Get the value of the other player's stamina
-    public Text staminaOtherPlayer; 
+    //public Text staminaOtherPlayer; 
 
     //Controls how many frames that needs to pass before the function should check if the player has moved (for LoseStamina())
     public int frameCheck = 5;

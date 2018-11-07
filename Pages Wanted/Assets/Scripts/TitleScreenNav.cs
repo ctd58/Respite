@@ -12,6 +12,7 @@ public class TitleScreenNav : MonoBehaviour {
     public GameObject titleScreen;
     public GameObject titleScreenBG; 
     public string gameScene;
+    public GameObject staminaToggle; 
 
     [SerializeField]
     public Slider monsterSense;
@@ -26,9 +27,11 @@ public class TitleScreenNav : MonoBehaviour {
     {
         Button btn1 = playButton.GetComponent<Button>();
         Button btn2 = quitButton.GetComponent<Button>();
+        Toggle tgl1 = staminaToggle.GetComponent<Toggle>(); 
 
         btn1.onClick.AddListener(StartGame);
         btn2.onClick.AddListener(ExitScene);
+        tgl1.onValueChanged.AddListener(StaminaToggle); 
 
         playerSpeed.value = PlayerPrefs.GetFloat("playerspeed"); 
         monsterBaseSpeed.value = PlayerPrefs.GetFloat("monsterbasespeed");
@@ -52,6 +55,23 @@ public class TitleScreenNav : MonoBehaviour {
         PlayerPrefs.SetFloat("monsterspeed", monsterBaseSpeed.value);
         PlayerPrefs.SetFloat("monstersense", monsterSense.value);
         PlayerPrefs.SetFloat("staminaMeter", staminaMeter.value); 
+    }
+
+    public void StaminaToggle(bool isClicked) {
+       GameObject P1 = GameObject.FindGameObjectWithTag("P1Stamina");
+       GameObject P2 = GameObject.FindGameObjectWithTag("P2Stamina");
+       if (isClicked == true) {
+            P1.SetActive(true);
+            P2.SetActive(true);
+            P1.GetComponent<StaminaBar>().enabled = true;
+            P2.GetComponent<StaminaBar>().enabled = true;
+        }
+        else {
+            P1.SetActive(false);
+            P2.SetActive(false); 
+            P1.GetComponent<StaminaBar>().enabled = false;
+            P2.GetComponent<StaminaBar>().enabled = false;
+        }
     }
 
 

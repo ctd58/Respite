@@ -12658,6 +12658,14 @@ Prefab:
       propertyPath: staminaOtherPlayer
       value: 
       objectReference: {fileID: 254393995}
+    - target: {fileID: 1551568363801162, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
+      propertyPath: m_TagString
+      value: P2Stamina
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854109964015904, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
+      propertyPath: m_TagString
+      value: P1Stamina
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
   m_IsPrefabAsset: 0
@@ -14734,7 +14742,7 @@ Transform:
   m_LocalScale: {x: 15.2230015, y: 74.498, z: 419.9338}
   m_Children: []
   m_Father: {fileID: 699118063}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -93.22, z: 0}
 --- !u!65 &638355076
 BoxCollider:
@@ -16998,13 +17006,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1388756369}
+  - {fileID: 638355075}
   - {fileID: 1088028783}
   - {fileID: 363681431}
   - {fileID: 537118144}
   - {fileID: 1352347677}
   - {fileID: 1750580908}
   - {fileID: 1077847206}
-  - {fileID: 638355075}
   - {fileID: 2069793242}
   - {fileID: 1774856139}
   - {fileID: 681980563}

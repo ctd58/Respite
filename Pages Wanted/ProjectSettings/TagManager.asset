@@ -10,6 +10,8 @@ TagManager:
   - DemonSpawn
   - MakesSound
   - EndGame
+  - P2Stamina
+  - P1Stamina
   layers:
   - Default
   - TransparentFX
