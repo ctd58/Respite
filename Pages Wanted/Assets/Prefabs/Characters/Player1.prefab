@@ -1250,7 +1250,7 @@ Transform:
   m_GameObject: {fileID: 1828371033677780}
   m_LocalRotation: {x: -0, y: -0.6062277, z: -0, w: 0.7952912}
   m_LocalPosition: {x: 1793, y: -596.4, z: -4360}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4986231858327604}
   - {fileID: 4015370489472358}
@@ -2671,8 +2671,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.00012207031, y: -16.561188, z: -0.42956543}
-    m_Extent: {x: 39.825665, y: 33.731964, z: 24.885601}
+    m_Center: {x: 0.00048828125, y: -16.561218, z: -0.42944336}
+    m_Extent: {x: 39.825886, y: 33.731995, z: 24.885605}
   m_DirtyAABB: 0
 --- !u!137 &137105766029096320
 SkinnedMeshRenderer:
@@ -2718,8 +2718,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.1817627, y: 55.35077, z: 1.114502}
-    m_Extent: {x: 79.02298, y: 78.3266, z: 55.854664}
+    m_Center: {x: -0.18164062, y: 55.35077, z: 1.1147461}
+    m_Extent: {x: 79.02322, y: 78.3266, z: 55.85473}
   m_DirtyAABB: 0
 --- !u!143 &143000983115988266
 CharacterController:
@@ -5438,7 +5438,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5930,7 +5930,7 @@ ParticleSystem:
     serializedVersion: 5
     enabled: 1
     type: 4
-    angle: 4
+    angle: 2
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5960,7 +5960,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.2
+      value: 0.1
       mode: 0
       spread: 0
       speed:
