@@ -24,7 +24,7 @@ public class Character_Inventory : MonoBehaviour {
 		playerKeys = new List<Key_Obj>();
 		if(this.tag == "P1") isP1 = true;
         else isP1 = false;
-		interactButton = isP1 ? "P1ax button" : "P2xs button";
+		interactButton = isP1 ? "P1ax button" : "P2ax button";
 		normal = Interact_Icon.GetSprite(Interact_Icon_Type.NORMAL);
 		// TODO: add logic to get camera automatically rather than needing it to be a public var
 	}
