@@ -23,6 +23,7 @@ public class ControllerMovement : MonoBehaviour {
     private Sound sound;
     private Vector3 mov;
     private bool grounded;
+    private Camera pCamera;
     #endregion
 
 
@@ -64,6 +65,7 @@ public class ControllerMovement : MonoBehaviour {
         
         //Gets the thump audio source on the player
         //TODO: make private and get via thumpNoise = this.GetComponent<AudioSource>();
+        pCamera = GameObject.Find(playerNum + "Camera").GetComponent<Camera>();
     }
 	
 	// Update is called once per frame
@@ -154,7 +156,7 @@ public class ControllerMovement : MonoBehaviour {
         //Moves the player in the direction they are facing (Direction camera is looking)
         _mycontroller.Move(transform.TransformDirection(mov));
 
-        Vector3 rotateangl = transform.rotation.eulerAngles;
+        Vector3 rotateangl = pCamera.gameObject.transform.rotation.eulerAngles;
         float xAxisclamp = 0.0f;
         float rotamnty = Input.GetAxis(playerNum + "Mouse Y");
         rotateangl.z = 0;
@@ -172,15 +174,11 @@ public class ControllerMovement : MonoBehaviour {
         else {
             rotateangl.x -= rotamnty;
         }
-        transform.rotation = Quaternion.Euler(rotateangl);
+        pCamera.gameObject.transform.rotation = Quaternion.Euler(rotateangl);
 
 
         //Rotates the object in the x direction when the look button is used
         transform.Rotate(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0);
-        
-
-      
-
     }
 
     private void OnCollisionEnter(Collision collision) {
