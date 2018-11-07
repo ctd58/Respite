@@ -135,7 +135,7 @@ public class ControllerMovement : MonoBehaviour {
         float z = Input.GetAxis(playerNum + "Vertical");
 
         //Change to scale if needed. 
-        float gravity = 9.8f; 
+        float gravity = 98f; 
         float y = gravity * Time.deltaTime; 
 
         
@@ -150,13 +150,32 @@ public class ControllerMovement : MonoBehaviour {
         //Moves the player in the direction they are facing (Direction camera is looking)
         _mycontroller.Move(transform.TransformDirection(mov));
 
+        Vector3 rotateangl = transform.rotation.eulerAngles;
+        float xAxisclamp = 0.0f;
+        float rotamnty = Input.GetAxis(playerNum + "Mouse Y");
+        rotateangl.z = 0;
+
+        xAxisclamp -= rotamnty;
+
+        if (xAxisclamp > 90) {
+            xAxisclamp = 90;
+            rotateangl.x = 90;
+        }
+        else if (xAxisclamp < -90) {
+            xAxisclamp = -90;
+            rotateangl.x = 270;
+        }
+        else {
+            rotateangl.x -= rotamnty;
+        }
+        transform.rotation = Quaternion.Euler(rotateangl);
+
+
         //Rotates the object in the x direction when the look button is used
-        transform.Rotate(new Vector3(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0));
-       
-        /*if (x == 0.0f && z == 0.0f)
-            sound.sound = 0;
-        else
-            sound.sound = 1;*/
+        transform.Rotate(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0);
+        
+
+      
 
     }
 
