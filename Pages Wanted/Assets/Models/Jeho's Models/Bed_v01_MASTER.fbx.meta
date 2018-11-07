@@ -21,7 +21,12 @@ ModelImporter:
     4300000: Bed_Pillow
     4300002: Bed_Mattress
     4300004: Bed_Body
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: f6f3a6ad0327f494185aa20ca277efa1, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -60,7 +65,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
