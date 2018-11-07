@@ -22,6 +22,7 @@ public class Interactables : MonoBehaviour {
             SetSprite(Interact_Icon_Type.MAKENOISE);
             noise.setAudioClip(GetComponent<AudioSource>());
             noise.setSoundLength();
+            noise.setSoundScript(GetComponent<Sound>());
             if (noise.makeRandomNoises) StartCoroutine(MakeRandomNoise());
 
         }

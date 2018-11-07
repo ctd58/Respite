@@ -14,7 +14,7 @@ public class Interact_MakeNoise {
 	// Private Variables ---------------------------------------------
 	#region Private Variables
 	private AudioSource audioSource;
-	private Sound soundScript = new Sound();
+	private Sound soundScript;
 	protected float soundLength;
     #endregion
     
@@ -26,6 +26,10 @@ public class Interact_MakeNoise {
 
 	public void setAudioClip(AudioSource newSource) {
 		audioSource = newSource;
+	}
+
+	public void setSoundScript(Sound newSoundScript) {
+		soundScript = newSoundScript;
 	}
 	#endregion
 

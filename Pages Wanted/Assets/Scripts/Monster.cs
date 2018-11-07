@@ -20,8 +20,7 @@ public class Monster : MonoBehaviour {
     public GameObject health2;
     public GameObject health3;
     public GameObject health4;
-    public GameObject gameoverScreen;
-    
+    public GameObject gameoverScreen;    
     // Private Variables ----------------------------------------------
     private Transform currentWaypoint;
     private int i = 0;
@@ -78,7 +77,8 @@ public class Monster : MonoBehaviour {
     }
 
     void Update () {
-        Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        //Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        Debug.Log(_currentState);
         switch (_currentState) {
 		case STATE.WANDER:
 			UpdateWander ();
@@ -128,9 +128,6 @@ public class Monster : MonoBehaviour {
             currentWaypoint = wayPoints[i]; 
         }
         if (DetectPlayer()) { EnterStateAttack(); }
-        if (target != null) {
-            EnterStateInspect(target); 
-        }
 	}
 
     //Determines what object is making the loudest noise and goes to it
@@ -138,24 +135,25 @@ public class Monster : MonoBehaviour {
         while(true) {
             yield return new WaitForSeconds(1f);
             Debug.Log("checking sound");
-            float temp = 0.0f;
-            float loudest = 0.0f;
-            foreach (GameObject noise in soundObjects) {
-                float sound = noise.GetComponent<Sound>().sound;
-                temp = (sound > 0) ? GetSoundWithFallOff(noise) : 0f;
-                Debug.Log("Object: " + noise.name + 
-                        ", Original Sound: " + noise.GetComponent<Sound>().sound + 
-                        ", Sound with Falloff: " + temp);
-                if (temp > loudest) {
-                    loudest = temp;
-                    target = noise.transform;
+            if (_currentState != STATE.STUNNED) {
+                float temp = 0.0f;
+                float loudest = 0.0f;
+                foreach (GameObject noise in soundObjects) {
+                    float sound = noise.GetComponent<Sound>().sound;
+                    temp = (sound > 0) ? GetSoundWithFallOff(noise) : 0f;
+                    if (temp > loudest) {
+                        loudest = temp;
+                        target = noise.transform;
+                        EnterStateInspect();
+                    }
                 }
-            }
-            foreach(GameObject noise in players) {
-                temp = GetSoundWithFallOff(noise);
-                if (temp > loudest) {
-                    loudest = temp;
-                    target = noise.transform;
+                foreach(GameObject noise in players) {
+                    temp = GetSoundWithFallOff(noise);
+                    if (temp > loudest) {
+                        loudest = temp;
+                        target = noise.transform;
+                        EnterStateInspect();
+                    }
                 }
             }
         }
@@ -199,25 +197,27 @@ public class Monster : MonoBehaviour {
     }
 
 
-    private void EnterStateInspect(Transform target) {
+    private void EnterStateInspect() {
 		_currentState = STATE.INSPECT;
 	}
 
 	private void UpdateInspect() {
+        Debug.Log(target.name);
         //Increases speed if it has been chasing for a multiple of 2.5 seconds
-        chaseTime += Time.deltaTime;
-        if (chaseTime / 2.5f > 1.0f) {
-            chaseTime -= 2.5f;
-            currentMovSpeed += 7.5f;
-            if(currentMovSpeed> 800f) {
-                currentMovSpeed = 800f;
-            }
-        }
+        // chaseTime += Time.deltaTime;
+        // if (chaseTime / 2.5f > 1.0f) {
+        //     chaseTime -= 2.5f;
+        //     currentMovSpeed += 7.5f;
+        //     if(currentMovSpeed> 800f) {
+        //         currentMovSpeed = 800f;
+        //     }
+        // }
         FollowSound();
+        Vector3 targetV = target.position; 
+        navMeshAgent.SetDestination(targetV);
         //Check if it is on top of the targets position
         if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance) {
-            //Debug.Log("HERE");
-            target = null;
+            Debug.Log("HERE");
             EnterStateWander();
         }
         if (DetectPlayer()) { EnterStateAttack(); }
@@ -227,7 +227,7 @@ public class Monster : MonoBehaviour {
     void FollowSound() {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
         //TODO: Make this use navmesh
-        transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
+        //transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
     }
 
     // ATTACK STATE ---------------------------------------------------------------------
@@ -263,11 +263,9 @@ public class Monster : MonoBehaviour {
 
     IEnumerator stun()
     {
-        Debug.Log(Time.time);
         yield return new WaitForSecondsRealtime(stunDelay);
         _currentState = STATE.WANDER;
         currentMovSpeed = baseMoveSpeed;
-        Debug.Log(Time.time);
     }
 
     // If they catch the player ---------------------------------------------------------------------
