@@ -22,6 +22,7 @@ public class ControllerMovement : MonoBehaviour {
     private CharacterController _mycontroller;
     private Sound sound;
     private Vector3 mov;
+    private bool grounded;
     #endregion
 
 
@@ -136,9 +137,12 @@ public class ControllerMovement : MonoBehaviour {
 
         //Change to scale if needed. 
         float gravity = 98f; 
-        float y = gravity * Time.deltaTime; 
+        float y = gravity * Time.deltaTime;
 
-        
+        if (grounded == true) {
+            //grounded
+            y = 0;
+        }
         
         //Makes a vector based on speed and z and x inputs
         mov = new Vector3(x * speed * Time.deltaTime, -y, z * speed * Time.deltaTime);
@@ -177,6 +181,10 @@ public class ControllerMovement : MonoBehaviour {
 
       
 
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        grounded = true; 
     }
 
     //If playerpref comes back as false. 
