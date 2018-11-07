@@ -134,8 +134,14 @@ public class ControllerMovement : MonoBehaviour {
         float x = Input.GetAxis(playerNum + "Horizontal");
         float z = Input.GetAxis(playerNum + "Vertical");
 
+        //Change to scale if needed. 
+        float gravity = 9.8f; 
+        float y = gravity * Time.deltaTime; 
+
+        
+        
         //Makes a vector based on speed and z and x inputs
-        mov = new Vector3(x * speed * Time.deltaTime, 0, z * speed * Time.deltaTime);
+        mov = new Vector3(x * speed * Time.deltaTime, -y, z * speed * Time.deltaTime);
 
         PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
         PlayerPrefs.SetFloat("PlayerMoveY", mov.y);

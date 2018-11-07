@@ -36,16 +36,22 @@ public class StaminaBar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (player1) player = GameObject.FindGameObjectWithTag("P1");
-        else player = GameObject.FindGameObjectWithTag("P2");
-        //Gets position of player for Vector3 calculations for movement. 
-        float x = PlayerPrefs.GetFloat("PlayerMoveX");
-        float y = PlayerPrefs.GetFloat("PlayerMoveY");
-        float z = PlayerPrefs.GetFloat("PlayerMoveZ");
-        maxStamina = (int)PlayerPrefs.GetFloat("staminaMeter");
-        currStamina = maxStamina; 
-        basePosition = new Vector3(x, y, z);
-        currPosition = basePosition; 
+        Debug.Log(PlayerPrefs.GetString("staminaToggle")); 
+        if (PlayerPrefs.GetString("staminaToggle") == "false") {
+            this.gameObject.SetActive(false); 
+        }
+        else {
+            if (player1) player = GameObject.FindGameObjectWithTag("P1");
+            else player = GameObject.FindGameObjectWithTag("P2");
+            //Gets position of player for Vector3 calculations for movement. 
+            float x = PlayerPrefs.GetFloat("PlayerMoveX");
+            float y = PlayerPrefs.GetFloat("PlayerMoveY");
+            float z = PlayerPrefs.GetFloat("PlayerMoveZ");
+            maxStamina = (int)PlayerPrefs.GetFloat("staminaMeter");
+            currStamina = maxStamina;
+            basePosition = new Vector3(x, y, z);
+            currPosition = basePosition;
+        }
 	}
 	
     //Function wrapper to controller if stamina needs to be drained or regenerated

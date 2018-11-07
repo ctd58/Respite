@@ -38,6 +38,7 @@ public class TitleScreenNav : MonoBehaviour {
         monsterSense.value = PlayerPrefs.GetFloat("monstersense");
         staminaMeter.value = PlayerPrefs.GetFloat("staminaMeter"); 
 
+
         if (titleScreen.activeSelf != true)
         {
             titleScreen.SetActive(true); 
@@ -58,6 +59,13 @@ public class TitleScreenNav : MonoBehaviour {
     }
 
     public void StaminaToggle(bool isClicked) {
+        if (isClicked == true) {
+            PlayerPrefs.SetString("staminaToggle", "true");
+        }
+        else {
+            PlayerPrefs.SetString("staminaToggle", "false");
+        }
+        /*
        GameObject P1 = GameObject.FindGameObjectWithTag("P1Stamina");
        GameObject P2 = GameObject.FindGameObjectWithTag("P2Stamina");
        if (isClicked == true) {
@@ -72,6 +80,7 @@ public class TitleScreenNav : MonoBehaviour {
             P1.GetComponent<StaminaBar>().enabled = false;
             P2.GetComponent<StaminaBar>().enabled = false;
         }
+        */
     }
 
 
