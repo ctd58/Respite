@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour {
 
-    
+    //Refactor Incoming
+
+
     //Gets the Green part of the stamina bar and the text on it. 
     public Image staminaBar;
     public Text ratioStamina;
+    //get other stamina bar
+    [SerializeField]
+    public GameObject otherStamBar; 
 
     //Get the player, also will need to get if player is allowed to move or not (need to check character controller for that). 
     public bool player1;
@@ -16,7 +21,7 @@ public class StaminaBar : MonoBehaviour {
     private Vector3 currPosition;
 
     //Get the value of the other player's stamina
-    public Text staminaOtherPlayer; 
+    //public Text staminaOtherPlayer; 
 
     //Controls how many frames that needs to pass before the function should check if the player has moved (for LoseStamina())
     public int frameCheck = 5;
@@ -31,15 +36,22 @@ public class StaminaBar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (player1) player = GameObject.FindGameObjectWithTag("P1");
-        else player = GameObject.FindGameObjectWithTag("P2");
-        float x = PlayerPrefs.GetFloat("PlayerMoveX");
-        float y = PlayerPrefs.GetFloat("PlayerMoveY");
-        float z = PlayerPrefs.GetFloat("PlayerMoveZ");
-        maxStamina = (int)PlayerPrefs.GetFloat("staminaMeter");
-        currStamina = maxStamina; 
-        basePosition = new Vector3(x, y, z);
-        currPosition = basePosition; 
+        Debug.Log(PlayerPrefs.GetString("staminaToggle")); 
+        if (PlayerPrefs.GetString("staminaToggle") == "false") {
+            this.gameObject.SetActive(false); 
+        }
+        else {
+            if (player1) player = GameObject.FindGameObjectWithTag("P1");
+            else player = GameObject.FindGameObjectWithTag("P2");
+            //Gets position of player for Vector3 calculations for movement. 
+            float x = PlayerPrefs.GetFloat("PlayerMoveX");
+            float y = PlayerPrefs.GetFloat("PlayerMoveY");
+            float z = PlayerPrefs.GetFloat("PlayerMoveZ");
+            maxStamina = (int)PlayerPrefs.GetFloat("staminaMeter");
+            currStamina = maxStamina;
+            basePosition = new Vector3(x, y, z);
+            currPosition = basePosition;
+        }
 	}
 	
     //Function wrapper to controller if stamina needs to be drained or regenerated
@@ -122,6 +134,7 @@ public class StaminaBar : MonoBehaviour {
     /// of one person's bar at all times. However, because it was the majority rule, the new RegenStamina will do as they wish, 
     /// and the old one should be commented out. Should there be a need to revert, I will leave the old function, untouched, but commented out.
     /// </summary>
+
     /*
     private void RegenStamina()
     {
@@ -134,7 +147,7 @@ public class StaminaBar : MonoBehaviour {
         //If nonmoving player's stamina is less than max stamina - moving player's stamina 
         if ((maxStamina - truevalue) > currStamina)//Replace
         {
-            currStamina = maxStamina - truevalue; //moving player's stamina. 
+            currStamina += maxStamina - truevalue; //moving player's stamina. 
         }
         else
         {
@@ -149,17 +162,19 @@ public class StaminaBar : MonoBehaviour {
         }
     }
     */
+
     
     private void RegenStamina()
     {
-        /*
-         * Two if checks, 1 if both player's health are not equal to max stamina, increase health by that much. 
-         * Else, use regular regen rate. 
-        */
+        ///Two if checks, 1 if both player's health are not equal to max stamina, increase health by that much. 
+        ///Else, use regular regen rate. 
+        ///
         //for everytime regenstamina is called, player regens based on regen variable.
         
         //if (currStamina + otherVar >= maxstamina)
         //else currStamina += maxstamina - otherVar
+
+        
 
         currStamina += regenRate; 
         if (currStamina > maxStamina)
@@ -175,14 +190,12 @@ public class StaminaBar : MonoBehaviour {
         float y = PlayerPrefs.GetFloat("PlayerMoveY");
         float z = PlayerPrefs.GetFloat("PlayerMoveZ");
         currPosition = new Vector3(x, y, z); 
-        if (counter == frameCheck)
-        {
+        if (counter == frameCheck){
             counter = 0;
             UpdateStaminaBar();
             basePosition = currPosition; 
         }
-        else
-        {
+        else{
             counter++;
         }
    	}

@@ -12658,14 +12658,6 @@ Prefab:
       propertyPath: staminaOtherPlayer
       value: 
       objectReference: {fileID: 254393995}
-    - target: {fileID: 1551568363801162, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
-      propertyPath: m_TagString
-      value: P2Stamina
-      objectReference: {fileID: 0}
-    - target: {fileID: 1854109964015904, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
-      propertyPath: m_TagString
-      value: P1Stamina
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
   m_IsPrefabAsset: 0

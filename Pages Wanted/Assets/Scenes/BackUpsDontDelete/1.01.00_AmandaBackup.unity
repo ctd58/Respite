@@ -8487,7 +8487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &366456232
 Light:
   m_ObjectHideFlags: 0
@@ -12658,14 +12658,6 @@ Prefab:
       propertyPath: staminaOtherPlayer
       value: 
       objectReference: {fileID: 254393995}
-    - target: {fileID: 1551568363801162, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
-      propertyPath: m_TagString
-      value: P2Stamina
-      objectReference: {fileID: 0}
-    - target: {fileID: 1854109964015904, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
-      propertyPath: m_TagString
-      value: P1Stamina
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
   m_IsPrefabAsset: 0
@@ -14742,7 +14734,7 @@ Transform:
   m_LocalScale: {x: 15.2230015, y: 74.498, z: 419.9338}
   m_Children: []
   m_Father: {fileID: 699118063}
-  m_RootOrder: 1
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: -93.22, z: 0}
 --- !u!65 &638355076
 BoxCollider:
@@ -17006,7 +16998,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1388756369}
-  - {fileID: 638355075}
   - {fileID: 1088028783}
   - {fileID: 363681431}
   - {fileID: 537118144}
@@ -17015,10 +17006,11 @@ Transform:
   - {fileID: 1077847206}
   - {fileID: 2069793242}
   - {fileID: 1774856139}
-  - {fileID: 681980563}
   - {fileID: 1626886011}
-  - {fileID: 1408884398}
+  - {fileID: 681980563}
   - {fileID: 1600078723}
+  - {fileID: 1408884398}
+  - {fileID: 638355075}
   - {fileID: 388877613}
   - {fileID: 289809971}
   - {fileID: 1710360161}
@@ -39299,7 +39291,7 @@ Transform:
   - {fileID: 1389940049}
   - {fileID: 1575722661}
   m_Father: {fileID: 1866699119}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1554311358
 Prefab:
@@ -46171,8 +46163,8 @@ Transform:
   - {fileID: 552817114}
   - {fileID: 469264374}
   - {fileID: 2053988535}
-  - {fileID: 1554101132}
   - {fileID: 1472564875}
+  - {fileID: 1554101132}
   - {fileID: 2056242253}
   m_Father: {fileID: 1244961458}
   m_RootOrder: 0
