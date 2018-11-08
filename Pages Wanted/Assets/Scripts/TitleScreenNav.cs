@@ -27,7 +27,10 @@ public class TitleScreenNav : MonoBehaviour {
     {
         Button btn1 = playButton.GetComponent<Button>();
         Button btn2 = quitButton.GetComponent<Button>();
-        Toggle tgl1 = staminaToggle.GetComponent<Toggle>(); 
+        Toggle tgl1 = staminaToggle.GetComponent<Toggle>();
+
+        tgl1.isOn = false;
+        PlayerPrefs.SetString("staminaToggle", "false");
 
         btn1.onClick.AddListener(StartGame);
         btn2.onClick.AddListener(ExitScene);
