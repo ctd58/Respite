@@ -7,6 +7,7 @@ public class Switch_Target : MonoBehaviour {
 	#region Public Variables
 	public bool activateOnTrigger;
 	public bool animateOnTrigger;
+    public MeshRenderer mesh;
 	#endregion
 	
 	// Private Variables ---------------------------------------------
@@ -20,7 +21,12 @@ public class Switch_Target : MonoBehaviour {
 
 	public void onSwitchActivate () {
 		if (animateOnTrigger) animator.SetTrigger("open");
-		if (activateOnTrigger) this.gameObject.SetActive(true);
+        if (activateOnTrigger)
+        {
+            this.gameObject.SetActive(true);
+            mesh.enabled = true;
+        }
+
 	}
 
 	public void onSwitchDeactivate() {
