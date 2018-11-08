@@ -5,8 +5,8 @@ using UnityEngine;
 public class Switch_Target : MonoBehaviour {
 	// Public or Serialized Variables for Inspector -----------------
 	#region Public Variables
-	bool activateOnTrigger;
-	bool animateOnTrigger;
+	public bool activateOnTrigger;
+	public bool animateOnTrigger;
 	#endregion
 	
 	// Private Variables ---------------------------------------------
