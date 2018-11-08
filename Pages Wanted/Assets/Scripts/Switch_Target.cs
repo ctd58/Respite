@@ -5,13 +5,14 @@ using UnityEngine;
 public class Switch_Target : MonoBehaviour {
 	// Public or Serialized Variables for Inspector -----------------
 	#region Public Variables
-	bool activateOnTrigger;
-	bool animateOnTrigger;
-	#endregion
-	
-	// Private Variables ---------------------------------------------
-	#region Private Variables
-	private Animator animator;
+	public bool activateOnTrigger;
+	public bool animateOnTrigger;
+    public GameObject mesh;
+    #endregion
+
+    // Private Variables ---------------------------------------------
+    #region Private Variables
+    private Animator animator;
 	#endregion
 
 	void Start() {
@@ -20,11 +21,14 @@ public class Switch_Target : MonoBehaviour {
 
 	public void onSwitchActivate () {
 		if (animateOnTrigger) animator.SetTrigger("open");
-		if (activateOnTrigger) this.gameObject.SetActive(true);
+        if (activateOnTrigger) {
+            this.gameObject.SetActive(true);
+            mesh.SetActive(true);
+        }
 	}
 
 	public void onSwitchDeactivate() {
 		if (animateOnTrigger) animator.SetTrigger("close");
-		if (activateOnTrigger) this.gameObject.SetActive(false);	
+		if (activateOnTrigger)  this.gameObject.SetActive(false);	
 	}
 }
