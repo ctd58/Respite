@@ -15262,72 +15262,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4807d410805e64613983b0a42add79ad,
     type: 3}
   m_PrefabInternal: {fileID: 638417991}
---- !u!1 &638419688
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 638419690}
-  - component: {fileID: 638419689}
-  m_Layer: 0
-  m_Name: Area Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &638419689
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 638419688}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 3
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 2
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &638419690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 638419688}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2282.5935, y: -376.36, z: 309.4226}
-  m_LocalScale: {x: 222.86943, y: 222.86943, z: 222.86943}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &641880530
 Prefab:
   m_ObjectHideFlags: 0
@@ -16045,7 +15979,7 @@ GameObject:
   - component: {fileID: 664574382}
   - component: {fileID: 664574381}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: LeverTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19541,6 +19475,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4807d410805e64613983b0a42add79ad,
     type: 3}
   m_PrefabInternal: {fileID: 773341596}
+--- !u!1 &777221651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1924733323972332, guid: a77a9d64439ad47968224b1c63d02956,
+    type: 2}
+  m_PrefabInternal: {fileID: 1516556975}
 --- !u!4 &777221652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4852077836796256, guid: a77a9d64439ad47968224b1c63d02956,
@@ -31248,6 +31187,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a60511ab0fc40cc4cbbf1875f5eecd18,
     type: 3}
   m_PrefabInternal: {fileID: 1200783101}
+--- !u!4 &1202168792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4679694951900116, guid: 3014aac6d5eb6094aab1b1eb81492010,
+    type: 2}
+  m_PrefabInternal: {fileID: 1586199251}
 --- !u!1001 &1204157915
 Prefab:
   m_ObjectHideFlags: 0
@@ -37560,6 +37504,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8d5bf121b00057345955187f783bbc75,
     type: 3}
   m_PrefabInternal: {fileID: 1437380152}
+--- !u!1 &1439312730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1064850073771238, guid: 3014aac6d5eb6094aab1b1eb81492010,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439312731}
+  - component: {fileID: 1439312732}
+  m_Layer: 0
+  m_Name: Point Light (27)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439312731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4522767625601256, guid: 3014aac6d5eb6094aab1b1eb81492010,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439312730}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4106, y: 2308, z: 592}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1202168792}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1439312732
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 108874440216018476, guid: 3014aac6d5eb6094aab1b1eb81492010,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439312730}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0.754717, g: 0.50469303, b: 0, a: 1}
+  m_Intensity: 5
+  m_Range: 600
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1001 &1439568848
 Prefab:
   m_ObjectHideFlags: 0
@@ -40250,7 +40263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1924733323972332, guid: a77a9d64439ad47968224b1c63d02956, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a77a9d64439ad47968224b1c63d02956, type: 2}
@@ -40273,6 +40286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateOnTrigger: 1
   animateOnTrigger: 0
+  mesh: {fileID: 777221651}
 --- !u!1001 &1516573428
 Prefab:
   m_ObjectHideFlags: 0
@@ -41353,7 +41367,7 @@ GameObject:
   - component: {fileID: 1560019720}
   - component: {fileID: 1560019719}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42114,7 +42128,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 0.71341795, b: 0, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 5.76
   m_Range: 1361
   m_SpotAngle: 105.8
   m_CookieSize: 10
@@ -55294,7 +55308,7 @@ GameObject:
   - component: {fileID: 2098402677}
   - component: {fileID: 2098402676}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: LeverPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
