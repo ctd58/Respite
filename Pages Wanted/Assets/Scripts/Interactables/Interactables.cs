@@ -37,7 +37,9 @@ public class Interactables : MonoBehaviour {
     public virtual void onInteract(Character_Inventory inv) {
         PlayAnimation();
         if (makesNoise) StartCoroutine(noise.MakeNoise());
-        if (action!=null) { GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action); }
+        if (action!=null) { 
+            GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
+        }
     }
 
 	public Sprite GetSprite() {

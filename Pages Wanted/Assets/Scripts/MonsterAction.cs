@@ -10,7 +10,7 @@ public class MonsterAction {
 	public Transform teleportLocation;
 	private Room room;
 
-	public void SetRoom(Room newRoom) { room= newRoom; }
+	public void SetRoom(Room newRoom) { room = newRoom; }
 
 	public Room GetRoom() { return room; }
 }

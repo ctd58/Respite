@@ -21,7 +21,14 @@ public class Room : MonoBehaviour {
 		
 	}
 
-	public Transform[] GetWanderWaypoints() { return waypoints; }
+	public List<Transform> GetWanderWaypoints() { 
+		List<Transform> listPoints = new List<Transform>();
+		//Debug.Log("WAYPOINTS" + waypoints.Length);
+		foreach(Transform point in waypoints) {
+			listPoints.Add(point);
+		}
+		return listPoints;
+	}
 
 	private void SetUpActions() {
 		foreach (MonsterAction action in actions) {

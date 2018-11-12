@@ -12,18 +12,17 @@ public class MonsterManager : MonoBehaviour {
 	void Start () {
 		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
 		currentRoom = startRoom;
-		//monster.TriggerWander(currentRoom.GetWanderWaypoints());
+		monster.TriggerWander(startRoom.GetWanderWaypoints());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	public void TriggerMonsterAction(MonsterAction action) {
 		if (action.teleport) {
 			SetRoom(action.teleportLocation);
-			
+			monster.Teleport(action.teleportLocation);
 		}
 		SetState(action.state);
 	}
@@ -31,7 +30,7 @@ public class MonsterManager : MonoBehaviour {
 	public void SetState(MonsterState state) {
 		switch(state) {
 			case MonsterState.WANDER:
-				//monster.TriggerWander(currentRoom.GetWanderWaypoints());
+				monster.TriggerWander(currentRoom.GetWanderWaypoints());
 				break;
 		}
 	}

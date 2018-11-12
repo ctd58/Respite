@@ -13,7 +13,6 @@ public class Monster : MonoBehaviour {
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
-    public List<Transform> wayPoints = new List<Transform>();
     public float slowSpeed = 100f;
     public int playerLives = 4;
     public GameObject health1;
@@ -22,6 +21,7 @@ public class Monster : MonoBehaviour {
     public GameObject health4;
     public GameObject gameoverScreen;    
     // Private Variables ----------------------------------------------
+    private List<Transform> wayPoints = new List<Transform>();
     private Transform currentWaypoint;
     private int i = 0;
     private int counter = 0;
@@ -60,7 +60,7 @@ public class Monster : MonoBehaviour {
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
         StartCoroutine("findLoudestSound");
-        EnterStateWander ();
+        //EnterStateWander ();
     }
 
     void checkprefs()
@@ -77,7 +77,6 @@ public class Monster : MonoBehaviour {
     }
 
     void Update () {
-        //Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
         Debug.Log(_currentState);
         switch (_currentState) {
 		case STATE.WANDER:
@@ -93,12 +92,16 @@ public class Monster : MonoBehaviour {
 			UpdateStun();
 			break;
 		}
-        // Widchard use this to call game over screen
 	}
 
     // WANDER STATE ---------------------------------------------------------------------
 
     // code to setup wandering
+    public void TriggerWander(List<Transform> newWaypoints) {
+        wayPoints = newWaypoints;
+        EnterStateWander();
+    }
+    
     private void EnterStateWander() {
         currentMovSpeed = baseMoveSpeed; 
 		_currentState = STATE.WANDER;
@@ -182,19 +185,19 @@ public class Monster : MonoBehaviour {
     }
 
     // INSPECT STATE ---------------------------------------------------------------------
-    public void CreateNewWaypoint(){
-        //Update function to do smart pathing. 
-        if (target != null){
-            wayPoints.Add(target);
-        }
-    }
+    // public void CreateNewWaypoint(){
+    //     //Update function to do smart pathing. 
+    //     if (target != null){
+    //         wayPoints.Add(target);
+    //     }
+    // }
 
-    public void DeleteNewWaypoint(Transform badwaypoint){
-        if (wayPoints.Contains(badwaypoint)){
-            //tell that waypoint to die
-            wayPoints.Remove(badwaypoint);
-        }
-    }
+    // public void DeleteNewWaypoint(Transform badwaypoint){
+    //     if (wayPoints.Contains(badwaypoint)){
+    //         //tell that waypoint to die
+    //         wayPoints.Remove(badwaypoint);
+    //     }
+    // }
 
 
     private void EnterStateInspect() {
@@ -225,7 +228,7 @@ public class Monster : MonoBehaviour {
 
     //makes it go towards sound
     void FollowSound() {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotSpeed * Time.deltaTime);
+        transform.LookAt(target);
         //TODO: Make this use navmesh
         //transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
     }
@@ -266,6 +269,10 @@ public class Monster : MonoBehaviour {
         yield return new WaitForSecondsRealtime(stunDelay);
         _currentState = STATE.WANDER;
         currentMovSpeed = baseMoveSpeed;
+    }
+
+    public void Teleport(Transform destination) {
+        navMeshAgent.Warp(destination.position);
     }
 
     // If they catch the player ---------------------------------------------------------------------
