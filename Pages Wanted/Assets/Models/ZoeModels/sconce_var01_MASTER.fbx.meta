@@ -14,6 +14,7 @@ ModelImporter:
     400006: //RootNode
     400008: wallMount
     2100000: lambert1
+    2100002: lambert2
     2300000: candle
     2300002: holder
     2300004: ornateCurl
