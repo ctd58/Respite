@@ -79,6 +79,10 @@ public class ControllerMovement : MonoBehaviour {
 
     }
 
+    public bool CanMove() {
+        return canMove; 
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //Sends game to gameover screen

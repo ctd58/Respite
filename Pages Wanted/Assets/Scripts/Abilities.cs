@@ -7,6 +7,7 @@ public class Abilities : MonoBehaviour {
     public Monster monster;
     public ControllerMovement player;
     public Sound pSound;
+    public bool wasCalled = false; 
     public bool canStun = true;
     public bool canSlow = true;
     public float slowSpeedInc = 0.1f;
@@ -60,14 +61,20 @@ public class Abilities : MonoBehaviour {
         }
     }
 
-    void ability1()
+    public bool WasAbilityCalled() {
+        return wasCalled; 
+    }
+
+    private void ability1()
     {
         maxCastLen = 5.0f;
         //Debug.Log("Got the button for " + pTag);
         if (!stopFun)
         {
-            if (!this.GetComponent<AudioSource>().isPlaying)
+            if (!this.GetComponent<AudioSource>().isPlaying) {
                 this.GetComponent<AudioSource>().Play();
+                wasCalled = true; 
+            }
             castLen += Time.deltaTime;
 
             pSound.sound = pSound.sound + soundInc;
@@ -99,6 +106,7 @@ public class Abilities : MonoBehaviour {
         stopFun = true;
         yield return new WaitForSecondsRealtime(inputDelay);
         stopFun = false;
+        wasCalled = true; 
         //Debug.Log(Time.time);
     }
 }
