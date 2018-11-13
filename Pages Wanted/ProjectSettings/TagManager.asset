@@ -12,6 +12,8 @@ TagManager:
   - EndGame
   - P2Stamina
   - P1Stamina
+  - P1Panel
+  - P2Panel
   layers:
   - Default
   - TransparentFX
