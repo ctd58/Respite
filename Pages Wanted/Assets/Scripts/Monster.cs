@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
@@ -14,12 +12,6 @@ public class Monster : MonoBehaviour {
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     public float slowSpeed = 100f;
-    public int playerLives = 4;
-    public GameObject health1;
-    public GameObject health2;
-    public GameObject health3;
-    public GameObject health4;
-    public GameObject gameoverScreen;    
     // Private Variables ----------------------------------------------
     private List<Transform> wayPoints = new List<Transform>();
     private Transform currentWaypoint;
@@ -282,33 +274,8 @@ public class Monster : MonoBehaviour {
         if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2")
         {
             target = null;
-            playerLives -= 1;
             respawn();
-            hideHealth(); 
-        }
-    }
-
-    private void hideHealth()
-    {
-        //TODO: create UI manager script
-        health1.SetActive(false);
-        if (health1.activeSelf == false && health2.activeSelf == true && health3.activeSelf == true && health4.activeSelf == true)
-        {
-            health2.SetActive(false);
-        }
-        else if(health1.activeSelf == false && health2.activeSelf == false && health3.activeSelf == true && health4.activeSelf == true)
-        {
-            health3.SetActive(false); 
-        }
-        else if(health1.activeSelf == false && health2.activeSelf == false && health3.activeSelf == false && health4.activeSelf == true)
-        {
-            health4.SetActive(false); 
-        }
-        if (playerLives == 0)
-        {
-            Debug.Log("Game Over");
-            //gameoverScreen.SetActive(true);
-            SceneManager.LoadScene("GameOverScreen"); 
+            GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
         }
     }
 

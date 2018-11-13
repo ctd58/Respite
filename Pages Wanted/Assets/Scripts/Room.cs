@@ -32,7 +32,6 @@ public class Room : MonoBehaviour {
 
 	private void SetUpActions() {
 		foreach (MonsterAction action in actions) {
-			action.SetRoom(this.GetComponent<Room>());
 			foreach(Interactables obj in action.triggerObjs) {
 				obj.SetMonsterAction(action);
 			}
