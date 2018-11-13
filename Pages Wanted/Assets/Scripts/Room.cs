@@ -11,7 +11,7 @@ public class Room : MonoBehaviour {
 	private Transform[] waypoints;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		waypoints = GetComponentsInChildren<Transform>(false);
 		SetUpActions();
 	}
