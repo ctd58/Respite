@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
-    [SerializeField] [Range(50F, 1000F)] private float sensePlayerDistance = 100f;
     [SerializeField] [Range(0.0F, 3.5F)] private float chaseTime = 25.0f;
     [SerializeField] [Range(300F, 800F)] private float baseMoveSpeed = 400f;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
@@ -19,7 +18,8 @@ public class Monster : MonoBehaviour {
     public GameObject health2;
     public GameObject health3;
     public GameObject health4;
-    public GameObject gameoverScreen;    
+    public GameObject gameoverScreen;
+    public enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     // Private Variables ----------------------------------------------
     private List<Transform> wayPoints = new List<Transform>();
     private Transform currentWaypoint;
@@ -32,8 +32,9 @@ public class Monster : MonoBehaviour {
     private GameObject[] soundObjects;
     private List<GameObject> players = new List<GameObject>();
     private GameObject[] spawn;
-    private enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
+    private float senseDistance = 500f; 
     private STATE _currentState;
+    private MonsterManager monstermanager; 
 
     void Start()
     {
@@ -50,17 +51,13 @@ public class Monster : MonoBehaviour {
         checkprefs();
         //baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
         baseMoveSpeed = 400;
-        sensePlayerDistance = 200;
         //sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         spawn = GameObject.FindGameObjectsWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
-        soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         //TODO: make it search out objects with component<Sound>;
-        players.Add(GameObject.FindGameObjectWithTag("P1"));
-        players.Add(GameObject.FindGameObjectWithTag("P2"));
-        StartCoroutine("findLoudestSound");
         //EnterStateWander ();
+        monstermanager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>(); 
     }
 
     void checkprefs()
@@ -76,6 +73,10 @@ public class Monster : MonoBehaviour {
         }
     }
 
+    public STATE GetState() {
+        return _currentState; 
+    }
+    
     void Update () {
         Debug.Log(_currentState);
         switch (_currentState) {
@@ -130,59 +131,10 @@ public class Monster : MonoBehaviour {
             }
             currentWaypoint = wayPoints[i]; 
         }
-        if (DetectPlayer()) { EnterStateAttack(); }
+        if (monstermanager.DetectPlayer()) { EnterStateAttack(); }
 	}
 
-    //Determines what object is making the loudest noise and goes to it
-    IEnumerator findLoudestSound() {
-        while(true) {
-            yield return new WaitForSeconds(1f);
-            Debug.Log("checking sound");
-            if (_currentState != STATE.STUNNED) {
-                float temp = 0.0f;
-                float loudest = 0.0f;
-                foreach (GameObject noise in soundObjects) {
-                    float sound = noise.GetComponent<Sound>().sound;
-                    temp = (sound > 0) ? GetSoundWithFallOff(noise) : 0f;
-                    if (temp > loudest) {
-                        loudest = temp;
-                        target = noise.transform;
-                        EnterStateInspect();
-                    }
-                }
-                foreach(GameObject noise in players) {
-                    temp = GetSoundWithFallOff(noise);
-                    if (temp > loudest) {
-                        loudest = temp;
-                        target = noise.transform;
-                        EnterStateInspect();
-                    }
-                }
-            }
-        }
-    }
 
-    private float GetSoundWithFallOff(GameObject noiseObj) {
-        float sound = noiseObj.GetComponent<Sound>().sound;
-        float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
-        return (sound - (distance/100 * fallOffStrength));
-    }
-
-    private bool DetectPlayer()
-    {
-        if (players != null) {
-            float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
-            float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
-            if (playerOneDistance < sensePlayerDistance) {
-                target = players[0].transform;
-                return true;
-            } else if (playerTwoDistance < sensePlayerDistance && playerTwoDistance > playerOneDistance) {
-                target = players[1].transform;
-                return true;
-            }
-        }
-        return false;
-    }
 
     // INSPECT STATE ---------------------------------------------------------------------
     // public void CreateNewWaypoint(){
@@ -199,6 +151,9 @@ public class Monster : MonoBehaviour {
     //     }
     // }
 
+    public void TriggerInspect() {
+        EnterStateInspect();
+    }
 
     private void EnterStateInspect() {
 		_currentState = STATE.INSPECT;
@@ -219,11 +174,11 @@ public class Monster : MonoBehaviour {
         Vector3 targetV = target.position; 
         navMeshAgent.SetDestination(targetV);
         //Check if it is on top of the targets position
-        if(Vector3.Distance(target.position,this.transform.position) < sensePlayerDistance) {
+        if(Vector3.Distance(target.position,this.transform.position) < senseDistance) {
             Debug.Log("HERE");
             EnterStateWander();
         }
-        if (DetectPlayer()) { EnterStateAttack(); }
+        if (monstermanager.DetectPlayer()) { EnterStateAttack(); }
 	}
 
     //makes it go towards sound
@@ -240,7 +195,7 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void UpdateAttack() {
-        if (DetectPlayer() == true) {
+        if (monstermanager.DetectPlayer() == true) {
             Vector3 targetV = target.position; 
             navMeshAgent.SetDestination(targetV);
             EnterStateAttack(); 
