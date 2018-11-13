@@ -8,9 +8,4 @@ public class MonsterAction {
 	public MonsterState state;
 	public bool teleport;
 	public Transform teleportLocation;
-	private Room room;
-
-	public void SetRoom(Room newRoom) { room = newRoom; }
-
-	public Room GetRoom() { return room; }
 }
