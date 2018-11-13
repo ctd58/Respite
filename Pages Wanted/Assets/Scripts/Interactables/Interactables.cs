@@ -15,6 +15,8 @@ public class Interactables : MonoBehaviour {
     // Private Variables ---------------------------------------------
     #region Private Variables
     protected Sprite spriteIcon;
+
+    protected MonsterAction action = null;
     #endregion
 
     protected void Start() {
@@ -35,6 +37,9 @@ public class Interactables : MonoBehaviour {
     public virtual void onInteract(Character_Inventory inv) {
         PlayAnimation();
         if (makesNoise) StartCoroutine(noise.MakeNoise());
+        if (action!=null) { 
+            GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
+        }
     }
 
 	public Sprite GetSprite() {
@@ -44,6 +49,10 @@ public class Interactables : MonoBehaviour {
 	public void SetSprite(Interact_Icon_Type type) {
 		spriteIcon = Interact_Icon.GetSprite(type);
 	}
+
+    public void SetMonsterAction(MonsterAction newAction) {
+        action = newAction;
+    }
 	#endregion
 
 	// Private Methods -------------------------------------------------
