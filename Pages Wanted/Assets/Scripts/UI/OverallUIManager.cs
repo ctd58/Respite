@@ -9,7 +9,7 @@ public class OverallUIManager : MonoBehaviour {
 	public CharUIManager P2UI;
 	public List<GameObject> PlayerHealth;
 
-	private int currentHealth;
+	private int currentHealth = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -23,10 +23,10 @@ public class OverallUIManager : MonoBehaviour {
 
 	public void DecreaseHealth() {
 		currentHealth -= 1;
-		PlayerHealth[currentHealth].SetActive(false);
 		if (currentHealth == 0) {
             Debug.Log("Game Over");
             SceneManager.LoadScene("GameOverScreen"); 
         }
+		PlayerHealth[currentHealth].SetActive(false);
 	}
 }

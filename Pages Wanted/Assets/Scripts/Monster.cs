@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,7 +23,6 @@ public class Monster : MonoBehaviour {
     private Transform target = null;
     private GameObject[] soundObjects;
     private List<GameObject> players = new List<GameObject>();
-    private GameObject[] spawn;
     private float senseDistance = 500f; 
     private STATE _currentState;
     private MonsterManager monstermanager; 
@@ -45,7 +44,6 @@ public class Monster : MonoBehaviour {
         baseMoveSpeed = 400;
         //sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
-        spawn = GameObject.FindGameObjectsWithTag("DemonSpawn");
         // gameoverScreen.SetActive(false); 
         //TODO: make it search out objects with component<Sound>;
         //EnterStateWander ();
@@ -214,8 +212,7 @@ public class Monster : MonoBehaviour {
     IEnumerator stun()
     {
         yield return new WaitForSecondsRealtime(stunDelay);
-        _currentState = STATE.WANDER;
-        currentMovSpeed = baseMoveSpeed;
+        EnterStateWander();
     }
 
     public void Teleport(Transform destination) {
@@ -229,14 +226,13 @@ public class Monster : MonoBehaviour {
         if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2")
         {
             target = null;
-            respawn();
             GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
+            respawn();
         }
     }
 
     void respawn() {
-        //this.transform.position = spawn[0].transform.position;
-        navMeshAgent.Warp(spawn[0].transform.position);
-        // TODO: add code here that will strategically pick from a number of spawn locations
+        navMeshAgent.Warp(monstermanager.GetSpawnPoint().position);
+        EnterStateStun();
     }
 }

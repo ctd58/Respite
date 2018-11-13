@@ -10,13 +10,15 @@ public class MonsterManager : MonoBehaviour {
     public Room startRoom;
 	private Room currentRoom;
 	private Monster monster;
+	private List<Transform> spawnPoints = new List<Transform>();
     private List<GameObject> players = new List<GameObject>();
     private GameObject[] soundObjects;
 
-    // Use this for initialization
-    void Start () {
-		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
+	// Use this for initialization
+	void Start () {
 		currentRoom = startRoom;
+		spawnPoints = currentRoom.spawnPoints;
+		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
 		monster.TriggerWander(startRoom.GetWanderWaypoints());
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
@@ -45,8 +47,18 @@ public class MonsterManager : MonoBehaviour {
 		}
 	}
 
+	public Transform GetSpawnPoint() {
+		if (spawnPoints.Count == 0) { 
+			Debug.LogError("no spawn points set in current Room.");
+			return this.transform;
+		}
+		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
+		return spawnPoints[0];
+	}
+
 	private void SetRoom(Transform target) {
 		currentRoom = target.GetComponentInParent<Room>();
+		spawnPoints = currentRoom.spawnPoints;
 	}
 
 
@@ -115,6 +127,7 @@ public enum MonsterState {
     //Hunt - Go aggressively after player, speeding up unless interrupted
 	HUNT,
     //Track - Track only a sound that a player has made (workshop 2)
+
 	//TRACK,
     //Patrol - Go in a specified patrol sequence deemed by developers. 
 	PATROL

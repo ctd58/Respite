@@ -15860,8 +15860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db03151d8a09f4dd1adba60a58a53504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1UI: {fileID: 1046010753}
-  P2UI: {fileID: 876918566}
+  P1UI: {fileID: 1046010755}
+  P2UI: {fileID: 876918568}
   PlayerHealth:
   - {fileID: 1908911196}
   - {fileID: 657644369}
@@ -20388,13 +20388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: []
-  patrolRoute:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  spawnPoints: []
+  patrolRoute: []
+  spawnPoints:
+  - {fileID: 1312062845}
 --- !u!1001 &807923504
 Prefab:
   m_ObjectHideFlags: 0
@@ -21774,7 +21770,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1661150996126898, guid: 091c07c4c279349b2925727613bcadc6,
     type: 2}
   m_PrefabInternal: {fileID: 554022334}
---- !u!114 &876918566
+--- !u!114 &876918568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26989,7 +26985,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1425431487905490, guid: 091c07c4c279349b2925727613bcadc6,
     type: 2}
   m_PrefabInternal: {fileID: 554022334}
---- !u!114 &1046010753
+--- !u!114 &1046010755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
