@@ -24,6 +24,7 @@ public class Switch_Target : MonoBehaviour {
         if (activateOnTrigger) {
             this.gameObject.SetActive(true);
             mesh.SetActive(true);
+            Debug.Log("Activate");
         }
 	}
 
