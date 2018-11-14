@@ -104,9 +104,10 @@ public class Abilities : MonoBehaviour {
     {
         //Debug.Log(Time.time);
         stopFun = true;
+        wasCalled = true;
         yield return new WaitForSecondsRealtime(inputDelay);
         stopFun = false;
-        wasCalled = true; 
+        wasCalled = false; 
         //Debug.Log(Time.time);
     }
 }
