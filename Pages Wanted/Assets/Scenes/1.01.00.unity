@@ -18219,7 +18219,7 @@ GameObject:
   - component: {fileID: 719208078}
   - component: {fileID: 719208079}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: leverTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40470,7 +40470,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1924733323972332, guid: a77a9d64439ad47968224b1c63d02956, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4852077836796256, guid: a77a9d64439ad47968224b1c63d02956, type: 2}
       propertyPath: m_RootOrder
@@ -40507,31 +40507,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4556364420443914, guid: a77a9d64439ad47968224b1c63d02956,
     type: 2}
   m_PrefabInternal: {fileID: 1516556975}
---- !u!114 &1516556979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1516556976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5942ed7a89e6546019e58a145f1ab4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions:
-  - triggerObjs:
-    - {fileID: 1516556981}
-    state: 1
-    teleport: 1
-    teleportLocation: {fileID: 673704600}
-  patrolRoute: []
-  spawnPoints: []
---- !u!114 &1516556981 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114108880247458710, guid: a77a9d64439ad47968224b1c63d02956,
-    type: 2}
-  m_PrefabInternal: {fileID: 1516556975}
-  m_Script: {fileID: 11500000, guid: 5f5ec204fd5ad437e8755a4947d72c9f, type: 3}
 --- !u!1001 &1516573428
 Prefab:
   m_ObjectHideFlags: 0
@@ -48702,7 +48677,7 @@ GameObject:
   - component: {fileID: 1875348319}
   - component: {fileID: 1875348320}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: leverWaypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55697,7 +55672,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2098402675}
   m_LocalRotation: {x: -0.6145757, y: 0.34970957, z: -0.34970957, w: 0.6145757}
-  m_LocalPosition: {x: -1827.9, y: -428.6, z: 6137.8945}
+  m_LocalPosition: {x: -1865.1, y: -523.6, z: 6137.8945}
   m_LocalScale: {x: 22.92632, y: 20.313763, z: 22.92632}
   m_Children:
   - {fileID: 664574385}
@@ -55715,12 +55690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5942ed7a89e6546019e58a145f1ab4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions:
-  - triggerObjs:
-    - {fileID: 664574381}
-    state: 4
-    teleport: 0
-    teleportLocation: {fileID: 0}
+  actions: []
   patrolRoute: []
   spawnPoints: []
 --- !u!1001 &2100914344
