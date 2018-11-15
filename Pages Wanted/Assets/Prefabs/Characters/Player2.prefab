@@ -727,8 +727,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825644563340300}
   m_LocalRotation: {x: -0, y: -0.70697707, z: -0, w: 0.7072365}
-  m_LocalPosition: {x: 2043, y: -672, z: -2938}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3103.8, y: -654.1, z: -2855.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4475028993042368}
   - {fileID: 4027818689213386}
@@ -2160,7 +2160,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 559.9614
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2286,6 +2286,7 @@ MonoBehaviour:
   monster: {fileID: 0}
   player: {fileID: 0}
   pSound: {fileID: 0}
+  wasCalled: 0
   canStun: 1
   canSlow: 0
   slowSpeedInc: 0.1
@@ -2334,7 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  speed: 300
   rotateSpeed: 750
   thumpNoise: {fileID: 0}
   thumpVolume: 3
@@ -2389,7 +2390,7 @@ CapsuleCollider:
   m_Radius: 50.00001
   m_Height: 175
   m_Direction: 1
-  m_Center: {x: 0, y: 85, z: 0}
+  m_Center: {x: 0, y: 80, z: 0}
 --- !u!136 &136647797280891892
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2525,7 +2526,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.1821289, y: 55.35077, z: 1.114502}
+    m_Center: {x: -0.1821289, y: 55.35077, z: 1.1147461}
     m_Extent: {x: 68.337036, y: 78.3266, z: 20.991865}
   m_DirtyAABB: 0
 --- !u!137 &137349545420896620
@@ -2572,8 +2573,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: -2.4519043}
-    m_Extent: {x: 11.339819, y: 35.89965, z: 11.035322}
+    m_Center: {x: 0, y: 0.000015258789, z: -1.2258301}
+    m_Extent: {x: 5.6699095, y: 17.949812, z: 5.517599}
   m_DirtyAABB: 0
 --- !u!143 &143812603289067860
 CharacterController:
@@ -2591,7 +2592,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 85, z: 0}
+  m_Center: {x: 0, y: 80, z: 0}
 --- !u!183 &183567486904288258
 Cloth:
   m_ObjectHideFlags: 1
@@ -2735,7 +2736,7 @@ Cloth:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008840707492522}
-  m_Enabled: 1
+  m_Enabled: 0
   m_StretchingStiffness: 0.1
   m_BendingStiffness: 0
   m_UseTethers: 1
