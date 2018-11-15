@@ -31,12 +31,18 @@ public class Room : MonoBehaviour {
 	}
 
 	private void SetUpActions() {
-		foreach (MonsterAction action in actions) {
-			foreach(Interactables obj in action.triggerObjs) {
-				obj.SetMonsterAction(action);
-			}
-			// TODO: add more types script that could have actions
-		}
+        if (actions.Count > 0) {
+            foreach (MonsterAction action in actions) {
+                if (action.triggerObjs.Count > 0) {
+                    foreach (Interactables obj in action.triggerObjs) {
+                        obj.SetMonsterAction(action);
+                        Debug.Log(obj.name);
+                        Debug.Log(action); 
+                    }
+                }
+                // TODO: add more types script that could have actions
+            }
+        }
 	}
 
 }
