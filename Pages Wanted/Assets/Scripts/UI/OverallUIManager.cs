@@ -7,7 +7,8 @@ public class OverallUIManager : MonoBehaviour {
 
 	public CharUIManager P1UI;
 	public CharUIManager P2UI;
-	public List<GameObject> PlayerHealth;
+    public List<GameObject> PlayerHealth; 
+	private int currentHealth = 4;
 
 	private int currentHealth = 4;
 
