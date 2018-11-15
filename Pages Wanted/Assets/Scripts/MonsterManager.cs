@@ -66,7 +66,9 @@ public class MonsterManager : MonoBehaviour {
         return false;
     }
 
-
+    public Transform getTarget() {
+        return target; 
+    }
     private float GetSoundWithFallOff(GameObject noiseObj) {
         float sound = noiseObj.GetComponent<Sound>().sound;
         float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);

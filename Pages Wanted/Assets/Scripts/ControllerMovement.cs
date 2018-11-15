@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ControllerMovement : MonoBehaviour {
 	// Public or Serialized Variables for Inspector -----------------
@@ -10,6 +11,7 @@ public class ControllerMovement : MonoBehaviour {
     public float rotateSpeed = 90.0f;
     public AudioSource thumpNoise;
     [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
+    [SerializeField] public Image imageBrand; 
     #endregion
 
     // Private Variables ---------------------------------------------
@@ -31,7 +33,8 @@ public class ControllerMovement : MonoBehaviour {
 
 #endif
 	// Use this for initialization
-	void Start () {
+	void Start () { 
+
         PlayerPrefs.SetFloat("PlayerSpeed", speed);
         PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
         PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
@@ -186,6 +189,11 @@ public class ControllerMovement : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Monster") {
+            Debug.Log("cool");
+            
+            //imageBrand.enabled = true; 
+        }
         grounded = true; 
     }
 

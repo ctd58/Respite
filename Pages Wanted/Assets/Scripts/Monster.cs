@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI; 
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
@@ -11,9 +12,13 @@ public class Monster : MonoBehaviour {
     [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     public float slowSpeed = 100f;
+    public Image insignia1;
+    public Image insignia2; 
     public enum STATE { WANDER, INSPECT, ATTACK, STUNNED }
     // Private Variables ----------------------------------------------
     private List<Transform> wayPoints = new List<Transform>();
+    private int imgCounter = 50;
+    private int imgnum = 0; 
     private Transform currentWaypoint;
     private int i = 0;
     private int counter = 0;
@@ -26,10 +31,13 @@ public class Monster : MonoBehaviour {
     private GameObject[] spawn;
     private float senseDistance = 500f; 
     private STATE _currentState;
-    private MonsterManager monstermanager; 
+    private MonsterManager monstermanager;
+    
 
     void Start()
     {
+        insignia1.enabled = false;
+        insignia2.enabled = false;
         /*
         GameObject other = GameObject.Find("TitleScreenNav");
         TitleScreenNav titleScreenNav = other.GetComponent<TitleScreenNav>();
@@ -85,6 +93,14 @@ public class Monster : MonoBehaviour {
 			UpdateStun();
 			break;
 		}
+        if (insignia1.enabled == true || insignia2.enabled == true) {
+            imgnum++; 
+            if (imgnum == imgCounter) {
+                imgnum = 0;
+                insignia1.enabled = false;
+                insignia2.enabled = false;
+            }
+        }
 	}
 
     // WANDER STATE ---------------------------------------------------------------------
@@ -152,7 +168,7 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void UpdateInspect() {
-        Debug.Log(target.name);
+        //Debug.Log(target.name);
         //Increases speed if it has been chasing for a multiple of 2.5 seconds
         // chaseTime += Time.deltaTime;
         // if (chaseTime / 2.5f > 1.0f) {
@@ -162,6 +178,7 @@ public class Monster : MonoBehaviour {
         //         currentMovSpeed = 800f;
         //     }
         // }
+        target = monstermanager.getTarget(); 
         FollowSound();
         Vector3 targetV = target.position; 
         navMeshAgent.SetDestination(targetV);
@@ -231,6 +248,12 @@ public class Monster : MonoBehaviour {
             target = null;
             respawn();
             GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
+        }
+        if (other.gameObject.tag == "P1") {
+            insignia1.enabled = true; 
+        }
+        if (other.gameObject.tag == "P2") {
+            insignia2.enabled = true;
         }
     }
 

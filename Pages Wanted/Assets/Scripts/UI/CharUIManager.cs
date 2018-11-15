@@ -11,6 +11,7 @@ public class CharUIManager : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     public GameObject playerScreen; 
+    private int counter = 0; 
 
 	// Use this for initialization
 	void Start () {
@@ -19,9 +20,20 @@ public class CharUIManager : MonoBehaviour {
         }
         else {
             player = GameObject.FindGameObjectWithTag("P2");
-        } 
-	}
+        }
+        //StartCoroutine("ShowInsignia");
+    }
 	
+    //Coroutine for flashing damage indicator not working, brute forcing through monster for now
+    /*
+    IEnumerator ShowInsignia() {
+        if (player.GetComponent<ControllerMovement>().imageBrand.enabled == true) {
+            player.GetComponent<ControllerMovement>().imageBrand.enabled = true;
+        }
+        yield return new WaitForSeconds(5);
+       player.GetComponent<ControllerMovement>().imageBrand.enabled = false;
+    }
+    */
 
     private void showIncantationCooldown() {
         bool check = player.GetComponent<Abilities>().WasAbilityCalled(); 
