@@ -1249,8 +1249,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828371033677780}
   m_LocalRotation: {x: -0, y: -0.6062277, z: -0, w: 0.7952912}
-  m_LocalPosition: {x: -780.8, y: -486.3, z: -397}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 2917, y: -579, z: -4311}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4986231858327604}
   - {fileID: 4015370489472358}
@@ -2431,8 +2431,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 300
   rotateSpeed: 750
-  thumpNoise: {fileID: 0}
+  audio: {fileID: 0}
+  thump: {fileID: 8300000, guid: 8e9243b886c73472cab32dad33b68e1f, type: 3}
+  cloth: {fileID: 8300000, guid: e42f32869cf617042992f48ef87a41ab, type: 3}
   thumpVolume: 3
+  imageBrand: {fileID: 0}
 --- !u!114 &114614030751570670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2672,8 +2675,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: -8.280594, z: -0.21478271}
-    m_Extent: {x: 19.912832, y: 16.865982, z: 12.4428005}
+    m_Center: {x: 0, y: -16.561218, z: -0.4296875}
+    m_Extent: {x: 39.825916, y: 33.731995, z: 24.885689}
   m_DirtyAABB: 0
 --- !u!137 &137105766029096320
 SkinnedMeshRenderer:
