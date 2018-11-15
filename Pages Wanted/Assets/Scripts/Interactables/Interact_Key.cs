@@ -8,20 +8,23 @@ public class Interact_Key : Interactables {
 	public KeyTypes type;
 	// Private Variables ---------------------------------------------
 	private int id;
+    private AudioSource audio;
 
 	// Setup Methods -------------------------------------------------
 	new void Start () {
 		base.Start();
 		id = this.gameObject.GetInstanceID();
+        audio = GetComponent<AudioSource>();
 	}
 
 	// Private Methods -------------------------------------------------
 	// Add this key to the list of keys in inventory
 	public override void onInteract(Character_Inventory inv) {
+        audio.Play();
 		Key_Obj newKey = new Key_Obj();
 		newKey.keyId = id;
 		newKey.type = type;
 		inv.addKey(newKey);
-		Destroy(this.gameObject);
+		Destroy(this.gameObject, audio.clip.length);
 	}
 }

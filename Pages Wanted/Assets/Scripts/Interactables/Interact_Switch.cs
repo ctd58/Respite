@@ -12,14 +12,17 @@ public class Interact_Switch : Interactables {
 	// Private Variables ---------------------------------------------
 	#region Private Variables
 	bool isActivated = false;
+    AudioSource audio;
 	#endregion
 
 	new void Start() {
 		base.Start();
+        audio = GetComponent<AudioSource>();
 	}
 
 	public override void onInteract(Character_Inventory inv) {
-		if (action!=null) { 
+        audio.Play();
+        if (action!=null) { 
             GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
         }
 		foreach (Switch_Target target in targets) {

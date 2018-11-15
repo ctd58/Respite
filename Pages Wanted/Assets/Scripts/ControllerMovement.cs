@@ -9,7 +9,9 @@ public class ControllerMovement : MonoBehaviour {
 	#region Public Variables
     public float speed = 6.0f;
     public float rotateSpeed = 90.0f;
-    public AudioSource thumpNoise;
+    public AudioSource audio;
+    public AudioClip thump;
+    public AudioClip cloth;
     [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
     [SerializeField] public Image imageBrand; 
     #endregion
@@ -65,6 +67,9 @@ public class ControllerMovement : MonoBehaviour {
         
         //Gets the sound component on the player
         sound = this.GetComponent<Sound>();
+
+        //Gets audio source component
+        audio = GetComponent<AudioSource>();
         
         //Gets the thump audio source on the player
         //TODO: make private and get via thumpNoise = this.GetComponent<AudioSource>();
@@ -140,6 +145,7 @@ public class ControllerMovement : MonoBehaviour {
     // Gets player movement and look
     void Move()
     {
+        audio.PlayOneShot(cloth);
         //Gets vertical and horizontal input from players input button (PlayerTag + ButtonName)
         float x = Input.GetAxis(playerNum + "Horizontal");
         float z = Input.GetAxis(playerNum + "Vertical");
