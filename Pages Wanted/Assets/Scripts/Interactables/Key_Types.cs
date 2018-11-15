@@ -6,7 +6,8 @@
 
 	GOLD,
 	IRON,
-	BRONZE
+	BRONZE,
+    HALLWAY01
 };
 
 public class Key_Obj {
