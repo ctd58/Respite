@@ -10,8 +10,6 @@ public class OverallUIManager : MonoBehaviour {
     public List<GameObject> PlayerHealth; 
 	private int currentHealth = 4;
 
-	private int currentHealth = 4;
-
 	// Use this for initialization
 	void Start () {
 		

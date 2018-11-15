@@ -42,6 +42,7 @@ public class MonsterManager : MonoBehaviour {
 	public void SetState(MonsterState state) {
 		switch(state) {
 			case MonsterState.WANDER:
+                Debug.Log("WAYPOINTS:" + currentRoom.GetWanderWaypoints().Count);
 				monster.TriggerWander(currentRoom.GetWanderWaypoints());
 				break;
 		}

@@ -106,6 +106,7 @@ public class Monster : MonoBehaviour {
     // code to setup wandering
     public void TriggerWander(List<Transform> newWaypoints) {
         wayPoints = newWaypoints;
+        i = 0;
         EnterStateWander();
     }
     

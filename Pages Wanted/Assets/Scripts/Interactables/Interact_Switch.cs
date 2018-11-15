@@ -19,6 +19,9 @@ public class Interact_Switch : Interactables {
 	}
 
 	public override void onInteract(Character_Inventory inv) {
+		if (action!=null) { 
+            GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
+        }
 		foreach (Switch_Target target in targets) {
 			if (!isActivated) target.onSwitchActivate();
 			else target.onSwitchDeactivate();

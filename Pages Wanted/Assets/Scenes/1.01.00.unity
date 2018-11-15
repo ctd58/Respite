@@ -14638,6 +14638,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 89b0aed024cd39943a56bf4a6ba43c51,
     type: 3}
   m_PrefabInternal: {fileID: 618109430}
+--- !u!114 &619619935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114095904126924082, guid: 5661979009ab6e942b174da944645da0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1946198893}
+  m_Script: {fileID: 11500000, guid: ae231a243b61c4aeaabfc635056ef638, type: 3}
 --- !u!1001 &619679286
 Prefab:
   m_ObjectHideFlags: 0
@@ -15523,29 +15529,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4035373784414788, guid: f915838155d9cbc40bb05625cce81fb2,
     type: 2}
   m_PrefabInternal: {fileID: 658685842}
---- !u!1 &660271208 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1379631954532414, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 554022334}
---- !u!114 &660271210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 660271208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db03151d8a09f4dd1adba60a58a53504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  P1UI: {fileID: 1046010755}
-  P2UI: {fileID: 876918568}
-  PlayerHealth:
-  - {fileID: 1908911196}
-  - {fileID: 657644369}
-  - {fileID: 636326656}
-  - {fileID: 1288138362}
 --- !u!1001 &663697924
 Prefab:
   m_ObjectHideFlags: 0
@@ -18064,7 +18047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - triggerObjs:
-    - {fileID: 0}
+    - {fileID: 619619935}
     state: 1
     teleport: 1
     teleportLocation: {fileID: 1875348319}
@@ -21481,22 +21464,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a60511ab0fc40cc4cbbf1875f5eecd18,
     type: 3}
   m_PrefabInternal: {fileID: 875797706}
---- !u!1 &876918565 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1661150996126898, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 554022334}
---- !u!114 &876918568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 876918565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb0b2023990ff747aaf3f95ccf86aea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &883720377
 GameObject:
   m_ObjectHideFlags: 0
@@ -26641,22 +26608,6 @@ Transform:
   m_Father: {fileID: 1865592082}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1046010752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1425431487905490, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 554022334}
---- !u!114 &1046010755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1046010752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb0b2023990ff747aaf3f95ccf86aea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1047150354
 Prefab:
   m_ObjectHideFlags: 0
@@ -48201,7 +48152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1875348319}
-  - component: {fileID: 1875348320}
   m_Layer: 0
   m_Name: leverWaypoint
   m_TagString: Untagged
@@ -48222,20 +48172,6 @@ Transform:
   m_Father: {fileID: 719208078}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1875348320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1875348318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5942ed7a89e6546019e58a145f1ab4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions: []
-  patrolRoute: []
-  spawnPoints: []
 --- !u!1 &1877705608
 GameObject:
   m_ObjectHideFlags: 0
