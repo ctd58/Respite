@@ -31,6 +31,9 @@ public class Monster : MonoBehaviour {
     private float senseDistance = 8000f; 
     private STATE _currentState;
     private MonsterManager monstermanager;
+
+    //NEW STUFF
+    private float collideDistance = 1000f;
     
 
     void Start()
@@ -254,8 +257,8 @@ public class Monster : MonoBehaviour {
         //transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
     }
 
-    public void GoTo(Transform t) {
-        navMeshAgent.SetDestination(t.position);
+    public void GoTo() {
+        navMeshAgent.SetDestination(target.position);
     }
 
     public void Teleport(Transform destination) {
@@ -263,16 +266,25 @@ public class Monster : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2") {
-            target = null;
-            GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
-            respawn();
-        }
-        if (other.gameObject.tag == "P1") {
-            insignia1.enabled = true; 
-        }
-        if (other.gameObject.tag == "P2") {
-            insignia2.enabled = true;
+
+    }
+
+    //TODO put in update
+    void CheckReachedTarget() {
+        if (Vector3.Distance(transform.position, target.position) < collideDistance) {
+            // If player effect player health and then respawn
+            if(target.gameObject.tag == "P1" || target.gameObject.tag == "P2") {
+                GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
+                respawn();
+            }
+            if (target.gameObject.tag == "P1") {
+                insignia1.enabled = true; 
+            }
+            if (target.gameObject.tag == "P2") {
+                insignia2.enabled = true;
+            }
+            // Get a new target
+            target = monstermanager.GetNewTarget();
         }
     }
 
