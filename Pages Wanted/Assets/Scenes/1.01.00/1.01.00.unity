@@ -15439,11 +15439,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4807d410805e64613983b0a42add79ad,
     type: 3}
   m_PrefabInternal: {fileID: 636049997}
---- !u!1 &636326656 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1081237986064092, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 889352086}
 --- !u!1 &638355074
 GameObject:
   m_ObjectHideFlags: 0
@@ -15943,11 +15938,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4156670265373572, guid: a286cd528f5507444868dfb1a5e60160,
     type: 2}
   m_PrefabInternal: {fileID: 653258587}
---- !u!1 &657644369 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1594394125438480, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 889352086}
 --- !u!1001 &658685842
 Prefab:
   m_ObjectHideFlags: 0
@@ -38613,11 +38603,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4807d410805e64613983b0a42add79ad,
     type: 3}
   m_PrefabInternal: {fileID: 1286983321}
---- !u!1 &1288138362 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1411109516828418, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 889352086}
 --- !u!1001 &1288272190
 Prefab:
   m_ObjectHideFlags: 0
@@ -52644,51 +52629,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
         type: 2}
-      propertyPath: wayPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1312062845}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: wayPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1024506073}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: wayPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1804856819}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: wayPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 2122382531}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: wayPoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 264211732}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: health1
-      value: 
-      objectReference: {fileID: 657644369}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: health2
-      value: 
-      objectReference: {fileID: 1908911196}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: health3
-      value: 
-      objectReference: {fileID: 636326656}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
-      propertyPath: health4
-      value: 
-      objectReference: {fileID: 1288138362}
-    - target: {fileID: 114083142741699298, guid: 6bb6533575142024991413fccee4422e,
-        type: 2}
       propertyPath: insignia1
       value: 
       objectReference: {fileID: 914169793}
@@ -59745,11 +59685,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4009937066086936, guid: 49403e2d4771fd24d8de79232761c1c7,
     type: 2}
   m_PrefabInternal: {fileID: 1905494322}
---- !u!1 &1908911196 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1360966320059090, guid: 091c07c4c279349b2925727613bcadc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 889352086}
 --- !u!1 &1908921842
 GameObject:
   m_ObjectHideFlags: 0
