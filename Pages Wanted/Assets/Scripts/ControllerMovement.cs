@@ -122,6 +122,7 @@ public class ControllerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        Look();
         //If current player can move then get movement input and check if they press the switch button
         if (canMove)
         {
@@ -187,6 +188,39 @@ public class ControllerMovement : MonoBehaviour {
         else {
             rotateangl.x -= rotamnty;
         }
+        //rotateangl = rotateangl * 1.3f; 
+        pCamera.gameObject.transform.rotation = Quaternion.Euler(rotateangl);
+
+
+        //Rotates the object in the x direction when the look button is used
+        transform.Rotate(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0);
+    }
+
+    void Look() {
+
+        PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
+        PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
+        PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
+
+        Vector3 rotateangl = pCamera.gameObject.transform.rotation.eulerAngles;
+        float xAxisclamp = 0.0f;
+        float rotamnty = Input.GetAxis(playerNum + "Mouse Y");
+        rotateangl.z = 0;
+
+        xAxisclamp -= rotamnty;
+
+        if (xAxisclamp > 90) {
+            xAxisclamp = 90;
+            rotateangl.x = 90;
+        }
+        else if (xAxisclamp < -90) {
+            xAxisclamp = -90;
+            rotateangl.x = 270;
+        }
+        else {
+            rotateangl.x -= rotamnty;
+        }
+        //rotateangl = rotateangl * 1.3f; 
         pCamera.gameObject.transform.rotation = Quaternion.Euler(rotateangl);
 
 

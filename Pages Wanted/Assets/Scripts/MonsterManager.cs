@@ -6,7 +6,7 @@ public class MonsterManager : MonoBehaviour {
 
     private Transform target = null;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
-    [SerializeField] [Range(50F, 1000F)] private float sensePlayerDistance = 100f;
+    [SerializeField] [Range(50F, 1000F)] private float sensePlayerDistance = 2000f;
     public Room startRoom;
 	private Room currentRoom;
 	private Monster monster;
@@ -24,7 +24,7 @@ public class MonsterManager : MonoBehaviour {
         players.Add(GameObject.FindGameObjectWithTag("P2"));
         StartCoroutine("findLoudestSound");
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
-        sensePlayerDistance = 200;
+        //sensePlayerDistance = 200;
     }
 	
 	// Update is called once per frame
@@ -45,12 +45,16 @@ public class MonsterManager : MonoBehaviour {
                 Debug.Log("WAYPOINTS:" + currentRoom.GetWanderWaypoints().Count);
 				monster.TriggerWander(currentRoom.GetWanderWaypoints());
 				break;
+            case MonsterState.HUNT:
+                Debug.Log("Attack");
+                monster.TriggerAttack(); 
+                break; 
 		}
 	}
 
 	public Transform GetSpawnPoint() {
 		if (spawnPoints.Count == 0) { 
-			Debug.LogError("no spawn points set in current Room.");
+			//Debug.LogError("no spawn points set in current Room.");
 			return this.transform;
 		}
 		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
@@ -64,20 +68,25 @@ public class MonsterManager : MonoBehaviour {
 
 
     public bool DetectPlayer() {
+        bool k = false; 
         if (players != null) {
             float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
             float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+           // Debug.Log(playerOneDistance);
+            //Debug.Log(playerTwoDistance);
             if (playerOneDistance < sensePlayerDistance) {
                 target = players[0].transform;
-                return true;
+                k = true;
             }
-            else if (playerTwoDistance < sensePlayerDistance && playerTwoDistance > playerOneDistance) {
+            else if (playerTwoDistance < sensePlayerDistance) {
                 target = players[1].transform;
-                return true;
+               k =  true;
             }
         }
-        return false;
+        Debug.Log(k);
+        return k;
     }
+
 
     public Transform getTarget() {
         return target; 

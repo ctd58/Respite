@@ -28,7 +28,7 @@ public class Monster : MonoBehaviour {
     private Transform target = null;
     private GameObject[] soundObjects;
     private List<GameObject> players = new List<GameObject>();
-    private float senseDistance = 500f; 
+    private float senseDistance = 8000f; 
     private STATE _currentState;
     private MonsterManager monstermanager;
     
@@ -65,10 +65,12 @@ public class Monster : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("monsterspeed", 500f);
         }
+        /*
         if (PlayerPrefs.GetFloat("monstersense") == 0.0f || PlayerPrefs.GetFloat("monstersense") < 300f || PlayerPrefs.GetFloat("monstersense") > 800f)
         {
             PlayerPrefs.SetFloat("monstersense", 600f);
         }
+        */
     }
 
     public STATE GetState() {
@@ -119,10 +121,10 @@ public class Monster : MonoBehaviour {
 
 	private void UpdateWander() {
         counter++;
-        Debug.Log(counter); 
+        //Debug.Log(counter); 
         if (counter > 400) {
             counter = 0;
-            Debug.Log("Made waypoint");
+           // Debug.Log("Made waypoint");
             madeWaypoint = true; 
         } else {
             if (currentWaypoint != null && madeWaypoint == true) {
@@ -131,10 +133,11 @@ public class Monster : MonoBehaviour {
                 //Need to make this based on speed, so the idea is maybe a while loop
                 //where we tell the demon to move to a certain distance with base speed, and
                 //if it no longer needs to move there because it is there, set the next waypoint.
+                //navMeshAgent.speed = 1000;
                 navMeshAgent.SetDestination(targetV);
                 madeWaypoint = false;
                 i = (i + 1) % wayPoints.Count;
-                Debug.Log(i); 
+             //   Debug.Log(i); 
             }
             currentWaypoint = wayPoints[i]; 
         }
@@ -179,7 +182,8 @@ public class Monster : MonoBehaviour {
         // }
         target = monstermanager.getTarget(); 
         FollowSound();
-        Vector3 targetV = target.position; 
+        Vector3 targetV = target.position;
+        transform.LookAt(target); 
         navMeshAgent.SetDestination(targetV);
         //Check if it is on top of the targets position
         if(Vector3.Distance(target.position,this.transform.position) < senseDistance) {
@@ -198,15 +202,24 @@ public class Monster : MonoBehaviour {
 
     // ATTACK STATE ---------------------------------------------------------------------
 
+    public void TriggerAttack() {
+        EnterStateAttack(); 
+    }
+
+
 	private void EnterStateAttack() {
 		_currentState = STATE.ATTACK;
+        UpdateAttack(); 
 	}
 
 	private void UpdateAttack() {
+        //Debug.Log("Attack!"); 
         if (monstermanager.DetectPlayer() == true) {
+            target = monstermanager.getTarget();
             Vector3 targetV = target.position; 
             navMeshAgent.SetDestination(targetV);
-            EnterStateAttack(); 
+            //UpdateAttack(); 
+            //EnterStateWander(); 
         } else {
             EnterStateWander(); 
         }
