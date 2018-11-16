@@ -284,7 +284,7 @@ public class Monster : MonoBehaviour {
                 insignia2.enabled = true;
             }
             // Get a new target
-            target = monstermanager.GetNewTarget();
+            //target = monstermanager.GetNewTarget();
         }
     }
 
