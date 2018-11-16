@@ -40,8 +40,7 @@ public class Monster : MonoBehaviour {
         /*
         GameObject other = GameObject.Find("TitleScreenNav");
         TitleScreenNav titleScreenNav = other.GetComponent<TitleScreenNav>();
-        if (titleScreenNav != null)
-        {
+        if (titleScreenNav != null) {
             baseMoveSpeed = titleScreenNav.monsterBaseSpeed.value;
             sensePlayerDistance = titleScreenNav.monsterSense.value;
         }
@@ -181,7 +180,7 @@ public class Monster : MonoBehaviour {
         //     }
         // }
         target = monstermanager.getTarget(); 
-        FollowSound();
+        LookAt(target);
         Vector3 targetV = target.position;
         transform.LookAt(target); 
         navMeshAgent.SetDestination(targetV);
@@ -192,13 +191,6 @@ public class Monster : MonoBehaviour {
         }
         if (monstermanager.DetectPlayer()) { EnterStateAttack(); }
 	}
-
-    //makes it go towards sound
-    void FollowSound() {
-        transform.LookAt(target);
-        //TODO: Make this use navmesh
-        //transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
-    }
 
     // ATTACK STATE ---------------------------------------------------------------------
 
@@ -246,16 +238,32 @@ public class Monster : MonoBehaviour {
         EnterStateWander();
     }
 
+
+
+
+
+
+
+
+
+
+
+    // NEW STUFF
+    public void LookAt(Transform t) {
+        transform.LookAt(t);
+        //transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
+    }
+
+    public void GoTo(Transform t) {
+        navMeshAgent.SetDestination(t.position);
+    }
+
     public void Teleport(Transform destination) {
         navMeshAgent.Warp(destination.position);
     }
 
-    // If they catch the player ---------------------------------------------------------------------
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2")
-        {
+    void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "P1" || other.gameObject.tag == "P2") {
             target = null;
             GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
             respawn();
