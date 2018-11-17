@@ -92,7 +92,7 @@ public class Abilities : MonoBehaviour {
             castLen = 0;
             monster.slowSpeed = 1.0f;
             if (canStun) {
-                monster.Stun();
+                //monster.Stun();
             }
             StartCoroutine(stopInput());
             pSound.sound = 0.0f;

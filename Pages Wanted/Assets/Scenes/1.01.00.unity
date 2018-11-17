@@ -16992,9 +16992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa9d98ffeee342449d695b9fd57a1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRoom: {fileID: 805254471}
+  sensePlayerDistance: 1000
   fallOffStrength: 0.01
-  sensePlayerDistance: 100
-  startRoom: {fileID: 475608342}
 --- !u!4 &511216502
 Transform:
   m_ObjectHideFlags: 0
@@ -53945,9 +53945,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa9d98ffeee342449d695b9fd57a1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallOffStrength: 0.01
-  sensePlayerDistance: 100
   startRoom: {fileID: 805254471}
+  sensePlayerDistance: 100
+  fallOffStrength: 0.01
 --- !u!4 &1508364094
 Transform:
   m_ObjectHideFlags: 0
@@ -62511,6 +62511,7 @@ Transform:
   - {fileID: 1605864170}
   - {fileID: 326144140}
   - {fileID: 2122425536}
+  - {fileID: 1700763240}
   m_Father: {fileID: 1244961458}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

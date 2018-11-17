@@ -4,33 +4,96 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour {
 
-    private Transform target = null;
-    [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
-    [SerializeField] [Range(50F, 1000F)] private float sensePlayerDistance = 2000f;
+    // Public or Serialized Variables for Inspector -----------------
+    #region Public Variables
     public Room startRoom;
-	private Room currentRoom;
+    [SerializeField] [Range(50F, 2000F)] private float sensePlayerDistance = 1000f;
+    [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
+    #endregion
+
+    // Private Variables ---------------------------------------------
+    #region Private Variables
 	private Monster monster;
+    private List<Transform> wanderPoints = new List<Transform>();
+    private List<Transform> patrolPoints = new List<Transform>();
 	private List<Transform> spawnPoints = new List<Transform>();
     private List<GameObject> players = new List<GameObject>();
     private GameObject[] soundObjects;
+    private enum STATE {
+        WANDER,
+        //Wander - Move around the room in a random way
+        INSPECT,
+        //Wander - Move around the room in a random way
+        ATTACK,
+        //Wander - Move around the room in a random way
+        IDLE,
+        //Idle - Look/rotate around in the same spot of a room
+        HIDE,
+        //Hide - Become more transparent, stay still in one spot
+        HUNT,
+        //Hunt - Go aggressively after player, speeding up unless interrupted
+        PATROL
+        //Patrol - Go in a specified patrol sequence deemed by developers. 
+    } 
+    private STATE currentState;
+    private Transform target = null;
+    #endregion
 
-	// Use this for initialization
+	// Setup Methods -------------------------------------------------
+    #region Setup Methods
 	void Start () {
-		currentRoom = startRoom;
-		spawnPoints = currentRoom.spawnPoints;
 		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
-		monster.TriggerWander(startRoom.GetWanderWaypoints());
+		wanderPoints = startRoom.GetWanderWaypoints();
+        patrolPoints = startRoom.patrolRoute;
+        spawnPoints = startRoom.spawnPoints;
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
-        StartCoroutine("findLoudestSound");
+        //TODO: make it search out objects with component<Sound>;
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
-        //sensePlayerDistance = 200;
+        // Start the monster wandering
+        currentState = STATE.WANDER;
+        target = GetWanderWaypoint();
+        SetMonsterTarget();
+        // Start coroutines
+        StartCoroutine("findLoudestSound");
+        StartCoroutine("DetectPlayer");
     }
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    #endregion
 
+    // Set New Target -------------------------------------------------
+    #region Set New Target
+    public Transform GetNewTarget() {
+        switch (currentState) {
+            case STATE.WANDER: target = GetWanderWaypoint(); break;
+            case STATE.PATROL: target = GetPatrolWaypoint(); break;
+        }
+        return target;
+    }
+
+    public void SetMonsterTarget() {
+        monster.SetTarget(target);
+    }
+
+    private Transform GetWanderWaypoint() {
+        return wanderPoints[Random.Range(0, wanderPoints.Count-1)];
+    }
+
+    private Transform GetPatrolWaypoint() {
+        int nextIndex = patrolPoints.IndexOf(target) + 1;
+        if (nextIndex == patrolPoints.Count) return patrolPoints[0];
+        else return patrolPoints[nextIndex];
+    }
+
+    public Transform GetSpawnPoint() {
+		if (spawnPoints.Count == 0) { 
+			//Debug.LogError("no spawn points set in current Room.");
+			return this.transform;
+		}
+		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
+		return spawnPoints[0];
+	}
+    #endregion
+	
 	public void TriggerMonsterAction(MonsterAction action) {
 		if (action.teleport) {
 			SetRoom(action.teleportLocation);
@@ -42,67 +105,44 @@ public class MonsterManager : MonoBehaviour {
 	public void SetState(MonsterState state) {
 		switch(state) {
 			case MonsterState.WANDER:
-                Debug.Log("WAYPOINTS:" + currentRoom.GetWanderWaypoints().Count);
-				monster.TriggerWander(currentRoom.GetWanderWaypoints());
+                //TODO: this
 				break;
             case MonsterState.HUNT:
-                Debug.Log("Attack");
-                monster.TriggerAttack(); 
+                //TODO: this
                 break; 
 		}
 	}
 
-	public Transform GetSpawnPoint() {
-		if (spawnPoints.Count == 0) { 
-			//Debug.LogError("no spawn points set in current Room.");
-			return this.transform;
-		}
-		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
-		return spawnPoints[0];
-	}
-
 	private void SetRoom(Transform target) {
-		currentRoom = target.GetComponentInParent<Room>();
-		spawnPoints = currentRoom.spawnPoints;
+		Room newRoom = target.GetComponentInParent<Room>();
+		spawnPoints = newRoom.spawnPoints;
 	}
 
 
-    public bool DetectPlayer() {
-        bool k = false; 
-        if (players != null) {
-            float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
-            float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
-           // Debug.Log(playerOneDistance);
-            //Debug.Log(playerTwoDistance);
-            if (playerOneDistance < sensePlayerDistance) {
-                target = players[0].transform;
-                k = true;
-            }
-            else if (playerTwoDistance < sensePlayerDistance) {
-                target = players[1].transform;
-               k =  true;
+    IEnumerator DetectPlayer() {
+        while (true) {
+            yield return new WaitForSeconds(0.25f);
+            if (players != null) {
+                float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
+                float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+                if (playerOneDistance < sensePlayerDistance) {
+                    target = players[0].transform;
+                    SetMonsterTarget();
+                }
+                else if (playerTwoDistance < sensePlayerDistance) {
+                    target = players[1].transform;
+                    SetMonsterTarget();
+                }
             }
         }
-        Debug.Log(k);
-        return k;
-    }
-
-
-    public Transform getTarget() {
-        return target; 
-    }
-    private float GetSoundWithFallOff(GameObject noiseObj) {
-        float sound = noiseObj.GetComponent<Sound>().sound;
-        float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
-        return (sound - (distance / 100 * fallOffStrength));
     }
 
     //Determines what object is making the loudest noise and goes to it
     IEnumerator findLoudestSound() {
         while (true) {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.25f);
             Debug.Log("checking sound");
-            if (monster.GetState() != Monster.STATE.STUNNED) {
+            //if (currentState != STATE.STUNNED) {
                 float temp = 0.0f;
                 float loudest = 0.0f;
                 foreach (GameObject noise in soundObjects) {
@@ -111,7 +151,7 @@ public class MonsterManager : MonoBehaviour {
                     if (temp > loudest) {
                         loudest = temp;
                         target = noise.transform;
-                        monster.TriggerInspect();
+                        SetMonsterTarget();
                     }
                 }
                 foreach (GameObject noise in players) {
@@ -119,11 +159,17 @@ public class MonsterManager : MonoBehaviour {
                     if (temp > loudest) {
                         loudest = temp;
                         target = noise.transform;
-                        monster.TriggerInspect();
+                        SetMonsterTarget();
                     }
                 }
-            }
+            //}
         }
+    }
+
+    private float GetSoundWithFallOff(GameObject noiseObj) {
+        float sound = noiseObj.GetComponent<Sound>().sound;
+        float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
+        return (sound - (distance / 100 * fallOffStrength));
     }
 }
 
@@ -139,7 +185,6 @@ public enum MonsterState {
     //Hunt - Go aggressively after player, speeding up unless interrupted
 	HUNT,
     //Track - Track only a sound that a player has made (workshop 2)
-
 	//TRACK,
     //Patrol - Go in a specified patrol sequence deemed by developers. 
 	PATROL
