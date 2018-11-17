@@ -6,19 +6,18 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
-    [SerializeField] [Range(300F, 800F)] private float baseMoveSpeed = 400f;
-    [SerializeField] [Range(10.0F, 20.0F)] private float rotSpeed = 15.0f;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
     public float slowSpeed = 100f;
     public Image insignia1;
     public Image insignia2; 
 
     // Private Variables ----------------------------------------------
-    private NavMeshAgent navMeshAgent;     
+    private NavMeshAgent navMeshAgent;  
     private float currentMovSpeed;
     private Transform target = null;
+    private Vector3 targetPos;
     private float collideDistance = 200f;
-    private float senseDistance = 8000f; 
+    private float senseDistance = 8000f;
     private MonsterManager monstermanager;
     private int imgCounter = 50;
     private int imgnum = 0; 
@@ -38,9 +37,6 @@ public class Monster : MonoBehaviour {
         */
         Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
         checkprefs();
-        //baseMoveSpeed = PlayerPrefs.GetFloat("monsterbasespeed");
-        baseMoveSpeed = 400;
-        //sensePlayerDistance = PlayerPrefs.GetFloat("monstersense"); 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         monstermanager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>(); 
     }
@@ -84,7 +80,7 @@ public class Monster : MonoBehaviour {
                 insignia2.enabled = false;
             }
         }
-
+        Debug.Log("TARGET DURING UPDATE " + target.name);
         CheckReachedTarget();
 	}
 
@@ -259,26 +255,28 @@ public class Monster : MonoBehaviour {
 
     }
 
-    //TODO put in update
     void CheckReachedTarget() {
-        if (Vector3.Distance(transform.position, target.position) < collideDistance) {
-            // If player effect player health and then respawn
+        if (Vector3.Distance(transform.position, navMeshAgent.destination) < collideDistance) {
             Debug.Log("Got to Target " + target.name);
-            if(target.gameObject.tag == "P1" || target.gameObject.tag == "P2") {
-                Debug.Log("Hit Player!");
-                GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
-                respawn();
-            }
-            if (target.gameObject.tag == "P1") {
-                insignia1.enabled = true; 
-            }
-            if (target.gameObject.tag == "P2") {
-                insignia2.enabled = true;
-            }
             // Get a new target
             SetTarget(monstermanager.GetNewTarget());
         }
     }
+
+// If player effect player health and then respawn
+    // void CheckHitPlayer() {
+    //     if(target.gameObject.tag == "P1" || target.gameObject.tag == "P2") {
+    //         Debug.Log("Hit Player!");
+    //         GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
+    //         respawn();
+    //     }
+    //     if (target.gameObject.tag == "P1") {
+    //         insignia1.enabled = true; 
+    //     }
+    //     if (target.gameObject.tag == "P2") {
+    //         insignia2.enabled = true;
+    //     }
+    // }
 
     void respawn() {
         navMeshAgent.Warp(monstermanager.GetSpawnPoint().position);

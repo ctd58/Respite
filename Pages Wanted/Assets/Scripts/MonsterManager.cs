@@ -51,12 +51,30 @@ public class MonsterManager : MonoBehaviour {
         //TODO: make it search out objects with component<Sound>;
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         // Start the monster wandering
-        currentState = STATE.WANDER;
-        target = GetWanderWaypoint();
-        SetMonsterTarget();
+        EnterStateWander();
         // Start coroutines
         StartCoroutine("findLoudestSound");
         StartCoroutine("DetectPlayer");
+    }
+    #endregion
+
+    // Set Enter New State --------------------------------------------
+    #region Set New State
+    private void EnterStateWander() {
+        currentState = STATE.WANDER;
+        target = GetWanderWaypoint();
+        SetMonsterTarget();
+    }
+
+    private void EnterStatePatrol() {
+        currentState = STATE.PATROL;
+        target = GetPatrolWaypoint();
+        SetMonsterTarget();
+    }
+
+    private void EnterStateHunt() {
+        currentState = STATE.HUNT;
+        StartCoroutine("HuntPlayers");
     }
     #endregion
 
@@ -104,21 +122,21 @@ public class MonsterManager : MonoBehaviour {
 
 	public void SetState(MonsterState state) {
 		switch(state) {
-			case MonsterState.WANDER:
-                //TODO: this
-				break;
-            case MonsterState.HUNT:
-                //TODO: this
-                break; 
+			case MonsterState.WANDER: EnterStateWander(); break;
+            case MonsterState.PATROL: EnterStatePatrol(); break; 
+            case MonsterState.HUNT: EnterStateHunt(); break;
 		}
 	}
 
 	private void SetRoom(Transform target) {
 		Room newRoom = target.GetComponentInParent<Room>();
+        wanderPoints = newRoom.GetWanderWaypoints();
+        patrolPoints = newRoom.patrolRoute;
 		spawnPoints = newRoom.spawnPoints;
 	}
 
-
+    // Coroutines -------------------------------------------------
+    #region Coroutines
     IEnumerator DetectPlayer() {
         while (true) {
             yield return new WaitForSeconds(0.25f);
@@ -171,6 +189,25 @@ public class MonsterManager : MonoBehaviour {
         float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
         return (sound - (distance / 100 * fallOffStrength));
     }
+
+    IEnumerator HuntPlayers() {
+        while(true) {
+            yield return new WaitForSeconds(0.25f);
+            if (players != null) {
+                float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
+                float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+                if (playerOneDistance < playerTwoDistance) {
+                    target = players[0].transform;
+                    SetMonsterTarget();
+                }
+                else {
+                    target = players[1].transform;
+                    SetMonsterTarget();
+                }
+            }
+        }
+    }
+    #endregion
 }
 
 public enum MonsterState {
