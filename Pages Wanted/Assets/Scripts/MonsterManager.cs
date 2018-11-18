@@ -6,6 +6,7 @@ public class MonsterManager : MonoBehaviour {
 
     // Public or Serialized Variables for Inspector -----------------
     #region Public Variables
+    public bool debug;
     public Room startRoom;
     [SerializeField] [Range(50F, 2000F)] private float sensePlayerDistance = 1000f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
@@ -104,7 +105,7 @@ public class MonsterManager : MonoBehaviour {
 
     public Transform GetSpawnPoint() {
 		if (spawnPoints.Count == 0) { 
-			//Debug.LogError("no spawn points set in current Room.");
+			//if (debug) Debug.LogError("no spawn points set in current Room.");
 			return this.transform;
 		}
 		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
@@ -159,7 +160,7 @@ public class MonsterManager : MonoBehaviour {
     IEnumerator findLoudestSound() {
         while (true) {
             yield return new WaitForSeconds(0.25f);
-            Debug.Log("checking sound");
+            if (debug) Debug.Log("checking sound");
             //if (currentState != STATE.STUNNED) {
                 float temp = 0.0f;
                 float loudest = 0.0f;
@@ -180,7 +181,12 @@ public class MonsterManager : MonoBehaviour {
                         SetMonsterTarget();
                     }
                 }
+            if (debug) Debug.Log("loudest sound: " + loudest);
             //}
+            // If it didn't hear any noise, go back to wandering after getting ot the current target
+            if (loudest == 0.0f) {
+                currentState = STATE.WANDER;
+            }
         }
     }
 

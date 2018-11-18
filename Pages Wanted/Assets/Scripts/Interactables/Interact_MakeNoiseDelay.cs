@@ -30,6 +30,7 @@ public class Interact_MakeNoiseDelay : Interactables {
 	private IEnumerator timer() {
 		yield return new WaitForSeconds(delayTime);
 		delayNoise.Stop();
+		noise.setSound(0f);
 		noise.MakeNoise();
 	}
 	#endregion

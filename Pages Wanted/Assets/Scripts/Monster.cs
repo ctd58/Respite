@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour {
     // Public or Serialized Variables for Inspector -----------------
+    public bool debug;
     [SerializeField] [Range(3.0F, 10.0F)] private float stunDelay = 5.0f;
     public float slowSpeed = 100f;
     public Image insignia1;
@@ -15,7 +16,6 @@ public class Monster : MonoBehaviour {
     private NavMeshAgent navMeshAgent;  
     private float currentMovSpeed;
     private Transform target = null;
-    private Vector3 targetPos;
     private float collideDistance = 200f;
     private float senseDistance = 8000f;
     private MonsterManager monstermanager;
@@ -35,7 +35,7 @@ public class Monster : MonoBehaviour {
             sensePlayerDistance = titleScreenNav.monsterSense.value;
         }
         */
-        Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
+        if (debug) Debug.Log(PlayerPrefs.GetFloat("monsterbasespeed") + "  " + PlayerPrefs.GetFloat("monstersense"));
         checkprefs();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         monstermanager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>(); 
@@ -80,7 +80,7 @@ public class Monster : MonoBehaviour {
                 insignia2.enabled = false;
             }
         }
-        Debug.Log("TARGET DURING UPDATE " + target.name);
+        if (debug) Debug.Log("TARGET DURING UPDATE " + target.name);
         CheckReachedTarget();
         CheckHitPlayer();
 	}
@@ -248,19 +248,17 @@ public class Monster : MonoBehaviour {
     }
 
     private void GoToTarget() {
-        Debug.Log("TARGET " + target.name);
-        if (!navMeshAgent.SetDestination(target.position)) {
+        if (debug) Debug.Log("TARGET " + target.name);
+        bool success = navMeshAgent.SetDestination(target.position);
+        if (!success) {
+            if (debug) Debug.Log("Could not reach waypoint, teleporting to waypoint");
             Teleport(target);
-        };
-    }
-
-    void OnTriggerEnter(Collider other) {
-
+        } else if (debug) Debug.Log("Going to target successfully");
     }
 
     void CheckReachedTarget() {
         if (Vector3.Distance(transform.position, navMeshAgent.destination) < collideDistance) {
-            Debug.Log("Got to Target " + target.name);
+            if (debug) Debug.Log("Got to Target " + target.name);
             // Get a new target
             SetTarget(monstermanager.GetNewTarget());
         }
@@ -270,7 +268,7 @@ public class Monster : MonoBehaviour {
     void CheckHitPlayer() {
         if (Vector3.Distance(transform.position, target.position) < collideDistance) {
             if(target.gameObject.tag == "P1" || target.gameObject.tag == "P2") {
-                Debug.Log("Hit Player!");
+                if (debug) Debug.Log("Hit Player!");
                 GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
                 respawn();
             }
