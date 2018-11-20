@@ -5911,12 +5911,22 @@ Prefab:
     - target: {fileID: 114047946415540330, guid: f2c4e4a222b421f45ad25b01fec3ce45,
         type: 2}
       propertyPath: noise.makeRandomNoises
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114047946415540330, guid: f2c4e4a222b421f45ad25b01fec3ce45,
         type: 2}
       propertyPath: makesNoise
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047946415540330, guid: f2c4e4a222b421f45ad25b01fec3ce45,
+        type: 2}
+      propertyPath: noise.randomNoiseDelayTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114047946415540330, guid: f2c4e4a222b421f45ad25b01fec3ce45,
+        type: 2}
+      propertyPath: noise.soundVolume
+      value: 1.78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c4e4a222b421f45ad25b01fec3ce45, type: 2}
@@ -16766,6 +16776,10 @@ Prefab:
     - target: {fileID: 4629421355661294, guid: 6d07371cc9fdc4de79c10a2de8bf95dd, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076933510039818, guid: 6d07371cc9fdc4de79c10a2de8bf95dd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d07371cc9fdc4de79c10a2de8bf95dd, type: 2}
@@ -42072,7 +42086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1196502643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57388,6 +57402,21 @@ Prefab:
       propertyPath: insignia2
       value: 
       objectReference: {fileID: 275245278}
+    - target: {fileID: 198652964719635870, guid: 6bb6533575142024991413fccee4422e,
+        type: 2}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198652964719635870, guid: 6bb6533575142024991413fccee4422e,
+        type: 2}
+      propertyPath: TriggerModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198652964719635870, guid: 6bb6533575142024991413fccee4422e,
+        type: 2}
+      propertyPath: TriggerModule.inside
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bb6533575142024991413fccee4422e, type: 2}
   m_IsPrefabAsset: 0
