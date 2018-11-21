@@ -7,7 +7,12 @@
 	GOLD,
 	IRON,
 	BRONZE,
-    HALLWAY01
+    HALLWAY01,
+    RUBY,
+    SAPPHIRE,
+    EMERALD,
+    AMETHYST,
+        
 };
 
 public class Key_Obj {
