@@ -12,19 +12,15 @@ public class Interact_Switch : Interactables {
 	// Private Variables ---------------------------------------------
 	#region Private Variables
 	bool isActivated = false;
-    AudioSource audio;
 	#endregion
 
 	new void Start() {
 		base.Start();
-        audio = GetComponent<AudioSource>();
+		SetSprite(Interact_Icon_Type.PICKUP);
 	}
 
 	public override void onInteract(Character_Inventory inv) {
-        audio.Play();
-        if (action!=null) { 
-            GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
-        }
+        base.onInteract(inv);
 		foreach (Switch_Target target in targets) {
 			if (!isActivated) target.onSwitchActivate();
 			else target.onSwitchDeactivate();

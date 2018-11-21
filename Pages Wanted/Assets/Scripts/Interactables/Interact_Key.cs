@@ -13,6 +13,7 @@ public class Interact_Key : Interactables {
 	// Setup Methods -------------------------------------------------
 	new void Start () {
 		base.Start();
+		SetSprite(Interact_Icon_Type.PICKUP);
 		id = this.gameObject.GetInstanceID();
         audio = GetComponent<AudioSource>();
 	}
