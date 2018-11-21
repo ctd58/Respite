@@ -15,7 +15,7 @@ public class Abilities : MonoBehaviour {
     public float stunLen = 2.0f;
     public float castLen = 0.0f; //sec
     public float maxCastLen = 5.0f;//sec
-    public float inputDelay = 10.0f; //sec
+    public float inputDelay = 2.0f; //sec
     public bool stopFun = false;
     public string button = "";
     public float soundInc = 0.001f;
@@ -46,7 +46,7 @@ public class Abilities : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        //What is going on here - how come you have to hold down
         if (Input.GetButton(button) && !player.GetCanMove())
         {
             
@@ -80,6 +80,7 @@ public class Abilities : MonoBehaviour {
             pSound.sound = pSound.sound + soundInc;
             //Need to figure out how loud something can get
 
+            //here is where monster can be slowed. 
             if (canSlow && monster.slowSpeed > maxSlowSpeed)
             {
                 monster.slowSpeed -= slowSpeedInc;
@@ -100,9 +101,8 @@ public class Abilities : MonoBehaviour {
         }
     }
 
-    IEnumerator stopInput() // What is the purpose of this function?
+    IEnumerator stopInput() 
     {
-        //Debug.Log(Time.time);
         stopFun = true;
         wasCalled = true;
         yield return new WaitForSecondsRealtime(inputDelay);
