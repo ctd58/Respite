@@ -7,17 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 99c9720ab356a0642a771bea13969a05
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
-    guid: d46fd4fcf31964d6f885b6ce886b9fbb
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 0220d908fd2640e4388dcae2b9f6c730
   - enabled: 0
     path: Assets/Scenes/BackUpsDontDelete/SophiasBackups/LevelDesignSandbox.unity
     guid: 275b08e590e9d9044ba08dc63319d30c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1.01.00.unity
     guid: f26da9145aea5412b9fdf9fd29c28e11
   - enabled: 1
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: b4cda07affa60ef438402dfe831027b3
+  - enabled: 1
+    path: Assets/Scenes/BackUpsDontDelete/SophiasBackups/1.01.00_SOPHIA.unity
+    guid: fdedd83699be0d24086b610256536c05
   m_configObjects: {}
