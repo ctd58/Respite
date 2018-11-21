@@ -247,6 +247,10 @@ public class Monster : MonoBehaviour {
         GoToTarget();
     }
 
+    public void SetSpeed(float newSpeed) {
+        navMeshAgent.speed = newSpeed;
+    }
+
     private void GoToTarget() {
         if (debug) Debug.Log("TARGET " + target.name);
         bool success = navMeshAgent.SetDestination(target.position);
