@@ -8,7 +8,8 @@ public class MonsterManager : MonoBehaviour {
     #region Public Variables
     public bool debug;
     public Room startRoom;
-    [SerializeField] [Range(50F, 2000F)] private float sensePlayerDistance = 1000f;
+    [SerializeField] [Range(50f, 2000f)] private float sensePlayerDistance = 1000f;
+    [SerializeField] [Range(1f, 100f)] private float baseMonsterSpeed = 50f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     #endregion
 
@@ -20,6 +21,7 @@ public class MonsterManager : MonoBehaviour {
 	private List<Transform> spawnPoints = new List<Transform>();
     private List<GameObject> players = new List<GameObject>();
     private GameObject[] soundObjects;
+    private float currentSpeed;
     private enum STATE {
         WANDER,
         //Wander - Move around the room in a random way
@@ -214,6 +216,24 @@ public class MonsterManager : MonoBehaviour {
         }
     }
     #endregion
+
+    public IEnumerator ChangeSpeed(float newSpeed, float seconds) {
+        float speedIncrement = (currentSpeed-newSpeed)/(seconds/0.1f);
+        for (float i = 0; i < seconds; i += 0.1f) {
+            yield return new WaitForSeconds(0.1f);
+            currentSpeed = currentSpeed -= speedIncrement;
+            monster.SetSpeed(currentSpeed);
+        }
+    }
+
+    public IEnumerator ReturnToBaseSpeed(float seconds) {
+        float speedIncrement = (currentSpeed-baseMonsterSpeed)/(seconds/0.1f);
+        for (float i = 0; i < seconds; i += 0.1f) {
+            yield return new WaitForSeconds(0.1f);
+            currentSpeed = currentSpeed -= speedIncrement;
+            monster.SetSpeed(currentSpeed);            
+        }
+    }
 }
 
 public enum MonsterState {
