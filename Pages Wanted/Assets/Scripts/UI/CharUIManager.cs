@@ -34,6 +34,17 @@ public class CharUIManager : MonoBehaviour {
        player.GetComponent<ControllerMovement>().imageBrand.enabled = false;
     }
     */
+    
+    
+    public void SetCooldownCover(bool cover) {
+        if (cover == true) {
+            incantationPanel.SetActive(true);
+        }
+        else {
+            incantationPanel.SetActive(false);
+        }
+    }
+
 
     private void showIncantationCooldown() {
         bool check = player.GetComponent<Abilities>().WasAbilityCalled(); 
