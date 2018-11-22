@@ -79,6 +79,11 @@ public class MonsterManager : MonoBehaviour {
         currentState = STATE.HUNT;
         StartCoroutine("HuntPlayers");
     }
+
+    private void EnterStateIdle() {
+        currentState = STATE.IDLE;
+        
+    }
     #endregion
 
     // Set New Target -------------------------------------------------
@@ -233,6 +238,12 @@ public class MonsterManager : MonoBehaviour {
             currentSpeed = currentSpeed -= speedIncrement;
             monster.SetSpeed(currentSpeed);            
         }
+    }
+
+    public IEnumerator Stun(float seconds) {
+        StartCoroutine(ChangeSpeed(0, 1f));
+        yield return new WaitForSeconds(seconds);
+        StartCoroutine(ReturnToBaseSpeed(3f));
     }
 }
 
