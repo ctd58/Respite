@@ -52,21 +52,7 @@ public class CharUIManager : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD
-    /*
-    private void showIncantationCooldown() {
-=======
-    public void SetCooldownCover(bool cover) {
-        if (cover == true) {
-            incantationPanel.SetActive(true);
-        }
-        else {
-            incantationPanel.SetActive(false);
-        }
-    }
-
     /* private void showIncantationCooldown() {
->>>>>>> master
         bool check = player.GetComponent<Abilities>().WasAbilityCalled(); 
         if (check == true) {
             incantationPanel.SetActive(true); 
