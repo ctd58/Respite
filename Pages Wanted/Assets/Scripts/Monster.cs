@@ -16,8 +16,7 @@ public class Monster : MonoBehaviour {
     private NavMeshAgent navMeshAgent;  
     private float currentMovSpeed;
     private Transform target = null;
-    private float collideDistance = 200f;
-    private float senseDistance = 8000f;
+    private float collideDistance = 80f;
     private MonsterManager monstermanager;
     private int imgCounter = 50;
     private int imgnum = 0; 

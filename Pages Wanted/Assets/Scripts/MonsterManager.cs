@@ -9,13 +9,13 @@ public class MonsterManager : MonoBehaviour {
     public bool debug;
     public Room startRoom;
     [SerializeField] [Range(1f, 100f)] private float baseMonsterSpeed = 50f;
+    [SerializeField] [Range(100, 1000)] private float sensePlayerDistance = 300f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     #endregion
 
     // Private Variables ---------------------------------------------
     #region Private Variables
 	private Monster monster;
-    private float sensePlayerDistance = 1300f;
     private List<Transform> wanderPoints = new List<Transform>();
     private List<Transform> patrolPoints = new List<Transform>();
 	private List<Transform> spawnPoints = new List<Transform>();
@@ -60,8 +60,8 @@ public class MonsterManager : MonoBehaviour {
         // Start the monster wandering
         EnterStateWander();
         // Start coroutines to check for reaction states (inspect and attack)
-        StartCoroutine("findLoudestSound");
-        StartCoroutine("DetectPlayer");
+        StartCoroutine("CheckForAttack");
+        StartCoroutine("CheckForInspect");
     }
     #endregion
 
@@ -111,8 +111,10 @@ public class MonsterManager : MonoBehaviour {
         while (true) {
             yield return new WaitForSeconds(0.1f);
             if (players != null) {
-                float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
-                float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+                float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, monster.transform.position);
+                float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, monster.transform.position);
+                if (debug) Debug.Log("Distance to P1: " + playerOneDistance);
+                if (debug) Debug.Log("Distance to P2: " + playerTwoDistance);
                 if (playerOneDistance < sensePlayerDistance) {
                     target = players[0].transform;
                     SetMonsterTarget();
@@ -213,8 +215,8 @@ public class MonsterManager : MonoBehaviour {
         while(true) {
             yield return new WaitForSeconds(0.25f);
             if (players != null) {
-                float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
-                float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);
+                float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, monster.transform.position);
+                float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, monster.transform.position);
                 if (playerOneDistance < playerTwoDistance) {
                     target = players[0].transform;
                     SetMonsterTarget();
@@ -228,6 +230,15 @@ public class MonsterManager : MonoBehaviour {
     }
     #endregion
 
+    //TODO: make grace period in reaction states after a trigger state is triggered
+    //TODO: make stun also use this logic
+
+    //TODO: make framework for idle
+
+    //TODO: make check in attack state to not switch into attack if already in hunt
+
+    //TODO: make public range values for idle, hunt, hide, patrol
+
     public Transform GetSpawnPoint() {
         // if no spawn points set at current room, return monster to startRoom
         // this is a temporary fix
@@ -235,7 +246,7 @@ public class MonsterManager : MonoBehaviour {
 			if (debug) Debug.LogError("no spawn points set in current Room.");
 			return startRoom.GetWanderWaypoints()[0];
 		}
-		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
+		//TODO (WS2) add intelligent code here that picks a spawn point the player isn't currently looking at
 		return spawnPoints[0];
 	}
 
