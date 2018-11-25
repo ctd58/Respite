@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 114517893930282608}
   - component: {fileID: 82882178977964606}
   - component: {fileID: 136631441751397928}
+  - component: {fileID: 114738088140071964}
   m_Layer: 0
   m_Name: Player2
   m_TagString: P2
@@ -727,8 +728,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825644563340300}
   m_LocalRotation: {x: -0, y: -0.70697707, z: -0, w: 0.7072365}
-  m_LocalPosition: {x: 3103.8, y: -654.1, z: -2855.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -51.2, y: -97.4, z: -640}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4475028993042368}
   - {fileID: 4027818689213386}
@@ -769,7 +770,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932644098319054}
   m_LocalRotation: {x: -0, y: 0.43968815, z: -0, w: 0.89815056}
-  m_LocalPosition: {x: -31.3, y: 156.9, z: 44.6}
+  m_LocalPosition: {x: -31.3, y: 145.5, z: 38.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4053680701507870}
@@ -2245,8 +2246,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.9245283, g: 0.68524057, b: 0.18752226, a: 1}
-  m_Intensity: 5
-  m_Range: 133.98853
+  m_Intensity: 10
+  m_Range: 50
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -2278,7 +2279,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825644563340300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afae7464ce26e464daff62666866b124, type: 3}
   m_Name: 
@@ -2324,6 +2325,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: 0
+--- !u!114 &114738088140071964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825644563340300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a540363745f6f7b49a932e1dae1b312e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castTime: 2
 --- !u!114 &114978763655581078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2335,7 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 100
   rotateSpeed: 750
   audio: {fileID: 0}
   thump: {fileID: 8300000, guid: 8e9243b886c73472cab32dad33b68e1f, type: 3}
@@ -2390,7 +2403,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 50.00001
+  m_Radius: 40
   m_Height: 175
   m_Direction: 1
   m_Center: {x: 0, y: 80, z: 0}
@@ -2576,8 +2589,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: -0.000030517578, z: -2.4516602}
-    m_Extent: {x: 11.339819, y: 35.899624, z: 11.035198}
+    m_Center: {x: 0, y: 0, z: -2.4520416}
+    m_Extent: {x: 11.339819, y: 35.89966, z: 11.035322}
   m_DirtyAABB: 0
 --- !u!143 &143812603289067860
 CharacterController:
@@ -2590,7 +2603,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 175
-  m_Radius: 50.00001
+  m_Radius: 40
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

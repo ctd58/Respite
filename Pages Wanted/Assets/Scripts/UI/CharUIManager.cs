@@ -24,6 +24,7 @@ public class CharUIManager : MonoBehaviour {
             player = GameObject.FindGameObjectWithTag("P2");
             incantationPanel.SetActive(false);
         }
+        SetCooldownCover(false);
         //StartCoroutine("ShowInsignia");
     }
 	
@@ -60,8 +61,8 @@ public class CharUIManager : MonoBehaviour {
         else {
             incantationPanel.SetActive(false); 
         }
-    }
-*/
+    }*/
+
     private void showCameraCover() {
        if (player.GetComponent<ControllerMovement>().CanMove() == true) {
             cameraCover.SetActive(false); 
