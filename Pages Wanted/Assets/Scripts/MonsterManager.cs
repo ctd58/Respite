@@ -217,6 +217,9 @@ public class MonsterManager : MonoBehaviour {
     }
     #endregion
 
+    // Slows the monster down or speeds it up smoothly 
+    // newSpeed = the new speed we want the monster to be moving 
+    // seconds  = the number of seconds the monster will take to reach that new speed 
     public IEnumerator ChangeSpeed(float newSpeed, float seconds) {
         float speedIncrement = (currentSpeed-newSpeed)/(seconds/0.1f);
         for (float i = 0; i < seconds; i += 0.1f) {
@@ -226,6 +229,8 @@ public class MonsterManager : MonoBehaviour {
         }
     }
 
+    // Reverts the monster to its base speed smoothly 
+    // seconds  = the number of seconds the monster will take to reach baseSpeed 
     public IEnumerator ReturnToBaseSpeed(float seconds) {
         float speedIncrement = (currentSpeed-baseMonsterSpeed)/(seconds/0.1f);
         for (float i = 0; i < seconds; i += 0.1f) {
