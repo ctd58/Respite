@@ -26,9 +26,9 @@ public class MonsterManager : MonoBehaviour {
         WANDER,
         //Wander - Move around the room in a random way
         INSPECT,
-        //Wander - Move around the room in a random way
+        //Inspect - Move to an object that made noise
         ATTACK,
-        //Wander - Move around the room in a random way
+        //Attack - Move to the players if they are within the playerSenseDistance
         IDLE,
         //Idle - Look/rotate around in the same spot of a room
         HIDE,
@@ -45,48 +45,34 @@ public class MonsterManager : MonoBehaviour {
 	// Setup Methods -------------------------------------------------
     #region Setup Methods
 	void Start () {
+        // Get Reference to Monster
 		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
+        // Setup Starting Room
 		wanderPoints = startRoom.GetWanderWaypoints();
         patrolPoints = startRoom.patrolRoute;
         spawnPoints = startRoom.spawnPoints;
+        // Setup Reference to Players
         players.Add(GameObject.FindGameObjectWithTag("P1"));
         players.Add(GameObject.FindGameObjectWithTag("P2"));
+        // Setup Reference to Sound Objects
         //TODO: make it search out objects with component<Sound>;
         soundObjects = GameObject.FindGameObjectsWithTag("MakesSound");
         // Start the monster wandering
         EnterStateWander();
-        // Start coroutines
+        // Start coroutines to check for reaction states (inspect and attack)
         StartCoroutine("findLoudestSound");
         StartCoroutine("DetectPlayer");
     }
     #endregion
 
-    // Set Enter New State --------------------------------------------
-    #region Set New State
-    private void EnterStateWander() {
-        currentState = STATE.WANDER;
-        target = GetWanderWaypoint();
-        SetMonsterTarget();
-    }
 
-    private void EnterStatePatrol() {
-        currentState = STATE.PATROL;
-        target = GetPatrolWaypoint();
-        SetMonsterTarget();
-    }
-
-    private void EnterStateHunt() {
-        currentState = STATE.HUNT;
-        StartCoroutine("HuntPlayers");
-    }
-    #endregion
-
-    // Set New Target -------------------------------------------------
-    #region Set New Target
     public Transform GetNewTarget() {
         switch (currentState) {
-            case STATE.WANDER: target = GetWanderWaypoint(); break;
             case STATE.PATROL: target = GetPatrolWaypoint(); break;
+            case STATE.WANDER: target = GetWanderWaypoint(); break;
+            // if Attack, Inspect or Hunt, go back to wandering
+            default: currentState = STATE.WANDER;
+                target = GetWanderWaypoint(); break;
         }
         return target;
     }
@@ -95,52 +81,33 @@ public class MonsterManager : MonoBehaviour {
         monster.SetTarget(target);
     }
 
+	// Wander State ------------------------------------------------------
+    // Wandering is the base state of the monster, the state that it
+    //   will return from all other states if their end condition is
+    //   met. Wander is also the starting state of the monster.
+    #region Wander Methods
+    private void EnterStateWander() {
+        currentState = STATE.WANDER;
+        target = GetWanderWaypoint();
+        SetMonsterTarget();
+    }
+
     private Transform GetWanderWaypoint() {
         return wanderPoints[Random.Range(0, wanderPoints.Count-1)];
     }
-
-    private Transform GetPatrolWaypoint() {
-        int nextIndex = patrolPoints.IndexOf(target) + 1;
-        if (nextIndex == patrolPoints.Count) return patrolPoints[0];
-        else return patrolPoints[nextIndex];
-    }
-
-    public Transform GetSpawnPoint() {
-		if (spawnPoints.Count == 0) { 
-			//if (debug) Debug.LogError("no spawn points set in current Room.");
-			return this.transform;
-		}
-		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
-		return spawnPoints[0];
-	}
     #endregion
-	
-	public void TriggerMonsterAction(MonsterAction action) {
-		if (action.teleport) {
-			SetRoom(action.teleportLocation);
-			monster.Teleport(action.teleportLocation);
-		}
-		SetState(action.state);
-	}
 
-	public void SetState(MonsterState state) {
-		switch(state) {
-			case MonsterState.WANDER: EnterStateWander(); break;
-            case MonsterState.PATROL: EnterStatePatrol(); break; 
-            case MonsterState.HUNT: EnterStateHunt(); break;
-		}
-	}
-
-	private void SetRoom(Transform target) {
-		Room newRoom = target.GetComponentInParent<Room>();
-        wanderPoints = newRoom.GetWanderWaypoints();
-        patrolPoints = newRoom.patrolRoute;
-		spawnPoints = newRoom.spawnPoints;
-	}
-
-    // Coroutines -------------------------------------------------
-    #region Coroutines
-    IEnumerator DetectPlayer() {
+    // Reaction States -------------------------------------------------
+    // Inspect and Attack are Reaction states, meaning that the
+    //    monster will enter them only in response to a specific
+    //    condition being met.
+    #region Reaction States
+    // Attack State -------------------------
+    // Monster will move toward players until it either reaches
+    //    them and then respawns, or until they players move 
+    //    out of range, which will cause it to move to where it
+    //    last saw them, then go back to wandering.
+    IEnumerator CheckForAttack() {
         while (true) {
             yield return new WaitForSeconds(0.1f);
             if (players != null) {
@@ -158,8 +125,10 @@ public class MonsterManager : MonoBehaviour {
         }
     }
 
-    //Determines what object is making the loudest noise and goes to it
-    IEnumerator findLoudestSound() {
+    // Inspect State -------------------------
+    // Monster will move toward an object that makes noise,
+    //    and upon reaching it, will go back to wandering.
+    IEnumerator CheckForInspect() {
         while (true) {
             yield return new WaitForSeconds(0.25f);
             if (debug) Debug.Log("checking sound");
@@ -185,10 +154,6 @@ public class MonsterManager : MonoBehaviour {
                 }
             if (debug) Debug.Log("loudest sound: " + loudest);
             //}
-            // If it didn't hear any noise, go back to wandering after getting ot the current target
-            if (loudest == 0.0f) {
-                currentState = STATE.WANDER;
-            }
         }
     }
 
@@ -196,6 +161,52 @@ public class MonsterManager : MonoBehaviour {
         float sound = noiseObj.GetComponent<Sound>().sound;
         float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
         return (sound - (distance / 100 * fallOffStrength));
+    }
+    #endregion
+
+    // Triggered States -------------------------------------------------
+    // Hunt, Hide, Idle and Patrol are Triggered States, meaning
+    //    that the monster will only enter them upon an action
+    //    being triggered.
+    #region Triggered States
+	public void TriggerMonsterAction(MonsterAction action) {
+		if (action.teleport) {
+			SetRoom(action.teleportLocation);
+			monster.Teleport(action.teleportLocation);
+		}
+		SetState(action.state);
+	}
+
+    private void SetRoom(Transform target) {
+		Room newRoom = target.GetComponentInParent<Room>();
+        wanderPoints = newRoom.GetWanderWaypoints();
+        patrolPoints = newRoom.patrolRoute;
+		spawnPoints = newRoom.spawnPoints;
+	}
+
+	public void SetState(MonsterState state) {
+		switch(state) {
+			case MonsterState.WANDER: EnterStateWander(); break;
+            case MonsterState.PATROL: EnterStatePatrol(); break; 
+            case MonsterState.HUNT: EnterStateHunt(); break;
+		}
+	}
+
+    private void EnterStatePatrol() {
+        currentState = STATE.PATROL;
+        target = GetPatrolWaypoint();
+        SetMonsterTarget();
+    }
+    
+    private Transform GetPatrolWaypoint() {
+        int nextIndex = patrolPoints.IndexOf(target) + 1;
+        if (nextIndex == patrolPoints.Count) return patrolPoints[0];
+        else return patrolPoints[nextIndex];
+    }
+
+    private void EnterStateHunt() {
+        currentState = STATE.HUNT;
+        StartCoroutine("HuntPlayers");
     }
 
     IEnumerator HuntPlayers() {
@@ -216,6 +227,17 @@ public class MonsterManager : MonoBehaviour {
         }
     }
     #endregion
+
+    public Transform GetSpawnPoint() {
+        // if no spawn points set at current room, return monster to startRoom
+        // this is a temporary fix
+		if (spawnPoints.Count == 0) { 
+			if (debug) Debug.LogError("no spawn points set in current Room.");
+			return startRoom.GetWanderWaypoints()[0];
+		}
+		//TODO: add intelligent code here that picks a spawn point the player isn't currently looking at
+		return spawnPoints[0];
+	}
 
     // Slows the monster down or speeds it up smoothly 
     // newSpeed = the new speed we want the monster to be moving 
@@ -239,6 +261,8 @@ public class MonsterManager : MonoBehaviour {
             monster.SetSpeed(currentSpeed);            
         }
     }
+
+    //TODO: add methods for turning off and on the danger particles
 }
 
 public enum MonsterState {
