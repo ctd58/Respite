@@ -118,4 +118,3 @@ public class Incantations : MonoBehaviour {
         //Debug.Log(Time.time);
     }
 }
-}
