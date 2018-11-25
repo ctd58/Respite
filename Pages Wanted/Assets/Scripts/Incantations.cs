@@ -31,7 +31,7 @@ public class Incantations : MonoBehaviour {
 
     void Start() {
         //Hooks up all private variables
-        mm = GameObject.FindGameObjectWithTag("MonsterManager").GetComponent<MonsterManager>();
+        mm = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
         playermove = this.GetComponent<ControllerMovement>();
         pSound = this.GetComponent<Sound>();
         uiManager = GameObject.Find("Canvas").GetComponent<OverallUIManager>(); 

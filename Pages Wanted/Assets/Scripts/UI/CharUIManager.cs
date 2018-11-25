@@ -9,6 +9,7 @@ public class CharUIManager : MonoBehaviour {
     public GameObject incantationPanel;
     public GameObject cameraCover;
     private GameObject player;
+    private PauseScreenNav pauseScreen;
     [SerializeField]
     public GameObject playerScreen; 
     private int counter = 0; 
@@ -17,9 +18,11 @@ public class CharUIManager : MonoBehaviour {
 	void Start () {
         if (GameObject.FindGameObjectWithTag("P1Panel") == playerScreen) {
             player = GameObject.FindGameObjectWithTag("P1");
+            incantationPanel.SetActive(false);
         }
         else {
             player = GameObject.FindGameObjectWithTag("P2");
+            incantationPanel.SetActive(false);
         }
         //StartCoroutine("ShowInsignia");
     }
@@ -35,6 +38,9 @@ public class CharUIManager : MonoBehaviour {
     }
     */
     
+    public string GetPlayer() {
+        return player.tag; 
+    }
     
     public void SetCooldownCover(bool cover) {
         if (cover == true) {
@@ -45,7 +51,7 @@ public class CharUIManager : MonoBehaviour {
         }
     }
 
-
+    /*
     private void showIncantationCooldown() {
         bool check = player.GetComponent<Abilities>().WasAbilityCalled(); 
         if (check == true) {
@@ -55,7 +61,7 @@ public class CharUIManager : MonoBehaviour {
             incantationPanel.SetActive(false); 
         }
     }
-
+*/
     private void showCameraCover() {
        if (player.GetComponent<ControllerMovement>().CanMove() == true) {
             cameraCover.SetActive(false); 
@@ -68,6 +74,6 @@ public class CharUIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         showCameraCover();
-        showIncantationCooldown(); 
+        //showIncantationCooldown(); 
 	}
 }

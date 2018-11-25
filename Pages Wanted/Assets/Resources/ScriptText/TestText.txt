@@ -1,0 +1,10 @@
+Test Text Document.
+
+Every Paragraph should be read in as a string.
+No matter how long the paragraph is. 
+
+Widchard
+Hi, My name is Widchard. I am a programmer helping 
+develop the game called 
+Sone. 
+

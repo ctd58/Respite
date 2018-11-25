@@ -8,7 +8,6 @@ public class MonsterManager : MonoBehaviour {
     #region Public Variables
     public bool debug;
     public Room startRoom;
-    [SerializeField] [Range(50f, 2000f)] private float sensePlayerDistance = 1000f;
     [SerializeField] [Range(1f, 100f)] private float baseMonsterSpeed = 50f;
     [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
     #endregion
@@ -16,6 +15,7 @@ public class MonsterManager : MonoBehaviour {
     // Private Variables ---------------------------------------------
     #region Private Variables
 	private Monster monster;
+    private float sensePlayerDistance = 1300f;
     private List<Transform> wanderPoints = new List<Transform>();
     private List<Transform> patrolPoints = new List<Transform>();
 	private List<Transform> spawnPoints = new List<Transform>();
