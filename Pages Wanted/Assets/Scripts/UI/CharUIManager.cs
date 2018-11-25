@@ -36,6 +36,15 @@ public class CharUIManager : MonoBehaviour {
     }
     */
 
+    public void SetCooldownCover(bool cover) {
+        if (cover == true) {
+            incantationPanel.SetActive(true);
+        }
+        else {
+            incantationPanel.SetActive(false);
+        }
+    }
+
     /* private void showIncantationCooldown() {
         bool check = player.GetComponent<Abilities>().WasAbilityCalled(); 
         if (check == true) {
