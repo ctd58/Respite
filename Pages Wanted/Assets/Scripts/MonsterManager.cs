@@ -142,7 +142,7 @@ public class MonsterManager : MonoBehaviour {
     #region Coroutines
     IEnumerator DetectPlayer() {
         while (true) {
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
             if (players != null) {
                 float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, this.transform.position);
                 float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, this.transform.position);

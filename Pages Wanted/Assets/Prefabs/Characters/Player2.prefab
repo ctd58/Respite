@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 114517893930282608}
   - component: {fileID: 82882178977964606}
   - component: {fileID: 136631441751397928}
+  - component: {fileID: 114738088140071964}
   m_Layer: 0
   m_Name: Player2
   m_TagString: P2
@@ -2278,7 +2279,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825644563340300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afae7464ce26e464daff62666866b124, type: 3}
   m_Name: 
@@ -2324,6 +2325,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: 0
+--- !u!114 &114738088140071964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825644563340300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a540363745f6f7b49a932e1dae1b312e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castTime: 2
 --- !u!114 &114978763655581078
 MonoBehaviour:
   m_ObjectHideFlags: 1

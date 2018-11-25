@@ -146,7 +146,7 @@ public class ControllerMovement : MonoBehaviour {
     // Gets player movement and look
     void Move()
     {
-        audio.PlayOneShot(cloth);
+        //audio.PlayOneShot(cloth);
         //Gets vertical and horizontal input from players input button (PlayerTag + ButtonName)
         float x = Input.GetAxis(playerNum + "Horizontal");
         float z = Input.GetAxis(playerNum + "Vertical");

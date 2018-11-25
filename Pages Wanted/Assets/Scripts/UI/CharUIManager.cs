@@ -21,6 +21,7 @@ public class CharUIManager : MonoBehaviour {
         else {
             player = GameObject.FindGameObjectWithTag("P2");
         }
+        SetCooldownCover(false);
         //StartCoroutine("ShowInsignia");
     }
 	
@@ -35,7 +36,7 @@ public class CharUIManager : MonoBehaviour {
     }
     */
 
-    private void showIncantationCooldown() {
+    /* private void showIncantationCooldown() {
         bool check = player.GetComponent<Abilities>().WasAbilityCalled(); 
         if (check == true) {
             incantationPanel.SetActive(true); 
@@ -43,7 +44,7 @@ public class CharUIManager : MonoBehaviour {
         else {
             incantationPanel.SetActive(false); 
         }
-    }
+    }*/
 
     private void showCameraCover() {
        if (player.GetComponent<ControllerMovement>().CanMove() == true) {
@@ -57,6 +58,6 @@ public class CharUIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         showCameraCover();
-        showIncantationCooldown(); 
+        //showIncantationCooldown(); 
 	}
 }
