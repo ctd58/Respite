@@ -10,7 +10,10 @@ public class MonsterManager : MonoBehaviour {
     public Room startRoom;
     [SerializeField] [Range(1f, 100f)] private float baseMonsterSpeed = 50f;
     [SerializeField] [Range(100, 1000)] private float sensePlayerDistance = 300f;
-    [SerializeField] [Range(0.0f, 1.0f)] private float fallOffStrength = 0.01f;
+    [SerializeField] [Range(2.0f, 30.0f)] private float patrolTime = 15f;
+    [SerializeField] [Range(2.0f, 30.0f)] private float huntTime = 15f;
+    [SerializeField] [Range(2.0f, 30.0f)] private float idleTime = 15f;
+    [SerializeField] [Range(2.0f, 30.0f)] private float hideTime = 15f;
     #endregion
 
     // Private Variables ---------------------------------------------
@@ -21,6 +24,7 @@ public class MonsterManager : MonoBehaviour {
 	private List<Transform> spawnPoints = new List<Transform>();
     private List<GameObject> players = new List<GameObject>();
     private GameObject[] soundObjects;
+    private float fallOffStrength = 0.01f;
     private float currentSpeed;
     private enum STATE {
         WANDER,
@@ -40,6 +44,7 @@ public class MonsterManager : MonoBehaviour {
     } 
     private STATE currentState;
     private Transform target = null;
+    private bool canLeaveState = true;
     #endregion
 
 	// Setup Methods -------------------------------------------------
@@ -47,6 +52,7 @@ public class MonsterManager : MonoBehaviour {
 	void Start () {
         // Get Reference to Monster
 		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
+        monster.SetSpeed(baseMonsterSpeed);
         // Setup Starting Room
 		wanderPoints = startRoom.GetWanderWaypoints();
         patrolPoints = startRoom.patrolRoute;
@@ -70,7 +76,7 @@ public class MonsterManager : MonoBehaviour {
         switch (currentState) {
             case STATE.PATROL: target = GetPatrolWaypoint(); break;
             case STATE.WANDER: target = GetWanderWaypoint(); break;
-            // if Attack, Inspect or Hunt, go back to wandering
+            // if any other State, go back to wandering
             default: currentState = STATE.WANDER;
                 target = GetWanderWaypoint(); break;
         }
@@ -110,7 +116,7 @@ public class MonsterManager : MonoBehaviour {
     IEnumerator CheckForAttack() {
         while (true) {
             yield return new WaitForSeconds(0.1f);
-            if (players != null) {
+            if (canLeaveState && currentState != STATE.HUNT) {
                 float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, monster.transform.position);
                 float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, monster.transform.position);
                 if (debug) Debug.Log("Distance to P1: " + playerOneDistance);
@@ -134,7 +140,7 @@ public class MonsterManager : MonoBehaviour {
         while (true) {
             yield return new WaitForSeconds(0.25f);
             if (debug) Debug.Log("checking sound");
-            //if (currentState != STATE.STUNNED) {
+            if (canLeaveState) {
                 float temp = 0.0f;
                 float loudest = 0.0f;
                 foreach (GameObject noise in soundObjects) {
@@ -155,7 +161,7 @@ public class MonsterManager : MonoBehaviour {
                     }
                 }
             if (debug) Debug.Log("loudest sound: " + loudest);
-            //}
+            }
         }
     }
 
@@ -171,6 +177,7 @@ public class MonsterManager : MonoBehaviour {
     //    that the monster will only enter them upon an action
     //    being triggered.
     #region Triggered States
+    // Called by interactables triggering a monster action
 	public void TriggerMonsterAction(MonsterAction action) {
 		if (action.teleport) {
 			SetRoom(action.teleportLocation);
@@ -179,6 +186,9 @@ public class MonsterManager : MonoBehaviour {
 		SetState(action.state);
 	}
 
+    // If the interactables cause the monster to teleport to 
+    //    a new waypoint, set that waypoint's parent room as
+    //    the current room.
     private void SetRoom(Transform target) {
 		Room newRoom = target.GetComponentInParent<Room>();
         wanderPoints = newRoom.GetWanderWaypoints();
@@ -186,6 +196,7 @@ public class MonsterManager : MonoBehaviour {
 		spawnPoints = newRoom.spawnPoints;
 	}
 
+    // If the interactables cause a state change, do that
 	public void SetState(MonsterState state) {
 		switch(state) {
 			case MonsterState.WANDER: EnterStateWander(); break;
@@ -194,10 +205,15 @@ public class MonsterManager : MonoBehaviour {
 		}
 	}
 
+    // Patrol State -------------------------
+    // Monster will move to the patrol points set for a
+    //    room, in sequence, until patrolTime is up, or
+    //    until Attack or Inspect state is entered
     private void EnterStatePatrol() {
         currentState = STATE.PATROL;
         target = GetPatrolWaypoint();
         SetMonsterTarget();
+        StartCoroutine(RevertToWandering(patrolTime));
     }
     
     private Transform GetPatrolWaypoint() {
@@ -206,9 +222,14 @@ public class MonsterManager : MonoBehaviour {
         else return patrolPoints[nextIndex];
     }
 
+    // Hunt State -------------------------
+    // Monster will move toward the players no matter
+    //    where they are, until it hits them and respawns,
+    //    huntTime is up, or the Inspect state is entered
     private void EnterStateHunt() {
         currentState = STATE.HUNT;
         StartCoroutine("HuntPlayers");
+        StartCoroutine(RevertToWandering(huntTime, "HuntPlayers"));
     }
 
     IEnumerator HuntPlayers() {
@@ -228,16 +249,52 @@ public class MonsterManager : MonoBehaviour {
             }
         }
     }
+
+    // Idle State -------------------------
+    // Monster will stand still and look around 
+    //    until idleTime is up, or until Attack 
+    //    or Inspect state is entered
+    private void EnterStateIdle() {
+        currentState = STATE.IDLE;
+        StartCoroutine("IdleLook");
+        StartCoroutine(ChangeSpeed(0, 1f));
+        StartCoroutine(RevertToWandering(idleTime, "IdleLook"));
+    }
+
+    private IEnumerator IdleLook() {
+        while(true) {
+            Vector3 newLookDir = new Vector3(Random.Range(-1000f, 1000f), monster.transform.position.y, (Random.Range(-1000f, 1000f)));
+            monster.LookAt(newLookDir);
+            yield return new WaitForSeconds(Random.Range(2,10));
+        }
+    }
+
+    // Hide State -------------------------
+    // Monster will stand still until hideTime is up, 
+    //    or until Attack or Inspect state is entered
+    private void EnterStateHide() {
+        currentState = STATE.IDLE;
+        StartCoroutine(ChangeSpeed(0, 0.1f));
+        StartCoroutine(RevertToWandering(hideTime));
+    }
+
+    // Returns the monster to wandering once triggered state has
+    //    reached set time for stopping
+    IEnumerator RevertToWandering(float seconds) {
+        yield return new WaitForSeconds(seconds);
+        EnterStateWander();
+    }
+
+    IEnumerator RevertToWandering(float seconds, string coroutine) {
+        yield return new WaitForSeconds(seconds);
+        EnterStateWander();
+        StopCoroutine(coroutine);
+        StartCoroutine(ReturnToBaseSpeed(2));
+    }
     #endregion
 
     //TODO: make grace period in reaction states after a trigger state is triggered
     //TODO: make stun also use this logic
-
-    //TODO: make framework for idle
-
-    //TODO: make check in attack state to not switch into attack if already in hunt
-
-    //TODO: make public range values for idle, hunt, hide, patrol
 
     public Transform GetSpawnPoint() {
         // if no spawn points set at current room, return monster to startRoom

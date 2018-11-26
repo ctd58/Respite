@@ -232,9 +232,9 @@ public class Monster : MonoBehaviour {
 
 
     // NEW STUFF
-    public void LookAt(Transform t) {
+    public void LookAt(Vector3 t) {
         transform.LookAt(t);
-        //transform.position += transform.forward * (currentMovSpeed * slowSpeed) * Time.deltaTime;
+        //TODO: make this animate a bit
     }
 
     public void Teleport(Transform destination) {
