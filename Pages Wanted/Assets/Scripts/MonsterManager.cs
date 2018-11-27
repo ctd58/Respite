@@ -39,12 +39,15 @@ public class MonsterManager : MonoBehaviour {
         //Hide - Become more transparent, stay still in one spot
         HUNT,
         //Hunt - Go aggressively after player, speeding up unless interrupted
-        PATROL
+        PATROL,
         //Patrol - Go in a specified patrol sequence deemed by developers. 
+        STUN
+        //Stun - caused by player ability, stops monster from moving, attacking or inspecting
     } 
     private STATE currentState;
     private Transform target = null;
     private bool canLeaveState = true;
+    private float canNotSwitchStatesTime = 2;
     #endregion
 
 	// Setup Methods -------------------------------------------------
@@ -213,6 +216,7 @@ public class MonsterManager : MonoBehaviour {
         currentState = STATE.PATROL;
         target = GetPatrolWaypoint();
         SetMonsterTarget();
+        StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(RevertToWandering(patrolTime));
     }
     
@@ -229,6 +233,7 @@ public class MonsterManager : MonoBehaviour {
     private void EnterStateHunt() {
         currentState = STATE.HUNT;
         StartCoroutine("HuntPlayers");
+        StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(RevertToWandering(huntTime, "HuntPlayers"));
     }
 
@@ -258,6 +263,7 @@ public class MonsterManager : MonoBehaviour {
         currentState = STATE.IDLE;
         StartCoroutine("IdleLook");
         StartCoroutine(ChangeSpeed(0, 1f));
+        StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(RevertToWandering(idleTime, "IdleLook"));
     }
 
@@ -275,6 +281,7 @@ public class MonsterManager : MonoBehaviour {
     private void EnterStateHide() {
         currentState = STATE.IDLE;
         StartCoroutine(ChangeSpeed(0, 0.1f));
+        StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(RevertToWandering(hideTime));
     }
 
@@ -293,8 +300,20 @@ public class MonsterManager : MonoBehaviour {
     }
     #endregion
 
+    #region Player-Caused States
+    // Stun State -------------------------
+    // Monster will stand still and look around 
+    //    until stunTime is up. Will not Attack
+    //    or Inspect during this time
+    public void EnterStateStun(float stunTime) {
+        currentState = STATE.STUN;
+        StartCoroutine(ChangeSpeed(0, 1f));
+        StartCoroutine(RevertToWandering(stunTime));
+        StartCoroutine(StopStateChangeForSeconds(stunTime));
+    }
+    #endregion
+
     //TODO: make grace period in reaction states after a trigger state is triggered
-    //TODO: make stun also use this logic
 
     public Transform GetSpawnPoint() {
         // if no spawn points set at current room, return monster to startRoom
@@ -328,6 +347,12 @@ public class MonsterManager : MonoBehaviour {
             currentSpeed = currentSpeed -= speedIncrement;
             monster.SetSpeed(currentSpeed);            
         }
+    }
+
+    private IEnumerator StopStateChangeForSeconds(float seconds) {
+        canLeaveState = false;
+        yield return new WaitForSeconds(seconds);
+        canLeaveState = true;
     }
 
     //TODO: add methods for turning off and on the danger particles
