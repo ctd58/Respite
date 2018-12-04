@@ -6,15 +6,48 @@ public class MonsterManager : MonoBehaviour {
 
     // Public or Serialized Variables for Inspector -----------------
     #region Public Variables
+    [Header("General Variables")]
     public bool debug;
     public Room startRoom;
-    [SerializeField] [Range(1f, 100f)] private float baseMonsterSpeed = 50f;
-    [SerializeField] [Range(100, 1000)] private float sensePlayerDistance = 300f;
+
+    [Header("Wander State Variables")]
+    [SerializeField] [Range(1f, 100f)] private float wanderSpeed = 50f;
+    [SerializeField] [Range(0.1f, 20f)] private float secondsToWanderSpeed = 2f;
+    [SerializeField] private Color wanderParticleColor;
+
+    [Header("Inspect State Variables")]
+    // TODO: figure out how we want to increase inspect speed
+    // [SerializeField] [Range(1f, 100f)] private float inspectSpeed = 50f;
+    // [SerializeField] [Range(0.1f, 20f)] private float secondsToInspectSpeed = 2f;
+    [SerializeField] private Color inspectParticleColor;
+
+    [Header("Attack State Variables")]
+    [SerializeField] [Range(100, 1000)] private float attackDistance = 300f;
+    // TODO: figure out how we want to increase attack speed
+    // [SerializeField] [Range(1f, 100f)] private float attackSpeed = 60f;
+    // [SerializeField] [Range(0.1f, 20f)] private float secondsToAttackSpeed = 5f;
+    [SerializeField] private Color attackParticleColor;
+
+    [Header("Patrol State Variables")]
+    [SerializeField] [Range(1f, 100f)] private float patrolSpeed = 50f;
     [SerializeField] [Range(2.0f, 30.0f)] private float patrolTime = 15f;
+    [SerializeField] [Range(0.1f, 20f)] private float secondsToPatrolSpeed = 2f;
+    [SerializeField] private Color patrolParticleColor;
+
+    [Header("Hunt State Variables")]
+    [SerializeField] [Range(1f, 100f)] private float huntSpeed = 50f;
     [SerializeField] [Range(2.0f, 30.0f)] private float huntTime = 15f;
+    [SerializeField] [Range(0.1f, 20f)] private float secondsToHuntSpeed = 2f;
+    [SerializeField] private Color huntParticleColor;
+
+    [Header("Idle State Variables")]
     [SerializeField] [Range(2.0f, 30.0f)] private float idleTime = 15f;
+    [SerializeField] private Color idleParticleColor;
+
+    [Header("Hide State Variables")]
     [SerializeField] [Range(2.0f, 30.0f)] private float hideTime = 15f;
-    #endregion
+     [SerializeField] private Color hideParticleColor;
+   #endregion
 
     // Private Variables ---------------------------------------------
     #region Private Variables
@@ -55,7 +88,7 @@ public class MonsterManager : MonoBehaviour {
 	void Start () {
         // Get Reference to Monster
 		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
-        monster.SetSpeed(baseMonsterSpeed);
+        monster.SetSpeed(wanderSpeed);
         // Setup Starting Room
 		wanderPoints = startRoom.GetWanderWaypoints();
         patrolPoints = startRoom.patrolRoute;
@@ -80,8 +113,7 @@ public class MonsterManager : MonoBehaviour {
             case STATE.PATROL: target = GetPatrolWaypoint(); break;
             case STATE.WANDER: target = GetWanderWaypoint(); break;
             // if any other State, go back to wandering
-            default: currentState = STATE.WANDER;
-                target = GetWanderWaypoint(); break;
+            default: EnterStateWander(); break;
         }
         return target;
     }
@@ -98,6 +130,8 @@ public class MonsterManager : MonoBehaviour {
     private void EnterStateWander() {
         currentState = STATE.WANDER;
         target = GetWanderWaypoint();
+        StartCoroutine(ReturnToBaseSpeed(secondsToWanderSpeed));
+        monster.ChangeParticleColor(wanderParticleColor);
         SetMonsterTarget();
     }
 
@@ -124,11 +158,11 @@ public class MonsterManager : MonoBehaviour {
                 float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, monster.transform.position);
                 if (debug) Debug.Log("Distance to P1: " + playerOneDistance);
                 if (debug) Debug.Log("Distance to P2: " + playerTwoDistance);
-                if (playerOneDistance < sensePlayerDistance) {
+                if (playerOneDistance < attackDistance) {
                     target = players[0].transform;
                     SetMonsterTarget();
                 }
-                else if (playerTwoDistance < sensePlayerDistance) {
+                else if (playerTwoDistance < attackDistance) {
                     target = players[1].transform;
                     SetMonsterTarget();
                 }
@@ -205,6 +239,8 @@ public class MonsterManager : MonoBehaviour {
 			case MonsterState.WANDER: EnterStateWander(); break;
             case MonsterState.PATROL: EnterStatePatrol(); break; 
             case MonsterState.HUNT: EnterStateHunt(); break;
+            case MonsterState.IDLE: EnterStateIdle(); break;
+            case MonsterState.HIDE: EnterStateHide(); break;
 		}
 	}
 
@@ -217,6 +253,8 @@ public class MonsterManager : MonoBehaviour {
         target = GetPatrolWaypoint();
         SetMonsterTarget();
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
+        StartCoroutine(ChangeSpeed(patrolSpeed, secondsToPatrolSpeed));
+        monster.ChangeParticleColor(patrolParticleColor);
         StartCoroutine(RevertToWandering(patrolTime));
     }
     
@@ -234,6 +272,8 @@ public class MonsterManager : MonoBehaviour {
         currentState = STATE.HUNT;
         StartCoroutine("HuntPlayers");
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
+        StartCoroutine(ChangeSpeed(huntSpeed, secondsToHuntSpeed));
+        monster.ChangeParticleColor(huntParticleColor);
         StartCoroutine(RevertToWandering(huntTime, "HuntPlayers"));
     }
 
@@ -262,8 +302,9 @@ public class MonsterManager : MonoBehaviour {
     private void EnterStateIdle() {
         currentState = STATE.IDLE;
         StartCoroutine("IdleLook");
-        StartCoroutine(ChangeSpeed(0, 1f));
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
+        StartCoroutine(ChangeSpeed(0, 1f));
+        monster.ChangeParticleColor(idleParticleColor);
         StartCoroutine(RevertToWandering(idleTime, "IdleLook"));
     }
 
@@ -281,6 +322,7 @@ public class MonsterManager : MonoBehaviour {
     private void EnterStateHide() {
         currentState = STATE.IDLE;
         StartCoroutine(ChangeSpeed(0, 0.1f));
+        monster.ChangeParticleColor(hideParticleColor);
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(RevertToWandering(hideTime));
     }
@@ -296,7 +338,6 @@ public class MonsterManager : MonoBehaviour {
         yield return new WaitForSeconds(seconds);
         EnterStateWander();
         StopCoroutine(coroutine);
-        StartCoroutine(ReturnToBaseSpeed(2));
     }
     #endregion
 
@@ -312,8 +353,6 @@ public class MonsterManager : MonoBehaviour {
         StartCoroutine(StopStateChangeForSeconds(stunTime));
     }
     #endregion
-
-    //TODO: make grace period in reaction states after a trigger state is triggered
 
     public Transform GetSpawnPoint() {
         // if no spawn points set at current room, return monster to startRoom
@@ -341,7 +380,7 @@ public class MonsterManager : MonoBehaviour {
     // Reverts the monster to its base speed smoothly 
     // seconds  = the number of seconds the monster will take to reach baseSpeed 
     public IEnumerator ReturnToBaseSpeed(float seconds) {
-        float speedIncrement = (currentSpeed-baseMonsterSpeed)/(seconds/0.1f);
+        float speedIncrement = (currentSpeed-wanderSpeed)/(seconds/0.1f);
         for (float i = 0; i < seconds; i += 0.1f) {
             yield return new WaitForSeconds(0.1f);
             currentSpeed = currentSpeed -= speedIncrement;
