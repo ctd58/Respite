@@ -36138,26 +36138,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1659032069798598, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1510493303752360, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114548581195874046, guid: 091c07c4c279349b2925727613bcadc6,
+    - target: {fileID: 114323115082789170, guid: 091c07c4c279349b2925727613bcadc6,
         type: 2}
-      propertyPath: m_Sprite
+      propertyPath: player
       value: 
-      objectReference: {fileID: 21300000, guid: 6f577c56b940e674c8acf87449cdd683,
-        type: 3}
-    - target: {fileID: 114988232203971504, guid: 091c07c4c279349b2925727613bcadc6,
+      objectReference: {fileID: 1466332331}
+    - target: {fileID: 114853825735041842, guid: 091c07c4c279349b2925727613bcadc6,
         type: 2}
-      propertyPath: m_Sprite
+      propertyPath: player
       value: 
-      objectReference: {fileID: 21300000, guid: a085068877d237d44b9cf6908492cc60,
-        type: 3}
+      objectReference: {fileID: 1390203776}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091c07c4c279349b2925727613bcadc6, type: 2}
   m_IsPrefabAsset: 0
@@ -54852,6 +54842,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a9fab5dd6ad81543ac02349f3840168, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1390203776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1828371033677780, guid: 7a9fab5dd6ad81543ac02349f3840168,
+    type: 2}
+  m_PrefabInternal: {fileID: 1390203775}
 --- !u!1001 &1390411613
 Prefab:
   m_ObjectHideFlags: 0
@@ -57785,6 +57780,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a00bc6bdd2dad74186685ad46f133c7, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1466332331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1825644563340300, guid: 0a00bc6bdd2dad74186685ad46f133c7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1466332330}
 --- !u!1001 &1468487898
 Prefab:
   m_ObjectHideFlags: 0
