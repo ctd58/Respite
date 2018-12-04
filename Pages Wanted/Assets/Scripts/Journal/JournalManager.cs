@@ -21,7 +21,7 @@ public class JournalManager : MonoBehaviour {
     
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         ReadInDialogueList();
         ReadInObjectiveList(); 
 	}
@@ -34,16 +34,40 @@ public class JournalManager : MonoBehaviour {
         return dialogue; 
     }
 
+    public string[] GetDifObjective(int beginning, int end) {
+        string[] newobjective = new string[] { "" };
+        for (int i = 0; i < (end - beginning); i++) {
+            newobjective[i] = objective[beginning + i];
+        }
+        return newobjective;
+    }
+
+    public string[] GetDifDialogue(int beginning, int end) {
+        string [] newdialogue = new string[] { "" };
+        for (int i = 0; i < (end - beginning); i++) {
+            newdialogue[i] = dialogue[beginning + i]; 
+        }
+        return newdialogue; 
+    }
+
     private void ReadInDialogueList() {
         dialogue = textfile.text.Split('\n');
+    }
+
+    private void ReadInObjectiveList() {
+        objective = textfile.text.Split('\n');
+    }
+
+    private void PrintDialogueList() {
+        //dialogue = textfile.text.Split('\n');
 
         foreach (string line in dialogue) {
             Debug.Log(line);
         }
     }
 
-    private void ReadInObjectiveList() {
-        objective = textfile.text.Split('\n');
+    private void PrintObjectiveList() {
+        //objective = textfile.text.Split('\n');
 
         foreach (string line in dialogue) {
             Debug.Log(line);

@@ -7,10 +7,10 @@ public class PauseScreenNav : MonoBehaviour {
     public static bool isGamePaused = true;
     private string pauseButton1 = "MainGamePauseP1";
     private string pauseButton2 = "MainGamePauseP2";
-    private GameObject pauseMenu;
+    public GameObject pauseMenu;
 
     private void Start() {
-        pauseMenu = GameObject.Find("Pause Menu");
+        //pauseMenu = GameObject.Find("Pause Menu");
         pauseMenu.SetActive(false); 
 
     }
