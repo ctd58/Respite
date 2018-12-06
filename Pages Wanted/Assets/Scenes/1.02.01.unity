@@ -30175,7 +30175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - triggerObjs:
-    - {fileID: 0}
+    - {fileID: 1536804779}
     state: 1
     teleport: 1
     teleportLocation: {fileID: 1875348319}
@@ -61554,6 +61554,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5661979009ab6e942b174da944645da0, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1536804779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114095904126924082, guid: 5661979009ab6e942b174da944645da0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1536804778}
+  m_Script: {fileID: 11500000, guid: ae231a243b61c4aeaabfc635056ef638, type: 3}
 --- !u!1 &1537262410
 GameObject:
   m_ObjectHideFlags: 0
@@ -82030,6 +82036,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114583395434524044, guid: 951e60e5213f90b4582c951f75059b58,
+        type: 2}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 374443254}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951e60e5213f90b4582c951f75059b58, type: 2}
   m_IsPrefabAsset: 0
