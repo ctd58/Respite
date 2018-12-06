@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         audio = this.GetComponent<AudioSource>();
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
