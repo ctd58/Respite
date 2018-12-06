@@ -50,5 +50,9 @@ public class Interact_MakeNoise {
 		audioSource.Stop();
 		soundScript.sound = 0;
 	}
+
+	public float GetAudioClipLength() {
+		return audioSource.clip.length;
+	}
 	#endregion
 }
