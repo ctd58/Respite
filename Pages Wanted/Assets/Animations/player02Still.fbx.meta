@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4f2159503cad4e145908bca27f4cfd15
+guid: bdf9dc51ecf5bdd48b14eaf14272e58a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -262,7 +262,7 @@ ModelImporter:
     4300034: playerChar02Animvar01:Shawl
     4300036: playerChar02Animvar01:FrontCape
     4300038: playerChar02Animvar01:GoldHood
-    7400000: Walk
+    7400000: Still
     9500000: //RootNode
     13700000: playerChar02Animvar01:Clavicle
     13700002: playerChar02Animvar01:Eye2
@@ -313,10 +313,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk
+      name: Still
       takeName: Walk
       firstFrame: 1
-      lastFrame: 32
+      lastFrame: 1.1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -339,7 +339,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

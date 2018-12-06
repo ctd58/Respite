@@ -11,13 +11,14 @@ public class ControllerMovement : MonoBehaviour {
     public float rotateSpeed = 90.0f;
     public AudioSource audio;
     public AudioClip thump;
+    public Animator myAnim;
     public AudioClip cloth;
     [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
-    [SerializeField] public Image imageBrand; 
+    [SerializeField] public Image imageBrand;
     #endregion
 
     // Private Variables ---------------------------------------------
-	#region Private Variables
+    #region Private Variables
     private bool isP1 = true;
     private ControllerMovement teammate;
     private bool canMove = true;
@@ -83,8 +84,6 @@ public class ControllerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
             Application.Quit();
 
-
-
     }
 
     public bool CanMove() {
@@ -103,6 +102,9 @@ public class ControllerMovement : MonoBehaviour {
     //Handles switching of player
     void Switch()
     {
+        //Makes it so that walk animation stops playing
+        myAnim.SetFloat("Speed", 0);
+
         //Sets current player to can not move and other player to can move
         canMove = false;
         teammate.canMove = true;
@@ -166,6 +168,10 @@ public class ControllerMovement : MonoBehaviour {
         PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
         PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
         PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
+
+        //Passes speed to the animator
+        myAnim.SetFloat("Speed", Mathf.Abs(mov.x + mov.z));
+        Debug.Log("Speed: " + Mathf.Abs(mov.x + mov.z));
 
         //Moves the player in the direction they are facing (Direction camera is looking)
         _mycontroller.Move(transform.TransformDirection(mov));

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be43aa166a093644e8dd8b795ec54114
+guid: 280d2af7391757a4785ee2bc22fe842d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -268,7 +268,7 @@ ModelImporter:
     4300038: RightButton
     4300040: LeftButton
     4300042: Connecter
-    7400000: Walk
+    7400000: Still
     9500000: //RootNode
     13700000: Cape
     13700002: Clavicle
@@ -321,10 +321,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk
+      name: Still
       takeName: Walk
       firstFrame: 1
-      lastFrame: 32
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -347,7 +347,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -371,7 +371,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 0.5
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

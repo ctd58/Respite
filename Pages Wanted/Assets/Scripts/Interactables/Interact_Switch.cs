@@ -7,6 +7,7 @@ public class Interact_Switch : Interactables {
 	// Public or Serialized Variables for Inspector -----------------
 	#region Public Variables
 	public List<Switch_Target> targets;
+    public Animator myAnim;
 	#endregion
 
 	// Private Variables ---------------------------------------------
@@ -26,5 +27,10 @@ public class Interact_Switch : Interactables {
 			else target.onSwitchDeactivate();
 		}
 		isActivated = !isActivated;
+
+        if (myAnim != null) {
+            myAnim.Play("Pull");
+        }
+        
 	}
 }
