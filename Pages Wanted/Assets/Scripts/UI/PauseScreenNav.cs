@@ -15,14 +15,7 @@ public class PauseScreenNav : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown(pauseButton1) || Input.GetButtonDown(pauseButton2)) {
-            PauseMenu(); 
-        }
-	}
-
-    void PauseMenu() {
+    public void PauseMenu() {
         if (isGamePaused == true) {
             //Resume
             Resume(); 

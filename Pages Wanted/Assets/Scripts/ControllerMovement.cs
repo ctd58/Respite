@@ -16,13 +16,10 @@ public class ControllerMovement : MonoBehaviour {
     public Animator myAnim;
     public AudioClip cloth;
     [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
-    [SerializeField] public Image imageBrand;
     #endregion
 
     // Private Variables ---------------------------------------------
     #region Private Variables
-    private int playerId; 
-    // The Rewired player id of this character
     private Player player; 
     // The Rewired Player
     private bool isP1 = true;
@@ -34,6 +31,7 @@ public class ControllerMovement : MonoBehaviour {
     private Vector3 mov;
     private bool grounded;
     private Camera pCamera;
+    private PauseScreenNav pause;
     #endregion
 
 
@@ -52,6 +50,7 @@ public class ControllerMovement : MonoBehaviour {
 
         //Checks if tag on palyer is p1 if it is then it sets the ability to move to true
         //Finds the other players component
+        int playerId = 0;
         if (this.tag == "P1") {
             isP1 = true;
             playerId = 0;
@@ -81,6 +80,8 @@ public class ControllerMovement : MonoBehaviour {
 
         player = ReInput.players.GetPlayer(playerId);
         if (debug) Debug.Log("REWIRED PLAYER " + player);
+
+        pause = GameObject.Find("Canvas").GetComponent<PauseScreenNav>();
     }
 
     public bool CanMove() {
@@ -95,6 +96,12 @@ public class ControllerMovement : MonoBehaviour {
             SceneManager.LoadScene("WinScreen");
         }
     }
+
+    void Update() {
+        if (player.GetButton("Pause")) {
+            pause.PauseMenu(); 
+        }
+	}
 
     void FixedUpdate()
     {

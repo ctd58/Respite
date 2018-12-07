@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 public class Character_Inventory : MonoBehaviour {
 	// Public or Serialized Variables for Inspector -----------------
 	#region Public Variables
-	public Camera playerCam;
+	public bool debug;
 	public Image uiIndicator; // TODO: create UI manager to handle this
 	[SerializeField] [Range(100, 300)] private float playerInteractDistance = 200F;
     #endregion
 
 	// Private Variables ---------------------------------------------
 	#region Private Variables
+	private int playerId; 
+    // The Rewired player id of this character
+    private Player player; 
+    // The Rewired Player
 	private bool isP1;
+	private Camera playerCam;
 	private Sprite normal;
 	private string interactButton;
 	private Interactables interactable;
@@ -22,23 +28,25 @@ public class Character_Inventory : MonoBehaviour {
 
 	void Start () {
 		playerKeys = new List<Key_Obj>();
-		if(this.tag == "P1") isP1 = true;
-        else isP1 = false;
-		interactButton = isP1 ? "P1ax button" : "P2ax button";
+
+		isP1 = (this.tag == "P1");
+
+		playerId = (isP1) ? 0 : 1;
+        player = ReInput.players.GetPlayer(playerId);
+
+		string playerTag = (isP1) ? "P1" : "P2";
+        playerCam = GameObject.Find(playerTag + "Camera").GetComponent<Camera>();
+		
 		normal = Interact_Icon.GetSprite(Interact_Icon_Type.NORMAL);
-		// TODO: add logic to get camera automatically rather than needing it to be a public var
 	}
 	
 	void Update () {
-
+		// Check to see if an interactable is in range of player
 		CheckForInteractables();
 
-
-		if (Input.GetButton(interactButton))
-		{
-            
+		if (player.GetButton("Interact")) { 
 			if (interactable != null) {
-                Debug.Log("Here");
+                if (debug) Debug.Log("Interacting with " + interactable.name);
                 interactable.onInteract(this);
 			}
 		}

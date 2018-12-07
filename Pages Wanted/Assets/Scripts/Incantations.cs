@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class Incantations : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class Incantations : MonoBehaviour {
     [Range(1.0f, 10.0f)]public float castTime = 2.0f;
 
     //Private variables
+    private int playerId; 
+    // The Rewired player id of this character
+    private Player player; 
+    // The Rewired Player
     private OverallUIManager uiManager;
     private CharUIManager charManager; 
     private MonsterManager mm;
@@ -35,20 +40,23 @@ public class Incantations : MonoBehaviour {
         playermove = this.GetComponent<ControllerMovement>();
         pSound = this.GetComponent<Sound>();
         uiManager = GameObject.Find("Canvas").GetComponent<OverallUIManager>(); 
+        incantationbuttons = new string [] {"Incantation"};
         //Should only have 1 incantation at the start, if statement decides what type of incantation
         incantationcounter = 1; 
+        int playerId = 0;
         if (this.tag == "P1") {
             charManager = uiManager.P1UI; 
             playernum = "P1"; 
-            incantationbuttons = new string [] {"P1bo button"};
             incantationtypes = new string[] { "Slow" }; 
+            playerId = 0;
         }
         if (this.tag == "P2") {
             charManager = uiManager.P2UI;
             playernum = "P2"; 
-            incantationbuttons = new string[] { "P2bo button" };
             incantationtypes = new string[] { "Stun" };
+            playerId = 1;
         }
+        player = ReInput.players.GetPlayer(playerId);
 
     }
 
@@ -75,7 +83,7 @@ public class Incantations : MonoBehaviour {
     //coroutine if it is
     private void IncantationCounter() {
         for (int i = 0; i < incantationcounter; i++) {
-            if (Input.GetButton(incantationbuttons[i])) {
+            if (player.GetButton(incantationbuttons[i])) {
                 StartCoroutine(incantationtypes[i]); 
                 break;
             } 
