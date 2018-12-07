@@ -98,7 +98,7 @@ public class ControllerMovement : MonoBehaviour {
     }
 
     void Update() {
-        if (player.GetButton("Pause")) {
+        if (player.GetButtonUp("Pause")) {
             pause.PauseMenu(); 
         }
 	}

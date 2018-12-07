@@ -10,9 +10,7 @@ public class PauseScreenNav : MonoBehaviour {
     public GameObject pauseMenu;
 
     private void Start() {
-        //pauseMenu = GameObject.Find("Pause Menu");
         pauseMenu.SetActive(false); 
-
     }
 
     public void PauseMenu() {

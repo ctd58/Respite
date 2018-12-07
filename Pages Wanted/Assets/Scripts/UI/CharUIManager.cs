@@ -10,13 +10,11 @@ public class CharUIManager : MonoBehaviour {
     public GameObject cameraCover;
     private GameObject player;
     private PauseScreenNav pauseScreen;
-    [SerializeField]
-    public GameObject playerScreen; 
     private int counter = 0; 
 
 	// Use this for initialization
 	void Start () {
-        if (GameObject.FindGameObjectWithTag("P1Panel") == playerScreen) {
+        if (this.tag == "P1Panel") {
             player = GameObject.FindGameObjectWithTag("P1");
             incantationPanel.SetActive(false);
         }

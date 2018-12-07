@@ -2,44 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 public class Journal : MonoBehaviour {
 
+    public TextAsset textfile;
+
     private string[] dialogue;
     private string[] objectives;
-
-    public TextAsset textfile;
     private static bool journalon = false; 
     //private bool journalUpdated = true; 
     private string button;
     private KeyCode key; 
     private GameObject journal; 
-    public GameObject player; 
     private ControllerMovement pmove; 
     private Text dialogueBox; 
     private Text objectiveBox;  
     private JournalManager jm; 
-
+    private Player player; 
+    // The Rewired Player
 
 
 	// Use this for initialization
 	void Start () {
-        if (player.tag == "P1") {
+        int playerId = 0;
+        if (this.tag == "P1Panel") {
             pmove = GameObject.Find("Player1").GetComponent<ControllerMovement>();
-            button = "P1lbrb";
-            key = KeyCode.J; 
+            playerId = 0;
             journal = GameObject.Find("JournalP1");
             dialogueBox = GameObject.Find("DialogueTextboxP1").GetComponent<Text>();
             objectiveBox = GameObject.Find("ObjectiveTextboxP1").GetComponent<Text>();
         }
-        if (player.tag == "P2") {
+        if (this.tag == "P2Panel") {
             pmove = GameObject.Find("Player2").GetComponent<ControllerMovement>();
-            button = "P2lbrb";
-            key = KeyCode.K; 
+            playerId = 1;
             journal = GameObject.Find("JournalP2");
             dialogueBox = GameObject.Find("DialogueTextboxP2").GetComponent<Text>();
             objectiveBox = GameObject.Find("ObjectiveTextboxP2").GetComponent<Text>();
         }
+        player = ReInput.players.GetPlayer(playerId);
         
         journal.SetActive(false);
 
@@ -57,11 +58,7 @@ public class Journal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-        //Use former line when input manager fixed
-
-        //if (Input.GetButtonDown(button) || Input.GetKeyDown(key)) {
-        if (Input.GetKeyDown(key)) { 
+        if (player.GetButtonUp("Journal")) { 
             ToggleJournal(); 
         }
     }
