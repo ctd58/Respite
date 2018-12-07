@@ -181,11 +181,11 @@ MonoBehaviour:
       _startPlaying: 1
       _defaultJoystickMaps:
       - _enabled: 1
-        _categoryId: 0
+        _categoryId: 1
         _layoutId: 0
       _defaultMouseMaps:
       - _enabled: 1
-        _categoryId: 0
+        _categoryId: 1
         _layoutId: 0
       _defaultKeyboardMaps:
       - _enabled: 1
@@ -202,7 +202,7 @@ MonoBehaviour:
       _startPlaying: 1
       _defaultJoystickMaps:
       - _enabled: 1
-        _categoryId: 0
+        _categoryId: 1
         _layoutId: 0
       _defaultMouseMaps: []
       _defaultKeyboardMaps: []
@@ -220,7 +220,7 @@ MonoBehaviour:
       _negativeDescriptiveName: Move Left
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 1
       _name: Move Vertical
       _type: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
       _negativeDescriptiveName: Move Down
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 2
       _name: Look Horizontal
       _type: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
       _negativeDescriptiveName: Look Left
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 3
       _name: Look Vertical
       _type: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
       _negativeDescriptiveName: Look Down
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 4
       _name: Interact
       _type: 1
@@ -256,7 +256,7 @@ MonoBehaviour:
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 5
       _name: Switch
       _type: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 6
       _name: Incantation
       _type: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 7
       _name: Pause
       _type: 1
@@ -283,7 +283,7 @@ MonoBehaviour:
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
     - _id: 9
       _name: Journal
       _type: 1
@@ -292,17 +292,67 @@ MonoBehaviour:
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
-      _categoryId: 0
+      _categoryId: 1
+    - _id: 10
+      _name: UIHorizontal
+      _type: 0
+      _descriptiveName: UI Horizontal
+      _positiveDescriptiveName: UIRight
+      _negativeDescriptiveName: UILeft
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 11
+      _name: UIVertical
+      _type: 0
+      _descriptiveName: UI Vertical
+      _positiveDescriptiveName: UIUp
+      _negativeDescriptiveName: UIDown
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 12
+      _name: UISubmit
+      _type: 1
+      _descriptiveName: UI Submit
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 13
+      _name: UICancel
+      _type: 1
+      _descriptiveName: UI Cancel
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
     actionCategories:
     - _name: Default
       _descriptiveName: Default
       _tag: 
       _id: 0
       _userAssignable: 1
+    - _name: In Game
+      _descriptiveName: In Game
+      _tag: 
+      _id: 1
+      _userAssignable: 1
+    - _name: UI
+      _descriptiveName: UI
+      _tag: 
+      _id: 2
+      _userAssignable: 1
     actionCategoryMap:
       list:
       - categoryId: 0
+        actionIds: 
+      - categoryId: 1
         actionIds: 000000000100000002000000030000000400000005000000060000000700000009000000
+      - categoryId: 2
+        actionIds: 0a0000000b0000000c0000000d000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -333,6 +383,20 @@ MonoBehaviour:
       _tag: 
       _id: 0
       _userAssignable: 1
+      _checkConflictsWithAllCategories: 0
+      _checkConflictsCategoryIds: 
+    - _name: In Game
+      _descriptiveName: In Game
+      _tag: 
+      _id: 1
+      _userAssignable: 1
+      _checkConflictsWithAllCategories: 0
+      _checkConflictsCategoryIds: 01000000
+    - _name: UI
+      _descriptiveName: UI
+      _tag: 
+      _id: 2
+      _userAssignable: 0
       _checkConflictsWithAllCategories: 1
       _checkConflictsCategoryIds: 
     joystickLayouts:
@@ -352,8 +416,8 @@ MonoBehaviour:
       _descriptiveName: Default
       _id: 0
     joystickMaps:
-    - id: 0
-      categoryId: 0
+    - id: 1
+      categoryId: 1
       layoutId: 0
       name: 
       hardwareGuidString: 83b427e4-086f-47f3-bb06-be266abd1ca5
@@ -610,8 +674,8 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
     mouseMaps:
-    - id: 0
-      categoryId: 0
+    - id: 1
+      categoryId: 1
       layoutId: 0
       name: 
       hardwareGuidString: 
@@ -664,17 +728,17 @@ MonoBehaviour:
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 3
-    actionIdCounter: 10
-    actionCategoryIdCounter: 1
+    actionIdCounter: 14
+    actionCategoryIdCounter: 3
     inputBehaviorIdCounter: 1
-    mapCategoryIdCounter: 1
+    mapCategoryIdCounter: 3
     joystickLayoutIdCounter: 1
     keyboardLayoutIdCounter: 1
     mouseLayoutIdCounter: 1
     customControllerLayoutIdCounter: 1
-    joystickMapIdCounter: 1
+    joystickMapIdCounter: 2
     keyboardMapIdCounter: 1
-    mouseMapIdCounter: 1
+    mouseMapIdCounter: 2
     customControllerMapIdCounter: 0
     customControllerIdCounter: 0
   _controllerDataFiles: {fileID: 11400000, guid: d21d2b20df8369642b76aafbb2576ba7,
