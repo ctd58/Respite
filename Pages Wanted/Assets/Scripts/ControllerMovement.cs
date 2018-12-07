@@ -29,7 +29,6 @@ public class ControllerMovement : MonoBehaviour {
     private ControllerMovement teammate;
     private bool canMove = true;
     private string playerNum = "";
-    private string switchb = "";
     private CharacterController _mycontroller;
     private Sound sound;
     private Vector3 mov;
@@ -53,22 +52,18 @@ public class ControllerMovement : MonoBehaviour {
 
         //Checks if tag on palyer is p1 if it is then it sets the ability to move to true
         //Finds the other players component
-        //Sets a string for the tag so we can call the specific inputs for each player
-        //Sets the switch button for that player
         if (this.tag == "P1") {
             isP1 = true;
             playerId = 0;
             canMove = true;
             teammate = GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>();
             playerNum = "P1";
-            switchb = "P1yt button";
         } else if (this.tag == "P2") {
             isP1 = false;
             playerId = 1;
             canMove = false;
             teammate = GameObject.FindGameObjectWithTag("P1").GetComponent<ControllerMovement>();
             playerNum = "P2";
-            switchb = "P2yt button";
         }
 
         //Gets controller component on the player
@@ -87,14 +82,6 @@ public class ControllerMovement : MonoBehaviour {
         player = ReInput.players.GetPlayer(playerId);
         if (debug) Debug.Log("REWIRED PLAYER " + player);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //Checks if player wants to quit the game
-        // if (Input.GetKey(KeyCode.Escape))
-        //     Application.Quit();
-
-    }
 
     public bool CanMove() {
         return canMove; 
@@ -112,19 +99,17 @@ public class ControllerMovement : MonoBehaviour {
     void FixedUpdate()
     {
         Look();
+        
         //If current player can move then get movement input and check if they press the switch button
-        if (canMove)
-        {
+        if (canMove) {
             Move();
 
             //If switch putton is pressed for this player and they can move then switch which player can move
-            // if (Input.GetButtonDown(switchb))
-            // {
-            //     Switch();
-            // }
+            if (player.GetButton("Switch")) {
+                Switch();
+            }
         }
-        else
-        {
+        else {
             //sound.sound = 0;
         }
 
@@ -193,30 +178,30 @@ public class ControllerMovement : MonoBehaviour {
     }
 
     void Look() {
-        Vector3 rotateangl = pCamera.gameObject.transform.rotation.eulerAngles;
-        float xAxisclamp = 0.0f;
-        float rotamnty = 0f;//Input.GetAxis(playerNum + "Mouse Y");
-        rotateangl.z = 0;
+        //Get current vertical look rotation and input
+        Vector3 currentRotation = pCamera.gameObject.transform.rotation.eulerAngles;
+        if (debug) Debug.Log("CURRENT Y LOOK " + currentRotation.x);
+        float verticalRotation = player.GetAxis("Look Vertical");
+        if (debug) Debug.Log("REWIRED Y LOOK " + verticalRotation);
 
-        xAxisclamp -= rotamnty;
-
-        if (xAxisclamp > 90) {
-            xAxisclamp = 90;
-            rotateangl.x = 90;
+        //Clamp so it can't rotate too far
+        currentRotation.x -= verticalRotation;
+        if (currentRotation.x < -80) {
+            currentRotation.x = -80;
+        } 
+        else if (currentRotation.x < 280 && currentRotation.x > 180) {
+            currentRotation.x = 280;
         }
-        else if (xAxisclamp < -90) {
-            xAxisclamp = -90;
-            rotateangl.x = 270;
+        else if (currentRotation.x > 80 && currentRotation.x < 180) {
+            currentRotation.x = 80;
         }
-        else {
-            rotateangl.x -= rotamnty;
-        }
-        //rotateangl = rotateangl * 1.3f; 
-        pCamera.gameObject.transform.rotation = Quaternion.Euler(rotateangl);
+        if (debug) Debug.Log("CLAMPED Y LOOK " + currentRotation.x);
 
+        //Rotate camera vertically according to movement
+        pCamera.gameObject.transform.rotation = Quaternion.Euler(currentRotation);
 
-        //Rotates the object in the x direction when the look button is used
-        //transform.Rotate(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0);
+        //Apply horizonal rotation to the player
+        transform.Rotate(0, player.GetAxis("Look Horizontal") * rotateSpeed * Time.deltaTime, 0);
     }
 
     private void OnCollisionEnter(Collision collision) {

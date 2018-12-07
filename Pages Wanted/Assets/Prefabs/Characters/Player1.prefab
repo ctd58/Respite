@@ -628,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1330472523802996
 GameObject:
   m_ObjectHideFlags: 1
@@ -5971,8 +5971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d751ac307f726844a8c25534137b9941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   speed: 100
-  rotateSpeed: 750
+  rotateSpeed: 75
   audio: {fileID: 0}
   thump: {fileID: 8300000, guid: 8e9243b886c73472cab32dad33b68e1f, type: 3}
   myAnim: {fileID: 95709462360651314}
