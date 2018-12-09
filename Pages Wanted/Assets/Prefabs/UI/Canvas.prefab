@@ -894,7 +894,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textfile: {fileID: 4900000, guid: a2a135d4cebb40848927bdf13c222f9a, type: 3}
-  player: {fileID: 0}
 --- !u!114 &114031101372759136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1525,7 +1524,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114199812543219904}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114531923625709824}
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114381618349158572
@@ -1996,7 +2006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incantationPanel: {fileID: 1819326079868536}
   cameraCover: {fileID: 1619943147660828}
-  playerScreen: {fileID: 1771763068038456}
 --- !u!114 &114619608236725516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2193,7 +2202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textfile: {fileID: 4900000, guid: a2a135d4cebb40848927bdf13c222f9a, type: 3}
-  player: {fileID: 0}
 --- !u!114 &114736869568689324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2259,7 +2267,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114479571465334862}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114531923625709824}
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114796779781884572
@@ -2403,7 +2422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incantationPanel: {fileID: 1144413069188238}
   cameraCover: {fileID: 1131292505106166}
-  playerScreen: {fileID: 1272448239366770}
 --- !u!114 &114880300021272316
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Rewired;
 
 public class ControllerMovement : MonoBehaviour {
 	// Public or Serialized Variables for Inspector -----------------
 	#region Public Variables
+    public bool debug;
     public float speed = 6.0f;
     public float rotateSpeed = 90.0f;
     public AudioSource audio;
@@ -14,21 +16,22 @@ public class ControllerMovement : MonoBehaviour {
     public Animator myAnim;
     public AudioClip cloth;
     [SerializeField] [Range(0.0f, 5.0f)] private float thumpVolume = 3.0f;
-    [SerializeField] public Image imageBrand;
     #endregion
 
     // Private Variables ---------------------------------------------
     #region Private Variables
+    private Player player; 
+    // The Rewired Player
     private bool isP1 = true;
     private ControllerMovement teammate;
     private bool canMove = true;
     private string playerNum = "";
-    private string switchb = "";
     private CharacterController _mycontroller;
     private Sound sound;
     private Vector3 mov;
     private bool grounded;
     private Camera pCamera;
+    private PauseScreenNav pause;
     #endregion
 
 
@@ -47,20 +50,19 @@ public class ControllerMovement : MonoBehaviour {
 
         //Checks if tag on palyer is p1 if it is then it sets the ability to move to true
         //Finds the other players component
-        //Sets a string for the tag so we can call the specific inputs for each player
-        //Sets the switch button for that player
+        int playerId = 0;
         if (this.tag == "P1") {
             isP1 = true;
+            playerId = 0;
             canMove = true;
             teammate = GameObject.FindGameObjectWithTag("P2").GetComponent<ControllerMovement>();
             playerNum = "P1";
-            switchb = "P1yt button";
         } else if (this.tag == "P2") {
             isP1 = false;
+            playerId = 1;
             canMove = false;
             teammate = GameObject.FindGameObjectWithTag("P1").GetComponent<ControllerMovement>();
             playerNum = "P2";
-            switchb = "P2yt button";
         }
 
         //Gets controller component on the player
@@ -75,15 +77,11 @@ public class ControllerMovement : MonoBehaviour {
         //Gets the thump audio source on the player
         //TODO: make private and get via thumpNoise = this.GetComponent<AudioSource>();
         pCamera = GameObject.Find(playerNum + "Camera").GetComponent<Camera>();
-    }
-	
-	// Update is called once per frame
-	void Update () {
 
-        //Checks if player wants to quit the game
-        if (Input.GetKey(KeyCode.Escape))
-            Application.Quit();
+        player = ReInput.players.GetPlayer(playerId);
+        if (debug) Debug.Log("REWIRED PLAYER " + player);
 
+        pause = GameObject.Find("Canvas").GetComponent<PauseScreenNav>();
     }
 
     public bool CanMove() {
@@ -97,6 +95,33 @@ public class ControllerMovement : MonoBehaviour {
         {
             SceneManager.LoadScene("WinScreen");
         }
+    }
+
+    void Update() {
+        if (player.GetButtonUp("Pause")) {
+            pause.PauseMenu(); 
+        }
+	}
+
+    void FixedUpdate()
+    {
+        Look();
+        
+        //If current player can move then get movement input and check if they press the switch button
+        if (canMove) {
+            Move();
+
+            //If switch putton is pressed for this player and they can move then switch which player can move
+            if (player.GetButton("Switch")) {
+                Switch();
+            }
+        }
+        else {
+            //sound.sound = 0;
+        }
+
+        //Dont know what this does i believe widchard added it
+        PlayerComeBackasFalse();
     }
 
     //Handles switching of player
@@ -122,39 +147,21 @@ public class ControllerMovement : MonoBehaviour {
         }
     }
 
-    void FixedUpdate()
-    {
-        Look();
-        //If current player can move then get movement input and check if they press the switch button
-        if (canMove)
-        {
-            Move();
-
-            //If switch putton is pressed for this player and they can move then switch which player can move
-            if (Input.GetButtonDown(switchb))
-            {
-                Switch();
-            }
-        }
-        else
-        {
-            //sound.sound = 0;
-        }
-
-        //Dont know what this does i believe widchard added it
-        PlayerComeBackasFalse();
-    }
-
     // Gets player movement and look
     void Move()
     {
-        //audio.PlayOneShot(cloth);
-        //Gets vertical and horizontal input from players input button (PlayerTag + ButtonName)
-        float x = Input.GetAxis(playerNum + "Horizontal");
-        float z = Input.GetAxis(playerNum + "Vertical");
+        // Play cloth audio
+        // TODO: broken AF
+        // audio.PlayOneShot(cloth);
+
+        //Gets vertical and horizontal input from Rewired player by name or action id
+        float x = player.GetAxis("Move Horizontal");
+        float z = player.GetAxis("Move Vertical");
+        if (debug) Debug.Log("REWIRED X MOVEMENT " + player);
+        if (debug) Debug.Log("REWIRED Y MOVEMENT " + player);
 
         //Change to scale if needed. 
-        float gravity = 98f; 
+        float gravity = 980f; 
         float y = gravity * Time.deltaTime;
 
         if (grounded == true) {
@@ -171,72 +178,42 @@ public class ControllerMovement : MonoBehaviour {
 
         //Passes speed to the animator
         myAnim.SetFloat("Speed", Mathf.Abs(mov.x + mov.z));
-        Debug.Log("Speed: " + Mathf.Abs(mov.x + mov.z));
+        if (debug) Debug.Log("Speed: " + Mathf.Abs(mov.x + mov.z));
 
         //Moves the player in the direction they are facing (Direction camera is looking)
         _mycontroller.Move(transform.TransformDirection(mov));
-
-        Vector3 rotateangl = pCamera.gameObject.transform.rotation.eulerAngles;
-        float xAxisclamp = 0.0f;
-        float rotamnty = Input.GetAxis(playerNum + "Mouse Y");
-        rotateangl.z = 0;
-
-        xAxisclamp -= rotamnty;
-
-        if (xAxisclamp > 90) {
-            xAxisclamp = 90;
-            rotateangl.x = 90;
-        }
-        else if (xAxisclamp < -90) {
-            xAxisclamp = -90;
-            rotateangl.x = 270;
-        }
-        else {
-            rotateangl.x -= rotamnty;
-        }
-        //rotateangl = rotateangl * 1.3f; 
-        pCamera.gameObject.transform.rotation = Quaternion.Euler(rotateangl);
-
-
-        //Rotates the object in the x direction when the look button is used
-        transform.Rotate(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0);
     }
 
     void Look() {
+        //Get current vertical look rotation and input
+        Vector3 currentRotation = pCamera.gameObject.transform.rotation.eulerAngles;
+        if (debug) Debug.Log("CURRENT Y LOOK " + currentRotation.x);
+        float verticalRotation = player.GetAxis("Look Vertical");
+        if (debug) Debug.Log("REWIRED Y LOOK " + verticalRotation);
 
-        PlayerPrefs.SetFloat("PlayerMoveX", mov.x);
-        PlayerPrefs.SetFloat("PlayerMoveY", mov.y);
-        PlayerPrefs.SetFloat("PlayerMoveZ", mov.z);
-
-        Vector3 rotateangl = pCamera.gameObject.transform.rotation.eulerAngles;
-        float xAxisclamp = 0.0f;
-        float rotamnty = Input.GetAxis(playerNum + "Mouse Y");
-        rotateangl.z = 0;
-
-        xAxisclamp -= rotamnty;
-
-        if (xAxisclamp > 90) {
-            xAxisclamp = 90;
-            rotateangl.x = 90;
+        //Clamp so it can't rotate too far
+        currentRotation.x -= verticalRotation;
+        if (currentRotation.x < -80) {
+            currentRotation.x = -80;
+        } 
+        else if (currentRotation.x < 280 && currentRotation.x > 180) {
+            currentRotation.x = 280;
         }
-        else if (xAxisclamp < -90) {
-            xAxisclamp = -90;
-            rotateangl.x = 270;
+        else if (currentRotation.x > 80 && currentRotation.x < 180) {
+            currentRotation.x = 80;
         }
-        else {
-            rotateangl.x -= rotamnty;
-        }
-        //rotateangl = rotateangl * 1.3f; 
-        pCamera.gameObject.transform.rotation = Quaternion.Euler(rotateangl);
+        if (debug) Debug.Log("CLAMPED Y LOOK " + currentRotation.x);
 
+        //Rotate camera vertically according to movement
+        pCamera.gameObject.transform.rotation = Quaternion.Euler(currentRotation);
 
-        //Rotates the object in the x direction when the look button is used
-        transform.Rotate(0, Input.GetAxis(playerNum + "Mouse X") * rotateSpeed * Time.deltaTime, 0);
+        //Apply horizonal rotation to the player
+        transform.Rotate(0, player.GetAxis("Look Horizontal") * rotateSpeed * Time.deltaTime, 0);
     }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Monster") {
-            Debug.Log("cool");
+            if (debug) Debug.Log("cool");
             
             //imageBrand.enabled = true; 
         }
@@ -276,7 +253,7 @@ public class ControllerMovement : MonoBehaviour {
 
     /*
     void OnControllerColliderHit(ControllerColliderHit hit) {
-        Debug.Log("COLLISION");
+        if (debug) Debug.Log("COLLISION");
         StartCoroutine("BumpSound");
     }
 

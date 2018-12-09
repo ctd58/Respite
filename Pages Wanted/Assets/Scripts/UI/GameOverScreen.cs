@@ -19,7 +19,7 @@ public class GameOverScreen : MonoBehaviour {
 	
     private void replayGame()
     {
-        SceneManager.LoadScene("1.02.00"); 
+        SceneManager.LoadScene("1.03.00"); 
     }
 
     private void mainMenu()

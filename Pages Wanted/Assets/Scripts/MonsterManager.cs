@@ -198,6 +198,7 @@ public class MonsterManager : MonoBehaviour {
                     }
                 }
             if (debug) Debug.Log("loudest sound: " + loudest);
+            if (debug) Debug.Log("target: " + target.gameObject.name);
             }
         }
     }
