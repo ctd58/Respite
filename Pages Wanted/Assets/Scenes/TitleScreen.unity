@@ -2215,9 +2215,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 1881223747}
   quitButton: {fileID: 1358715947}
-  titleScreen: {fileID: 689965349}
+  titleScreen: {fileID: 432289132}
   titleScreenBG: {fileID: 1070490884}
-  gameScene: 1.02.01
+  gameScene: 1.03.00
   staminaToggle: {fileID: 25316199}
   monsterSense: {fileID: 1941274111}
   playerSpeed: {fileID: 1816545358}

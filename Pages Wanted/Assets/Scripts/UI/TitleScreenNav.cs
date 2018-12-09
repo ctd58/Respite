@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Rewired;
 
 public class TitleScreenNav : MonoBehaviour {
 
@@ -50,7 +51,6 @@ public class TitleScreenNav : MonoBehaviour {
         {
             titleScreenBG.SetActive(true);
         }
-
     }
 
     private void Update()
@@ -85,10 +85,19 @@ public class TitleScreenNav : MonoBehaviour {
         }
         */
     }
-
+    public void SetControls() {
+        // check if no controllers plugged in
+        if (ReInput.controllers.joystickCount == 0) {
+            Debug.Log("ONLY ONE CONTROLLER: Setting both players to use keyboard");
+            Player p1 = ReInput.players.GetPlayer(0);
+            p1.controllers.maps.LoadMap<KeyboardMap>(0, 1, 0, true);
+            p1.controllers.maps.LoadMap<KeyboardMap>(0, 3, 0, true);
+        }
+    }
 
     private void StartGame()
     {
+        SetControls();
         SceneManager.LoadScene(gameScene); 
     }
 

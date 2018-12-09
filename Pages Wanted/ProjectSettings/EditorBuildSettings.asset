@@ -8,16 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 0220d908fd2640e4388dcae2b9f6c730
-  - enabled: 0
-    path: Assets/Scenes/1.02.00.unity
-    guid: 3aed6e918111643f9be9d99bc126b9aa
+  - enabled: 1
+    path: Assets/Scenes/1.03.00.unity
+    guid: 6a35df795fa7844779ad959b77bce1fd
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: bbde0c4b2bfb6df4594f4b96600d117a
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: b4cda07affa60ef438402dfe831027b3
-  - enabled: 1
-    path: Assets/Scenes/1.02.01.unity
-    guid: 3a8e06f7d3f032745bf1f82fb67c2523
   m_configObjects: {}
