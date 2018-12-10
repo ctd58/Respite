@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4763935960268842}
   - component: {fileID: 95254583642996332}
+  - component: {fileID: 114961861977590228}
   m_Layer: 0
   m_Name: panelBox
   m_TagString: Untagged
@@ -204,3 +205,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114961861977590228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1590069008233576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260733e0965bb4b6abadc7d9cdbcae59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateOnTrigger: 0
+  animateOnTrigger: 1
+  mesh: {fileID: 0}
