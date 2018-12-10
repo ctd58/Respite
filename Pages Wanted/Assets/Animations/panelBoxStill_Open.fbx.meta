@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 45077727c647f994fb156e06d85ea1df
+guid: fdd06385b5dc71a4d8acf1f73b42bea6
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -16,7 +16,7 @@ ModelImporter:
     3300002: pCube2
     4300000: pCube1
     4300002: pCube2
-    7400000: Close
+    7400000: Still_Open
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -47,17 +47,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Close
+      name: Still_Open
       takeName: Open
-      firstFrame: 41
-      lastFrame: 48
+      firstFrame: 38
+      lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

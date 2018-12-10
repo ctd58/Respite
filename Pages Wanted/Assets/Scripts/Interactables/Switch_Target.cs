@@ -20,16 +20,14 @@ public class Switch_Target : MonoBehaviour {
 	}
 
 	public void onSwitchActivate () {
-		if (animateOnTrigger) animator.SetTrigger("open");
+		if (animateOnTrigger) animator.Play("open");
         if (activateOnTrigger) {
-            this.gameObject.SetActive(true);
             mesh.SetActive(true);
-            Debug.Log("Activate");
         }
 	}
 
 	public void onSwitchDeactivate() {
-		if (animateOnTrigger) animator.SetTrigger("close");
+		if (animateOnTrigger) animator.Play("close");
 		if (activateOnTrigger)  this.gameObject.SetActive(false);	
 	}
 }
