@@ -13,32 +13,35 @@ public class Interact_RotateObject : Interactables {
     // Private Variables ---------------------------------------------
     #region Private Variables
     bool isActivated = false;
-    bool doneRotate = false;
+    public bool doneRotate = false;
     #endregion
 
     new void Start()
     {
         base.Start();
         SetSprite(Interact_Icon_Type.PICKUP);
-        targetAngles = transform.eulerAngles + 180f * Vector3.forward;
+        
     }
 
     public void FixedUpdate()
     {
         if (isActivated)
         {
+            targetAngles = transform.eulerAngles + 180f * Vector3.forward;
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
-            if(this.transform.eulerAngles.z >= 180)
+            if (this.transform.eulerAngles.z >= 180)
             {
-                this.transform.Rotate(0, 0, 180);
+                //this.transform.Rotate(0, 0, 180);
                 doneRotate = !doneRotate;
                 isActivated = !isActivated;
                 SetSprite(Interact_Icon_Type.NORMAL);
-                if(targets != null)
-                {
-                    targets[0].onSwitchActivate();
-                }
+                
             }
+        }
+        if(doneRotate)
+        { 
+                Debug.Log("HERE");
+                targets[0].onSwitchActivate();
         }
     }
 
