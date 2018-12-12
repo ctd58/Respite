@@ -34,6 +34,10 @@ public class Interact_RotateObject : Interactables {
                 doneRotate = !doneRotate;
                 isActivated = !isActivated;
                 SetSprite(Interact_Icon_Type.NORMAL);
+                if(targets != null)
+                {
+                    targets[0].onSwitchActivate();
+                }
             }
         }
     }
