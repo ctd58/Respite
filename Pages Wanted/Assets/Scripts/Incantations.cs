@@ -29,7 +29,8 @@ public class Incantations : MonoBehaviour {
     private string playernum; 
     private bool wasCalled;
     private string lastIncantationUsed = "none"; 
-    private float cooldownTimer = 10.0f; 
+    private float cooldownTimer = 10.0f;
+    public AudioSource audio;
 
     
     //Public methods
@@ -58,6 +59,7 @@ public class Incantations : MonoBehaviour {
         }
         player = ReInput.players.GetPlayer(playerId);
 
+        audio = this.GetComponent<AudioSource>();
     }
 
 
@@ -95,8 +97,10 @@ public class Incantations : MonoBehaviour {
     //For the slow incantation
     IEnumerator Slow() {
         StartCoroutine(Cooldown());
+        audio.Play();
         yield return new WaitForSecondsRealtime(castTime);
         StartCoroutine(mm.ChangeSpeed(20.0f, 5.0f));
+        audio.Stop();
         //Amount of time monster should be slowed -- Also should slow voice lines down for monster
         yield return new WaitForSecondsRealtime(15.0f);
         //Amount of time monster should get back to base form-- Also should speed up voice lines down for monster
@@ -105,8 +109,10 @@ public class Incantations : MonoBehaviour {
 
     //For the stun incantation
     IEnumerator Stun() {
-        StartCoroutine(Cooldown()); 
+        StartCoroutine(Cooldown());
+        audio.Play();
         yield return new WaitForSecondsRealtime(castTime);
+        audio.Stop();
         //Next three lines may need to be moved.
         StartCoroutine(mm.ChangeSpeed(0, 1f));
         yield return new WaitForSeconds(5.0f);
