@@ -567,7 +567,8 @@ MonoBehaviour:
   slowSpeed: 1
   insignia1: {fileID: 0}
   insignia2: {fileID: 0}
-  stateParticles: {fileID: 198652964719635870}
+  senseParticles: {fileID: 198146880301487290}
+  hitParticles: {fileID: 198652964719635870}
 --- !u!136 &136339649139442418
 CapsuleCollider:
   m_ObjectHideFlags: 1

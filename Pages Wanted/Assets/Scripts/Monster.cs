@@ -11,7 +11,8 @@ public class Monster : MonoBehaviour {
     public float slowSpeed = 100f;
     public Image insignia1;
     public Image insignia2;
-    public ParticleSystem stateParticles;
+    public ParticleSystem senseParticles;
+    public ParticleSystem hitParticles;
 
     // Private Variables ----------------------------------------------
     private NavMeshAgent navMeshAgent;  
@@ -31,6 +32,7 @@ public class Monster : MonoBehaviour {
         checkprefs();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         monstermanager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>(); 
+        ChangeHitParticleRadius(collideDistance);
     }
 
     void checkprefs()
@@ -54,7 +56,6 @@ public class Monster : MonoBehaviour {
         }
         if (debug) Debug.Log("TARGET DURING UPDATE " + target.name);
         CheckReachedTarget();
-        CheckHitPlayer();
 	}
 
     public void LookAt(Vector3 t) {
@@ -93,20 +94,14 @@ public class Monster : MonoBehaviour {
     }
 
 // If player effect player health and then respawn
-    void CheckHitPlayer() {
-        //TODO: fix this to not depend on player being the target
-        if (Vector3.Distance(transform.position, target.position) < collideDistance) {
-            if(target.gameObject.tag == "P1" || target.gameObject.tag == "P2") {
-                if (debug) Debug.Log("Hit Player!");
-                GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
-                respawn();
-            }
-            if (target.gameObject.tag == "P1") {
-                insignia1.enabled = true; 
-            }
-            if (target.gameObject.tag == "P2") {
-                insignia2.enabled = true;
-            }
+    public void HitPlayer(bool hitP1) {
+        if (debug) Debug.Log("Hit Player!");
+        GameObject.Find("Canvas").GetComponent<OverallUIManager>().DecreaseHealth();
+        respawn();
+        if (hitP1) {
+            insignia1.enabled = true; 
+        } else {
+            insignia2.enabled = true;
         }
     }
 
@@ -115,8 +110,23 @@ public class Monster : MonoBehaviour {
         //EnterStateStun();
     }
 
-    public void ChangeParticleColor(Color newColor) {
-        var col = stateParticles.main.startColor;
+    public void ChangeHitParticleColor(Color newColor) {
+        var col = hitParticles.main.startColor;
         col.color = newColor;
+    }
+
+    public void ChangeHitParticleRadius(float newRadius) {
+        var shape = senseParticles.shape;
+        shape.radius = newRadius;
+    }
+
+    public void ChangeSenseConeRadius(float newRadius) {
+        Debug.Log("newRadius " + newRadius);
+        float coneHeight = 50.0f;
+        float newAngle = (Mathf.Atan(newRadius/coneHeight)/(Mathf.PI/180));
+        Debug.Log("newAngle " + newAngle);
+        var shape = senseParticles.shape;
+        shape.angle = newAngle;
+        shape.radius = 0.0001f;
     }
 }

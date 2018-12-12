@@ -59,6 +59,7 @@ public class MonsterManager : MonoBehaviour {
     private GameObject[] soundObjects;
     private float fallOffStrength = 0.01f;
     private float currentSpeed;
+    private float collideDistance = 80f;
     private enum STATE {
         WANDER,
         //Wander - Move around the room in a random way
@@ -89,6 +90,7 @@ public class MonsterManager : MonoBehaviour {
         // Get Reference to Monster
 		monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
         monster.SetSpeed(wanderSpeed);
+        monster.ChangeSenseConeRadius(attackDistance);
         // Setup Starting Room
 		wanderPoints = startRoom.GetWanderWaypoints();
         patrolPoints = startRoom.patrolRoute;
@@ -104,6 +106,7 @@ public class MonsterManager : MonoBehaviour {
         // Start coroutines to check for reaction states (inspect and attack)
         StartCoroutine("CheckForAttack");
         StartCoroutine("CheckForInspect");
+        StartCoroutine("CheckHitPlayer");
     }
     #endregion
 
@@ -131,7 +134,7 @@ public class MonsterManager : MonoBehaviour {
         currentState = STATE.WANDER;
         target = GetWanderWaypoint();
         StartCoroutine(ReturnToBaseSpeed(secondsToWanderSpeed));
-        monster.ChangeParticleColor(wanderParticleColor);
+        monster.ChangeHitParticleColor(wanderParticleColor);
         SetMonsterTarget();
     }
 
@@ -203,6 +206,22 @@ public class MonsterManager : MonoBehaviour {
         }
     }
 
+    IEnumerator CheckHitPlayer() {
+        while (true) {
+            yield return new WaitForSeconds(0.25f);
+            float playerOneDistance = Vector3.Distance(players[0].gameObject.transform.position, monster.transform.position);
+            float playerTwoDistance = Vector3.Distance(players[1].gameObject.transform.position, monster.transform.position);
+            if (debug) Debug.Log("Distance to P1: " + playerOneDistance);
+            if (debug) Debug.Log("Distance to P2: " + playerTwoDistance);
+            if (playerOneDistance < collideDistance) {
+                monster.HitPlayer(true);
+            }
+            else if (playerTwoDistance < collideDistance) {
+                monster.HitPlayer(false);
+            }
+       }
+    }
+
     private float GetSoundWithFallOff(GameObject noiseObj) {
         float sound = noiseObj.GetComponent<Sound>().sound;
         float distance = Vector3.Distance(noiseObj.transform.position, this.gameObject.transform.position);
@@ -255,7 +274,7 @@ public class MonsterManager : MonoBehaviour {
         SetMonsterTarget();
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(ChangeSpeed(patrolSpeed, secondsToPatrolSpeed));
-        monster.ChangeParticleColor(patrolParticleColor);
+        monster.ChangeHitParticleColor(patrolParticleColor);
         StartCoroutine(RevertToWandering(patrolTime));
     }
     
@@ -274,7 +293,7 @@ public class MonsterManager : MonoBehaviour {
         StartCoroutine("HuntPlayers");
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(ChangeSpeed(huntSpeed, secondsToHuntSpeed));
-        monster.ChangeParticleColor(huntParticleColor);
+        monster.ChangeHitParticleColor(huntParticleColor);
         StartCoroutine(RevertToWandering(huntTime, "HuntPlayers"));
     }
 
@@ -305,7 +324,7 @@ public class MonsterManager : MonoBehaviour {
         StartCoroutine("IdleLook");
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(ChangeSpeed(0, 1f));
-        monster.ChangeParticleColor(idleParticleColor);
+        monster.ChangeHitParticleColor(idleParticleColor);
         StartCoroutine(RevertToWandering(idleTime, "IdleLook"));
     }
 
@@ -323,7 +342,7 @@ public class MonsterManager : MonoBehaviour {
     private void EnterStateHide() {
         currentState = STATE.IDLE;
         StartCoroutine(ChangeSpeed(0, 0.1f));
-        monster.ChangeParticleColor(hideParticleColor);
+        monster.ChangeHitParticleColor(hideParticleColor);
         StartCoroutine(StopStateChangeForSeconds(canNotSwitchStatesTime));
         StartCoroutine(RevertToWandering(hideTime));
     }
