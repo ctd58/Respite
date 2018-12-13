@@ -46446,11 +46446,6 @@ Prefab:
       propertyPath: startRoom
       value: 
       objectReference: {fileID: 596687}
-    - target: {fileID: 114962433556700530, guid: d278a44d949244488b12cd631fee4770,
-        type: 2}
-      propertyPath: wanderSpeed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d278a44d949244488b12cd631fee4770, type: 2}
   m_IsPrefabAsset: 0
@@ -81429,6 +81424,10 @@ Prefab:
       propertyPath: insignia2
       value: 
       objectReference: {fileID: 1670366605}
+    - target: {fileID: 4651658179920766, guid: 6bb6533575142024991413fccee4422e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bb6533575142024991413fccee4422e, type: 2}
   m_IsPrefabAsset: 0
