@@ -265,7 +265,7 @@ MonoBehaviour:
     teleportLocation: {fileID: 1010862359}
   patrolRoute: []
   spawnPoints:
-  - {fileID: 174343037}
+  - {fileID: 403368168}
 --- !u!1 &5564841
 GameObject:
   m_ObjectHideFlags: 0
@@ -50101,7 +50101,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 986049852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1327, y: 43.2, z: -500}
+  m_LocalPosition: {x: -1327, y: 43.2, z: -351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1485927618}
@@ -50126,7 +50126,8 @@ MonoBehaviour:
     teleport: 1
     teleportLocation: {fileID: 1485927618}
   patrolRoute: []
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 1485927618}
 --- !u!1001 &988671527
 Prefab:
   m_ObjectHideFlags: 0
@@ -73417,7 +73418,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524533304}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -94024,7 +94025,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1802824826}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1063, y: 43.199997, z: 1082}
+  m_LocalPosition: {x: -1122.6, y: 43.199997, z: 1079.8}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 1425317451}
