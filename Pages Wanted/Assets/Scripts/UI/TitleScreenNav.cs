@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video; 
 
 public class TitleScreenNav : MonoBehaviour {
 
 
     public Button playButton;
+    public Button skipbutton; 
     public Button quitButton;
     public GameObject titleScreen;
     public GameObject titleScreenBG; 
     public string gameScene;
-    public GameObject staminaToggle; 
+    public GameObject staminaToggle;
+    public VideoPlayer vp;
+    public GameObject im; 
 
     [SerializeField]
     public Slider monsterSense;
@@ -25,15 +29,19 @@ public class TitleScreenNav : MonoBehaviour {
 
     private void Start()
     {
+        skipbutton.gameObject.SetActive(false);
+        im.SetActive(false); 
         Button btn1 = playButton.GetComponent<Button>();
         Button btn2 = quitButton.GetComponent<Button>();
+        Button btn3 = skipbutton.GetComponent<Button>(); 
         Toggle tgl1 = staminaToggle.GetComponent<Toggle>();
 
         tgl1.isOn = false;
         PlayerPrefs.SetString("staminaToggle", "false");
 
         btn1.onClick.AddListener(StartGame);
-        btn2.onClick.AddListener(ExitScene);
+        btn2.onClick.AddListener(ExitGame);
+        btn3.onClick.AddListener(PlayGame); 
         tgl1.onValueChanged.AddListener(StaminaToggle); 
 
         playerSpeed.value = PlayerPrefs.GetFloat("playerspeed"); 
@@ -87,10 +95,32 @@ public class TitleScreenNav : MonoBehaviour {
 
     private void StartGame()
     {
-        SceneManager.LoadScene(gameScene); 
+        //Hide Main Menu
+        titleScreen.SetActive(false);
+        titleScreenBG.SetActive(false);
+        skipbutton.gameObject.SetActive(true);
+        if (vp == null) {
+            //im.SetActive(true);
+            endReached(null);
+        }
+        else {
+            im.SetActive(false);
+            vp.Play();
+            vp.loopPointReached += endReached;
+        }
     }
 
-    private void ExitScene()
+
+    void endReached(VideoPlayer vp) {
+        Debug.Log("Cool"); 
+        SceneManager.LoadScene("1.03.00");
+    }
+
+    void PlayGame() {
+        SceneManager.LoadScene("1.03.00");
+    }
+
+    private void ExitGame()
     {
         Application.Quit(); 
     }
