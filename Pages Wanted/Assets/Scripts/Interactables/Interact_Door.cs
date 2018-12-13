@@ -61,10 +61,10 @@ public class Interact_Door : Interactables {
 			}
 		} else {
 			OpenDoor();
+			if (action!=null) { 
+				GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
+			}
 		}
-		if (action!=null) { 
-            GameObject.Find("MonsterManager").GetComponent<MonsterManager>().TriggerMonsterAction(action);
-        }
 	}
 	#endregion
 
