@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 45077727c647f994fb156e06d85ea1df
+guid: d7b4ff0b1edb1b04a91197ba8311d05f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -16,7 +16,7 @@ ModelImporter:
     3300002: pCube2
     4300000: pCube1
     4300002: pCube2
-    7400000: Close
+    7400000: Open
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -47,10 +47,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Close
+      name: Open
       takeName: Open
-      firstFrame: 41
-      lastFrame: 48
+      firstFrame: 1
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -73,11 +73,11 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -97,7 +97,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
