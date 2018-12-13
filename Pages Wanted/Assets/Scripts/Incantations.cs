@@ -99,12 +99,12 @@ public class Incantations : MonoBehaviour {
         StartCoroutine(Cooldown());
         audio.Play();
         yield return new WaitForSecondsRealtime(castTime);
-        StartCoroutine(mm.ChangeSpeed(20.0f, 5.0f));
+        StartCoroutine(mm.ChangeSpeed(5.0f, 3.0f));
         audio.Stop();
         //Amount of time monster should be slowed -- Also should slow voice lines down for monster
         yield return new WaitForSecondsRealtime(15.0f);
         //Amount of time monster should get back to base form-- Also should speed up voice lines down for monster
-        StartCoroutine(mm.ReturnToBaseSpeed(3.0f));
+        StartCoroutine(mm.ReturnToBaseSpeed(5.0f));
     }
 
     //For the stun incantation
