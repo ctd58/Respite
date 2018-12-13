@@ -111,8 +111,8 @@ public class Monster : MonoBehaviour {
     }
 
     public void ChangeHitParticleColor(Color newColor) {
-        var col = hitParticles.main.startColor;
-        col.color = newColor;
+        var col = hitParticles.main;
+        col.startColor = newColor;
     }
 
     public void ChangeHitParticleRadius(float newRadius) {

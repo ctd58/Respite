@@ -53,21 +53,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   startRoom: {fileID: 0}
-  wanderSpeed: 50
+  wanderSpeed: 20
   secondsToWanderSpeed: 2
-  wanderParticleColor: {r: 0.42745098, g: 0, b: 0.18039216, a: 0}
-  inspectParticleColor: {r: 0.42745098, g: 0, b: 0.18039216, a: 0}
+  wanderParticleColor: {r: 0, g: 0, b: 0, a: 0.78431374}
+  inspectSpeed: 30
+  secondsToInspectSpeed: 2
+  inspectParticleColor: {r: 0.23584908, g: 0.0011124983, b: 0.11738387, a: 0.19607843}
   attackDistance: 300
-  attackParticleColor: {r: 0.42745098, g: 0, b: 0.18039216, a: 0}
-  patrolSpeed: 50
+  attackSpeed: 35
+  secondsToAttackSpeed: 5
+  attackParticleColor: {r: 0.4339623, g: 0, b: 0.1824614, a: 0.39215687}
+  patrolSpeed: 20
   patrolTime: 15
   secondsToPatrolSpeed: 2
-  patrolParticleColor: {r: 0.42745098, g: 0, b: 0.18039216, a: 0}
-  huntSpeed: 50
+  patrolParticleColor: {r: 0, g: 0, b: 0, a: 0.78431374}
+  huntSpeed: 40
   huntTime: 15
   secondsToHuntSpeed: 2
-  huntParticleColor: {r: 0.42745098, g: 0.1069417, b: 0, a: 0}
+  huntParticleColor: {r: 0.745283, g: 0.0035154943, b: 0.16001002, a: 0.39215687}
   idleTime: 15
-  idleParticleColor: {r: 0, g: 0.06776207, b: 0.42745098, a: 0}
+  idleParticleColor: {r: 0, g: 0, b: 0, a: 0.78431374}
   hideTime: 15
-  hideParticleColor: {r: 0.42745098, g: 0.33136797, b: 0, a: 0}
+  hideParticleColor: {r: 0, g: 0, b: 0, a: 0}

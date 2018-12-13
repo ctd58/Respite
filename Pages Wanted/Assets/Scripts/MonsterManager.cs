@@ -16,16 +16,14 @@ public class MonsterManager : MonoBehaviour {
     [SerializeField] private Color wanderParticleColor;
 
     [Header("Inspect State Variables")]
-    // TODO: figure out how we want to increase inspect speed
-    // [SerializeField] [Range(1f, 100f)] private float inspectSpeed = 50f;
-    // [SerializeField] [Range(0.1f, 20f)] private float secondsToInspectSpeed = 2f;
+    [SerializeField] [Range(1f, 100f)] private float inspectSpeed = 50f;
+    [SerializeField] [Range(0.1f, 20f)] private float secondsToInspectSpeed = 2f;
     [SerializeField] private Color inspectParticleColor;
 
     [Header("Attack State Variables")]
     [SerializeField] [Range(100, 1000)] private float attackDistance = 300f;
-    // TODO: figure out how we want to increase attack speed
-    // [SerializeField] [Range(1f, 100f)] private float attackSpeed = 60f;
-    // [SerializeField] [Range(0.1f, 20f)] private float secondsToAttackSpeed = 5f;
+    [SerializeField] [Range(1f, 100f)] private float attackSpeed = 60f;
+    [SerializeField] [Range(0.1f, 20f)] private float secondsToAttackSpeed = 5f;
     [SerializeField] private Color attackParticleColor;
 
     [Header("Patrol State Variables")]
@@ -125,7 +123,7 @@ public class MonsterManager : MonoBehaviour {
         monster.SetTarget(target);
     }
 
-	// Wander State ------------------------------------------------------
+	// Base State: Wander ------------------------------------------------------
     // Wandering is the base state of the monster, the state that it
     //   will return from all other states if their end condition is
     //   met. Wander is also the starting state of the monster.
@@ -162,15 +160,23 @@ public class MonsterManager : MonoBehaviour {
                 if (debug) Debug.Log("Distance to P1: " + playerOneDistance);
                 if (debug) Debug.Log("Distance to P2: " + playerTwoDistance);
                 if (playerOneDistance < attackDistance) {
+                    if (currentState != STATE.ATTACK) EnterStateAttack();
                     target = players[0].transform;
                     SetMonsterTarget();
                 }
                 else if (playerTwoDistance < attackDistance) {
+                    if (currentState != STATE.ATTACK) EnterStateAttack();
                     target = players[1].transform;
                     SetMonsterTarget();
                 }
             }
         }
+    }
+
+    private void EnterStateAttack() {
+        currentState = STATE.ATTACK;
+        StartCoroutine(ChangeSpeed(attackSpeed, secondsToAttackSpeed));
+        monster.ChangeHitParticleColor(attackParticleColor);        
     }
 
     // Inspect State -------------------------
@@ -187,6 +193,7 @@ public class MonsterManager : MonoBehaviour {
                     float sound = noise.GetComponent<Sound>().sound;
                     temp = (sound > 0) ? GetSoundWithFallOff(noise) : 0f;
                     if (temp > loudest) {
+                        if (currentState != STATE.INSPECT) EnterStateInspect();
                         loudest = temp;
                         target = noise.transform;
                         SetMonsterTarget();
@@ -195,6 +202,7 @@ public class MonsterManager : MonoBehaviour {
                 foreach (GameObject noise in players) {
                     temp = GetSoundWithFallOff(noise);
                     if (temp > loudest) {
+                        if (currentState != STATE.INSPECT) EnterStateInspect();
                         loudest = temp;
                         target = noise.transform;
                         SetMonsterTarget();
@@ -204,6 +212,12 @@ public class MonsterManager : MonoBehaviour {
             if (debug) Debug.Log("target: " + target.gameObject.name);
             }
         }
+    }
+
+    private void EnterStateInspect() {
+        currentState = STATE.INSPECT;
+        StartCoroutine(ChangeSpeed(inspectSpeed, secondsToInspectSpeed));
+        monster.ChangeHitParticleColor(inspectParticleColor);        
     }
 
     IEnumerator CheckHitPlayer() {
