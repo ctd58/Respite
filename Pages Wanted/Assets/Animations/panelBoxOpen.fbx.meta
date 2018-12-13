@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21f0f71698825b64894a0bc6835ae51e
+guid: de883d7057989b6469e145de4023943c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -16,7 +16,7 @@ ModelImporter:
     3300002: pCube2
     4300000: pCube1
     4300002: pCube2
-    7400000: OpenTheFuckingBox
+    7400000: open
     9500000: //RootNode
   externalObjects:
   - first:
@@ -52,7 +52,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: OpenTheFuckingBox
+      name: open
       takeName: Take 001
       firstFrame: 1
       lastFrame: 48
@@ -78,7 +78,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
